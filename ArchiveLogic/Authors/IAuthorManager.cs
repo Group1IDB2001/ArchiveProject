@@ -20,10 +20,11 @@ namespace ArchiveLogic.Authors
         Task EditAuthorBorn(int id, int born);
         Task EditAuthorDeath(int idd, int? death);
         Task EditAuthorName(int id, string name);
-        
+
 
         Task DeleteAuthor (int id);
         Task AddAuthor(string name, int born, int? death, string? about);
+
 
 
     }
