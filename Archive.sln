@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archive", "Archive\Archive.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArchiveStorage", "AArchiveStorage\ArchiveStorage.csproj", "{AD468E48-11B5-4E16-ADEF-C9EEE37BE67D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArchiveLogic", "ArchiveLogic\ArchiveLogic.csproj", "{1F8A8F5C-D63D-458E-B5E2-0AF44291FED0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArchiveLogic", "ArchiveLogic\ArchiveLogic.csproj", "{1F8A8F5C-D63D-458E-B5E2-0AF44291FED0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6CBC3058-612E-4D55-92F9-D7272526EF0E}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

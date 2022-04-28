@@ -12,7 +12,7 @@ namespace ArchiveStorage
     {
         public ArchiveContext (DbContextOptions<ArchiveContext> options) : base(options)
         {
-
+            
         }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Collection> Collections { get; set; }
