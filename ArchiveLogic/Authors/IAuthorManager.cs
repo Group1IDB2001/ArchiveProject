@@ -13,6 +13,7 @@ namespace ArchiveLogic.Authors
         Task<IList<Author>> GetAuthorsByItemId(int itemId);
         Task<Author> GetAuthorByName(string name);
         Task<IList<Author>> GetAuthorsByYear(int year);
+        Task Update(Author author);
 
 
         Task EditAuthorAbout(int id, string about);
