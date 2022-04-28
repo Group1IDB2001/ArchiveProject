@@ -8,5 +8,10 @@ namespace ArchiveLogic.Authors
 {
     public interface ICountryManager
     {
+        Task<IList<Country>> GetAllCountries();
+        Task<Country> GetCountryById (int id);
+        Task<Country> GetCountryByName (string name);
+        Task DeleteCountry (int id);
+        Task AddCountry(string name);
     }
 }

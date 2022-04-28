@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace ArchiveStorage.Entities
 {
-    enum Genre
+    enum Genres
     {
         no_info = 0,
         literary_fiction = 1,
@@ -32,7 +32,7 @@ namespace ArchiveStorage.Entities
         public string? Description { get; set; }
         public int Year { get; set; }
         public string? Field { get; set; }
-        public int Genre { get; set; } //= { (int)Genre.no_info };
+        public int Genre { get; set; } 
 
         [Required]
         public int CountryId { get; set; }
@@ -45,7 +45,7 @@ namespace ArchiveStorage.Entities
             Description = description;
             Year = year;
             Field = field;
-            Genre = genre;
+            Genre = (int)Genres.dystopyan;
             CountryId = countryId;
         }
     }
