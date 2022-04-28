@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace ArchiveStorage.Entities
 {
-    public class TagItem
+    public class TTagItem
     {
        [Key]
         public int Id { get; set; }
         
-        public int? TagId { get; set; }
+        public int? TTagId { get; set; }
         //[ForeignKey(nameof(TagId))]
-        public virtual Tag Tag { get; set; }
+        public virtual TTag TTag { get; set; }
         
         public int? ItemId { get; set; }
         //[ForeignKey(nameof(ItemId))]
         public virtual Item Item { get; set; }
 
-        public TagItem(int? tagId, int? itemId)
+        public TTagItem(int? ttagId, int? itemId)
         {
-            TagId = tagId;
+            TTagId = ttagId;
             ItemId = itemId;
         }
     }
