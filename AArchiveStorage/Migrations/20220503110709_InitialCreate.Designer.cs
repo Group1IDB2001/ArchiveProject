@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArchiveStorage.Migrations
 {
     [DbContext(typeof(ArchiveContext))]
-    [Migration("20220503105602_InitialCreate")]
+    [Migration("20220503110709_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -347,7 +347,7 @@ namespace ArchiveStorage.Migrations
                     b.ToTable("Saves");
                 });
 
-            modelBuilder.Entity("ArchiveStorage.Entities.TTag", b =>
+            modelBuilder.Entity("ArchiveStorage.Entities.Ttag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -373,7 +373,7 @@ namespace ArchiveStorage.Migrations
                     b.ToTable("TTags");
                 });
 
-            modelBuilder.Entity("ArchiveStorage.Entities.TTagCollection", b =>
+            modelBuilder.Entity("ArchiveStorage.Entities.TtagCollection", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -384,15 +384,19 @@ namespace ArchiveStorage.Migrations
                     b.Property<int?>("CollectionId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TTagId")
+                    b.Property<int?>("TtagId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CollectionId");
+
+                    b.HasIndex("TtagId");
+
                     b.ToTable("TTagCollections");
                 });
 
-            modelBuilder.Entity("ArchiveStorage.Entities.TTagItem", b =>
+            modelBuilder.Entity("ArchiveStorage.Entities.TtagItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -403,14 +407,14 @@ namespace ArchiveStorage.Migrations
                     b.Property<int?>("ItemId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TTagId")
+                    b.Property<int?>("TtagId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ItemId");
 
-                    b.HasIndex("TTagId");
+                    b.HasIndex("TtagId");
 
                     b.ToTable("TTagsItems");
                 });
@@ -591,7 +595,7 @@ namespace ArchiveStorage.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ArchiveStorage.Entities.TTag", b =>
+            modelBuilder.Entity("ArchiveStorage.Entities.Ttag", b =>
                 {
                     b.HasOne("ArchiveStorage.Entities.User", "User")
                         .WithMany()
@@ -602,19 +606,34 @@ namespace ArchiveStorage.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ArchiveStorage.Entities.TTagItem", b =>
+            modelBuilder.Entity("ArchiveStorage.Entities.TtagCollection", b =>
+                {
+                    b.HasOne("ArchiveStorage.Entities.Collection", "Collection")
+                        .WithMany()
+                        .HasForeignKey("CollectionId");
+
+                    b.HasOne("ArchiveStorage.Entities.Ttag", "Ttag")
+                        .WithMany()
+                        .HasForeignKey("TtagId");
+
+                    b.Navigation("Collection");
+
+                    b.Navigation("Ttag");
+                });
+
+            modelBuilder.Entity("ArchiveStorage.Entities.TtagItem", b =>
                 {
                     b.HasOne("ArchiveStorage.Entities.Item", "Item")
                         .WithMany()
                         .HasForeignKey("ItemId");
 
-                    b.HasOne("ArchiveStorage.Entities.TTag", "TTag")
+                    b.HasOne("ArchiveStorage.Entities.Ttag", "Ttag")
                         .WithMany()
-                        .HasForeignKey("TTagId");
+                        .HasForeignKey("TtagId");
 
                     b.Navigation("Item");
 
-                    b.Navigation("TTag");
+                    b.Navigation("Ttag");
                 });
 #pragma warning restore 612, 618
         }

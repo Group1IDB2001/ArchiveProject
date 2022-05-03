@@ -51,20 +51,6 @@ namespace ArchiveStorage.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TTagCollections",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TTagId = table.Column<int>(type: "int", nullable: true),
-                    CollectionId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TTagCollections", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -349,12 +335,36 @@ namespace ArchiveStorage.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TTagCollections",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TtagId = table.Column<int>(type: "int", nullable: true),
+                    CollectionId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TTagCollections", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TTagCollections_Collections_CollectionId",
+                        column: x => x.CollectionId,
+                        principalTable: "Collections",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_TTagCollections_TTags_TtagId",
+                        column: x => x.TtagId,
+                        principalTable: "TTags",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TTagsItems",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TTagId = table.Column<int>(type: "int", nullable: true),
+                    TtagId = table.Column<int>(type: "int", nullable: true),
                     ItemId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -366,8 +376,8 @@ namespace ArchiveStorage.Migrations
                         principalTable: "Items",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_TTagsItems_TTags_TTagId",
-                        column: x => x.TTagId,
+                        name: "FK_TTagsItems_TTags_TtagId",
+                        column: x => x.TtagId,
                         principalTable: "TTags",
                         principalColumn: "Id");
                 });
@@ -468,6 +478,16 @@ namespace ArchiveStorage.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TTagCollections_CollectionId",
+                table: "TTagCollections",
+                column: "CollectionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TTagCollections_TtagId",
+                table: "TTagCollections",
+                column: "TtagId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TTags_UserId",
                 table: "TTags",
                 column: "UserId");
@@ -478,9 +498,9 @@ namespace ArchiveStorage.Migrations
                 column: "ItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TTagsItems_TTagId",
+                name: "IX_TTagsItems_TtagId",
                 table: "TTagsItems",
-                column: "TTagId");
+                column: "TtagId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
