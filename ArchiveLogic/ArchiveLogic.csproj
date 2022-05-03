@@ -10,8 +10,4 @@
     <ProjectReference Include="..\AArchiveStorage\ArchiveStorage.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Authors\" />
-  </ItemGroup>
-
 </Project>

@@ -12,20 +12,19 @@ namespace ArchiveLogic.Authors
         }
 
         public async Task AddAuthor(string name, int born, int? death, string? about)
-        {
-            DbSet<Author> table = null;
+        {   
             var author_1 = _context.Authors.First(n => n.Name == name);
             if (author_1 == null)
             {
-                Author author = new Author(name, born, death, about);
-                table.Add(author);
+                var author = new Author { Name = name, Born = born, Death = death.Value, About = about };
+                _context.Authors.Add(author);
                 await _context.SaveChangesAsync();
             }
             else
             {
                 throw new Exception("There is author with the same name");
             }
-           
+
         }
 
         public async Task DeleteAuthor(int id)
@@ -54,35 +53,37 @@ namespace ArchiveLogic.Authors
             }
             return author;
         }
-        public async Task<Author> GetAuthorByName(string name)
-        {
-            var author = _context.Authors.First(n => n.Name == name);
-            //var author = _context.Authors.Find(n => n.Name == name);
-            
-            if (author == null)
-            {
-                throw new Exception("Error,I can't found,There is not author");
-            }
-            return author;
-        }
+
+
+        //public async Task<Author> GetAuthorByName(string name)
+        //{
+        //    var author = _context.Authors.First(n => n.Name == name);
+        //    var author = _context.Authors.Find(n => n.Name == name);
+
+        //    if (author == null)
+        //    {
+        //        throw new Exception("Error,I can't found,There is not author");
+        //    }
+        //    return author;
+        //}
 
         //public async Task<IList<Author>> GetAuthorsByItemId(int itemId)
-        {
-            //var itemauthor = _context.ItemAuthors.Find(item => item.ItemId == itemId);
-            //List<ItemAuthor> itemAuthor = _context.ItemAuthors.Select(i => i.ItemId == itemId);
-            //if(itemAuthor != null )
-            {
-              //  var counter = itemAuthor.Count();
+        //{
+        //    var itemauthor = _context.ItemAuthors.Find(item => item.ItemId == itemId);
+        //    List<ItemAuthor> itemAuthor = _context.ItemAuthors.Select(i => i.ItemId == itemId);
+        //    if (itemAuthor != null)
+        //    {
+        //        var counter = itemAuthor.Count();
 
-              //  List<Author> authorList = new List<Author>();
-               // for ( j = 0; ; j < counter; j++)
-                    {
-                 //       authorList.Add(_context.Authors.First(a => a.Id == itemlist.AuthorId);
-                    }
-            }
-            //return authorList;
+        //        List<Author> authorList = new List<Author>();
+        //        for (j = 0; ; j < counter; j++)
+        //            {
+        //            authorList.Add(_context.Authors.First(a => a.Id == itemlist.AuthorId);
+        //        }
+        //    }
+        //    return authorList;
 
-        }
+        //}
 
 
 
@@ -108,14 +109,6 @@ namespace ArchiveLogic.Authors
         {
             throw new NotImplementedException();
         }
-
-       
-
-        
-
-
-
-        
 
         public Task<IList<Author>> GetAuthorsByYear(int year)
         {
