@@ -18,11 +18,7 @@ namespace ArchiveStorage.Entities
         public int? ItemId { get; set; }
         //[ForeignKey(nameof(ItemId))]
         public virtual Item Item { get; set; }
+        
 
-        public TTagItem(int? ttagId, int? itemId)
-        {
-            TTagId = ttagId;
-            ItemId = itemId;
-        }
     }
 }

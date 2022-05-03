@@ -13,16 +13,18 @@ namespace ArchiveStorage.Entities
         
         public int? TTagId { get; set; }
         //[ForeignKey(nameof(TagId))]
-        public virtual TTag TTag { get; set; }
+        //public virtual TTag TTag { get; set; }
         
         public int? CollectionId { get; set; }
         //[ForeignKey(nameof(CollectionId))]
-        public virtual Collection Collection { get; set; }
+        //public virtual Collection Collection { get; set; }
+        //public TTagCollection(int tTag, int collection)
+        //{
+            //TTag = tTag;
+            //Collection = collection;
+            //TTagId = tTag;
+            //CollectionId = collection;
+        //}
 
-        public TTagCollection(int? ttagId, int? collectionId)
-        {
-            TTagId = ttagId;
-            CollectionId = collectionId;
-        }
     }
 }

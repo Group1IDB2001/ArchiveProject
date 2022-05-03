@@ -27,7 +27,6 @@ namespace ArchiveStorage.Entities
         public int? CollectionId { get; set; }
         //[ForeignKey(nameof(CollectionId))]
         public virtual Collection Collection { get; set; }
-
         public Response(string text, int? qestionId, int? userId, int? itemId, int? collectionId)
         {
             Text = text;

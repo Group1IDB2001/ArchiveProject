@@ -18,7 +18,6 @@ namespace ArchiveStorage.Entities
         public int? LanguageId { get; set; }
       //  [ForeignKey(nameof(LanguageId))]
         public virtual Language Language { get; set; }
-
         public ItemLanguage(int? itemId, int? languageId)
         {
             ItemId = itemId;

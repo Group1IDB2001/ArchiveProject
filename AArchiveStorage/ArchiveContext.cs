@@ -26,9 +26,9 @@ namespace ArchiveStorage
         public DbSet<Qestion> Qestiones { get; set; }
         public DbSet<Reaction> Reactions { get; set; }
         public DbSet<Response> Responses { get; set; }
-        public DbSet<TTag> Tags { get; set; }
-        public DbSet<TTagCollection> TagCollections { get; set; }
-        public DbSet<TTagItem> TagsItems { get; set; }
+        public DbSet<TTag> TTags { get; set; }
+        public DbSet<TTagCollection> TTagCollections { get; set; }
+        public DbSet<TTagItem> TTagsItems { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Saved> Saves { get; set; }
 

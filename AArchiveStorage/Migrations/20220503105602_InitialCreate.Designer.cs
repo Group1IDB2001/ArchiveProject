@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArchiveStorage.Migrations
 {
     [DbContext(typeof(ArchiveContext))]
-    [Migration("20220427183553_InitialCreate")]
+    [Migration("20220503105602_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -347,7 +347,7 @@ namespace ArchiveStorage.Migrations
                     b.ToTable("Saves");
                 });
 
-            modelBuilder.Entity("ArchiveStorage.Entities.Tag", b =>
+            modelBuilder.Entity("ArchiveStorage.Entities.TTag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -370,10 +370,10 @@ namespace ArchiveStorage.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Tags");
+                    b.ToTable("TTags");
                 });
 
-            modelBuilder.Entity("ArchiveStorage.Entities.TagCollection", b =>
+            modelBuilder.Entity("ArchiveStorage.Entities.TTagCollection", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -384,19 +384,15 @@ namespace ArchiveStorage.Migrations
                     b.Property<int?>("CollectionId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TagId")
+                    b.Property<int?>("TTagId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CollectionId");
-
-                    b.HasIndex("TagId");
-
-                    b.ToTable("TagCollections");
+                    b.ToTable("TTagCollections");
                 });
 
-            modelBuilder.Entity("ArchiveStorage.Entities.TagItem", b =>
+            modelBuilder.Entity("ArchiveStorage.Entities.TTagItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -407,16 +403,16 @@ namespace ArchiveStorage.Migrations
                     b.Property<int?>("ItemId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TagId")
+                    b.Property<int?>("TTagId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ItemId");
 
-                    b.HasIndex("TagId");
+                    b.HasIndex("TTagId");
 
-                    b.ToTable("TagsItems");
+                    b.ToTable("TTagsItems");
                 });
 
             modelBuilder.Entity("ArchiveStorage.Entities.User", b =>
@@ -595,7 +591,7 @@ namespace ArchiveStorage.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ArchiveStorage.Entities.Tag", b =>
+            modelBuilder.Entity("ArchiveStorage.Entities.TTag", b =>
                 {
                     b.HasOne("ArchiveStorage.Entities.User", "User")
                         .WithMany()
@@ -606,34 +602,19 @@ namespace ArchiveStorage.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ArchiveStorage.Entities.TagCollection", b =>
-                {
-                    b.HasOne("ArchiveStorage.Entities.Collection", "Collection")
-                        .WithMany()
-                        .HasForeignKey("CollectionId");
-
-                    b.HasOne("ArchiveStorage.Entities.Tag", "Tag")
-                        .WithMany()
-                        .HasForeignKey("TagId");
-
-                    b.Navigation("Collection");
-
-                    b.Navigation("Tag");
-                });
-
-            modelBuilder.Entity("ArchiveStorage.Entities.TagItem", b =>
+            modelBuilder.Entity("ArchiveStorage.Entities.TTagItem", b =>
                 {
                     b.HasOne("ArchiveStorage.Entities.Item", "Item")
                         .WithMany()
                         .HasForeignKey("ItemId");
 
-                    b.HasOne("ArchiveStorage.Entities.Tag", "Tag")
+                    b.HasOne("ArchiveStorage.Entities.TTag", "TTag")
                         .WithMany()
-                        .HasForeignKey("TagId");
+                        .HasForeignKey("TTagId");
 
                     b.Navigation("Item");
 
-                    b.Navigation("Tag");
+                    b.Navigation("TTag");
                 });
 #pragma warning restore 612, 618
         }

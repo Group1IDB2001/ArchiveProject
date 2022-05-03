@@ -66,11 +66,21 @@ namespace ArchiveLogic.Authors
             return author;
         }
 
-        public Task<IList<Author>> GetAuthorsByItemId(int itemId)
+        //public async Task<IList<Author>> GetAuthorsByItemId(int itemId)
         {
             //var itemauthor = _context.ItemAuthors.Find(item => item.ItemId == itemId);
-            var itemAuthor = _context.ItemAuthors.Find(Item => Item.ItemId.Contains(itemId));
+            //List<ItemAuthor> itemAuthor = _context.ItemAuthors.Select(i => i.ItemId == itemId);
+            //if(itemAuthor != null )
+            {
+              //  var counter = itemAuthor.Count();
 
+              //  List<Author> authorList = new List<Author>();
+               // for ( j = 0; ; j < counter; j++)
+                    {
+                 //       authorList.Add(_context.Authors.First(a => a.Id == itemlist.AuthorId);
+                    }
+            }
+            //return authorList;
 
         }
 

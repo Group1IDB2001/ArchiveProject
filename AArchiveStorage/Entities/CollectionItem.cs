@@ -12,13 +12,12 @@ namespace ArchiveStorage.Entities
         public int Id { get; set; }
         
         public int? CollectionId { get; set; }
-        //[ForeignKey(nameof(CollectionId))]
+       // [ForeignKey(nameof(CollectionId))]
         public virtual Collection Collection { get; set; }
         
         public int? ItemId { get; set; }
        // [ForeignKey(nameof(ItemId))]
         public virtual Item Item { get; set; }
-
         public CollectionItem(int? collectionId, int? itemId)
         {
             CollectionId = collectionId;

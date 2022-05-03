@@ -6,16 +6,6 @@ using System.Threading.Tasks;
 
 namespace ArchiveStorage.Entities
 {
-    enum Role
-    {
-        admin = 0 ,
-        moderator = 1 ,
-        
-        user = 4 
-             
-    
-    }
-
     public class User
     {
         [Key]
@@ -24,7 +14,6 @@ namespace ArchiveStorage.Entities
         public string Email { get; set; }
         public string Password { get; set; }
         public int Role { get; set; }
-
         public User(string name, string email, string password, int role)
         {
             Name = name;
