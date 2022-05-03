@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ArchiveStorage.Entities
 {
-    public class TTag
+    public class Ttag
     {
         [Key]
         public int Id { get; set; }
@@ -16,7 +16,7 @@ namespace ArchiveStorage.Entities
         public int UserId { get; set; }
         [ForeignKey(nameof(UserId))]
         public virtual User User { get; set; }
-        public TTag(string name, int userId, string? description)
+        public Ttag(string name, int userId, string? description)
         {
             Name = name;
             UserId = userId;
