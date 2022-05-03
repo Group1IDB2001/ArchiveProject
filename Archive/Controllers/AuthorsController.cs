@@ -1,8 +1,16 @@
+<<<<<<< Updated upstream
 ﻿namespace Archive.Controllers
+=======
+﻿using Microsoft.AspNetCore.Mvc;
+using ArchiveLogic.Authors;
+using ArchiveStorage.Entities;
+namespace Archive.Controllers
+>>>>>>> Stashed changes
 {
     public class AuthorsController : Controller
     {
         private readonly IAuthorManager _manager;
+<<<<<<< Updated upstream
         public AuthorsController(IAuthorManager manager)
         {
             _manager=manager;
@@ -28,9 +36,23 @@
 
 
 
+=======
+
+        public AuthorsController(IAuthorManager manager)
+        {
+            _manager = manager;
+        }
+>>>>>>> Stashed changes
         public IActionResult Index()
         {
             return View();
         }
+<<<<<<< Updated upstream
+=======
+
+        [HttpGet]
+        [Route("authors")]
+        public async Task<IList<Author>> GetAllAuthors()=> await _manager.GetAllAuthors();
+>>>>>>> Stashed changes
     }
 }
