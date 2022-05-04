@@ -368,7 +368,7 @@ namespace ArchiveStorage.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("TTags");
+                    b.ToTable("Ttags");
                 });
 
             modelBuilder.Entity("ArchiveStorage.Entities.TtagCollection", b =>
@@ -391,7 +391,7 @@ namespace ArchiveStorage.Migrations
 
                     b.HasIndex("TtagId");
 
-                    b.ToTable("TTagCollections");
+                    b.ToTable("TtagCollections");
                 });
 
             modelBuilder.Entity("ArchiveStorage.Entities.TtagItem", b =>
@@ -414,7 +414,7 @@ namespace ArchiveStorage.Migrations
 
                     b.HasIndex("TtagId");
 
-                    b.ToTable("TTagsItems");
+                    b.ToTable("TtagsItems");
                 });
 
             modelBuilder.Entity("ArchiveStorage.Entities.User", b =>

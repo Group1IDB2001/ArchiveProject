@@ -8,6 +8,7 @@ var services  = builder.Services;
 services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("DbConnection"); // Add DbContext
 services.AddDbContext<ArchiveContext>(param => param.UseSqlServer(connectionString));
+
 services.AddScoped<IAuthorManager, AuthorManager>();
 var app = builder.Build();
 

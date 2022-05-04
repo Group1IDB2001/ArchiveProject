@@ -15,6 +15,5 @@ namespace ArchiveStorage.Entities
         public int? Death { get; set; }
         public string? About { get; set; }
 
-
     }
 }

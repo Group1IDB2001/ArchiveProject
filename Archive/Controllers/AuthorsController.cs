@@ -1,16 +1,13 @@
-<<<<<<< Updated upstream
-﻿namespace Archive.Controllers
-=======
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using ArchiveLogic.Authors;
 using ArchiveStorage.Entities;
 namespace Archive.Controllers
->>>>>>> Stashed changes
+
 {
     public class AuthorsController : Controller
     {
         private readonly IAuthorManager _manager;
-<<<<<<< Updated upstream
+
         public AuthorsController(IAuthorManager manager)
         {
             _manager=manager;
@@ -22,37 +19,48 @@ namespace Archive.Controllers
 
 
         [HttpDelete]
-        [Route("authors/{id}")]
+        [Route("authors/{id:int}")]
         public Task DeleteAuthor(int id) => _manager.DeleteAuthor(id);
 
 
         [HttpGet]
-        [Route("authors/{id}")]
+        [Route("authors/{id:int}")]
         public async Task<Author> GetAuthorById(int id) => await _manager.GetAuthorById(id);
+
+
 
         [HttpPut]
         [Route("authors")]
-        public async Task AddAuthor([FromBody] CreateAuthorRequest request) => await _manager.AddAuthor(request.Name, request.Born, request.Death, request.About);
+        public async Task AddAuthor([FromBody] CreateAuthorRequest request) => await _manager.AddAuthor(request.Name, request.Born, death: request.Death, about: request.About);
 
+        [HttpGet]
+        [Route("authors/{name}")]
+        public async Task<Author> GetAuthorByName(string name) => await _manager.GetAuthorByName(name);
 
+        [HttpGet]
+        [Route("authors/year/{year:int}")]
+        public async Task<IList<Author>> GetAuthorsByYear(int year) => await _manager.GetAuthorsByYear(year);
 
-=======
+        [HttpPost]
+        [Route("authors/{id}/name/{name}")]
+        public async Task EditAuthorName(int id, string name)=> await _manager.EditAuthorName(id, name);
 
-        public AuthorsController(IAuthorManager manager)
-        {
-            _manager = manager;
-        }
->>>>>>> Stashed changes
+        [HttpPost]
+        [Route("authors/{id}/born/{born:int}")]
+        public async Task EditAuthorBorn(int id, int born) => await _manager.EditAuthorBorn(id, born);
+
+        [HttpPost]
+        [Route("authors/{id}/death/{death:int}")]
+        public async Task EditAuthorDeath(int id, int? death) => await _manager.EditAuthorDeath(id, death);
+
+        [HttpPost]
+        [Route("authors/{id}/about/{about}")]
+        public async Task EditAuthorAbout(int id, string? about)=> await _manager.EditAuthorAbout(id, about);
+
         public IActionResult Index()
         {
             return View();
         }
-<<<<<<< Updated upstream
-=======
 
-        [HttpGet]
-        [Route("authors")]
-        public async Task<IList<Author>> GetAllAuthors()=> await _manager.GetAllAuthors();
->>>>>>> Stashed changes
     }
 }

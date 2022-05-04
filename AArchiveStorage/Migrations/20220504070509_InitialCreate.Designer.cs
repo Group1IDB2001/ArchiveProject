@@ -12,11 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArchiveStorage.Migrations
 {
     [DbContext(typeof(ArchiveContext))]
-<<<<<<<< HEAD:AArchiveStorage/Migrations/20220503112333_InitialCreate.Designer.cs
-    [Migration("20220503112333_InitialCreate")]
-========
-    [Migration("20220503110709_InitialCreate")]
->>>>>>>> d28a92256646a9efe01d9612d335643b09c8ec16:AArchiveStorage/Migrations/20220503110709_InitialCreate.Designer.cs
+    [Migration("20220504070509_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -374,7 +370,7 @@ namespace ArchiveStorage.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("TTags");
+                    b.ToTable("Ttags");
                 });
 
             modelBuilder.Entity("ArchiveStorage.Entities.TtagCollection", b =>
@@ -397,7 +393,7 @@ namespace ArchiveStorage.Migrations
 
                     b.HasIndex("TtagId");
 
-                    b.ToTable("TTagCollections");
+                    b.ToTable("TtagCollections");
                 });
 
             modelBuilder.Entity("ArchiveStorage.Entities.TtagItem", b =>
@@ -420,7 +416,7 @@ namespace ArchiveStorage.Migrations
 
                     b.HasIndex("TtagId");
 
-                    b.ToTable("TTagsItems");
+                    b.ToTable("TtagsItems");
                 });
 
             modelBuilder.Entity("ArchiveStorage.Entities.User", b =>

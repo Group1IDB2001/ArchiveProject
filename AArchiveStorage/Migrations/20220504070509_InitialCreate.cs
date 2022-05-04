@@ -131,7 +131,7 @@ namespace ArchiveStorage.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TTags",
+                name: "Ttags",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -142,9 +142,9 @@ namespace ArchiveStorage.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TTags", x => x.Id);
+                    table.PrimaryKey("PK_Ttags", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TTags_Users_UserId",
+                        name: "FK_Ttags_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -335,7 +335,7 @@ namespace ArchiveStorage.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TTagCollections",
+                name: "TtagCollections",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -345,21 +345,21 @@ namespace ArchiveStorage.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TTagCollections", x => x.Id);
+                    table.PrimaryKey("PK_TtagCollections", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TTagCollections_Collections_CollectionId",
+                        name: "FK_TtagCollections_Collections_CollectionId",
                         column: x => x.CollectionId,
                         principalTable: "Collections",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_TTagCollections_TTags_TtagId",
+                        name: "FK_TtagCollections_Ttags_TtagId",
                         column: x => x.TtagId,
-                        principalTable: "TTags",
+                        principalTable: "Ttags",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "TTagsItems",
+                name: "TtagsItems",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -369,16 +369,16 @@ namespace ArchiveStorage.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TTagsItems", x => x.Id);
+                    table.PrimaryKey("PK_TtagsItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TTagsItems_Items_ItemId",
+                        name: "FK_TtagsItems_Items_ItemId",
                         column: x => x.ItemId,
                         principalTable: "Items",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_TTagsItems_TTags_TtagId",
+                        name: "FK_TtagsItems_Ttags_TtagId",
                         column: x => x.TtagId,
-                        principalTable: "TTags",
+                        principalTable: "Ttags",
                         principalColumn: "Id");
                 });
 
@@ -478,28 +478,28 @@ namespace ArchiveStorage.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TTagCollections_CollectionId",
-                table: "TTagCollections",
+                name: "IX_TtagCollections_CollectionId",
+                table: "TtagCollections",
                 column: "CollectionId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TTagCollections_TtagId",
-                table: "TTagCollections",
+                name: "IX_TtagCollections_TtagId",
+                table: "TtagCollections",
                 column: "TtagId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TTags_UserId",
-                table: "TTags",
+                name: "IX_Ttags_UserId",
+                table: "Ttags",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TTagsItems_ItemId",
-                table: "TTagsItems",
+                name: "IX_TtagsItems_ItemId",
+                table: "TtagsItems",
                 column: "ItemId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TTagsItems_TtagId",
-                table: "TTagsItems",
+                name: "IX_TtagsItems_TtagId",
+                table: "TtagsItems",
                 column: "TtagId");
         }
 
@@ -527,10 +527,10 @@ namespace ArchiveStorage.Migrations
                 name: "Saves");
 
             migrationBuilder.DropTable(
-                name: "TTagCollections");
+                name: "TtagCollections");
 
             migrationBuilder.DropTable(
-                name: "TTagsItems");
+                name: "TtagsItems");
 
             migrationBuilder.DropTable(
                 name: "Authors");
@@ -548,7 +548,7 @@ namespace ArchiveStorage.Migrations
                 name: "Items");
 
             migrationBuilder.DropTable(
-                name: "TTags");
+                name: "Ttags");
 
             migrationBuilder.DropTable(
                 name: "Countries");

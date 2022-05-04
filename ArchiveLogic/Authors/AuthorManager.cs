@@ -12,11 +12,11 @@ namespace ArchiveLogic.Authors
         }
 
         public async Task AddAuthor(string name, int born, int? death, string? about)
-        {   
-            var author_1 = _context.Authors.First(n => n.Name == name);
+        {
+            var author_1 = _context.Authors.FirstOrDefault(n => n.Name == name);
             if (author_1 == null)
             {
-                var author = new Author { Name = name, Born = born, Death = death.Value, About = about };
+                var author = new Author { Name = name, Born = born, Death = death, About = about };
                 _context.Authors.Add(author);
                 await _context.SaveChangesAsync();
             }
@@ -54,26 +54,32 @@ namespace ArchiveLogic.Authors
             return author;
         }
 
-<<<<<<< Updated upstream
-=======
-        //public Task<IList<Author>> GetAuthorsByItemId(int itemId)
-        //{
-        //    //var itemauthor = _context.ItemAuthors.Find(item => item.ItemId == itemId);
-        //    var itemAuthor = _context.ItemAuthors.Find(Item => Item.ItemId.Contains(itemId));
->>>>>>> Stashed changes
+        public async Task<Author> GetAuthorByName(string name)
+        {
+            var author = _context.Authors.FirstOrDefault(g => g.Name == name);
 
-        //public async Task<Author> GetAuthorByName(string name)
-        //{
-        //    var author = _context.Authors.First(n => n.Name == name);
-        //    var author = _context.Authors.Find(n => n.Name == name);
 
-<<<<<<< Updated upstream
-        //    if (author == null)
-        //    {
-        //        throw new Exception("Error,I can't found,There is not author");
-        //    }
-        //    return author;
-        //}
+            if (author == null)
+            {
+                throw new Exception("Error,I can't found,There is not author with this Name");
+            }
+            return author;
+        }
+
+        public async Task<IList<Author>> GetAuthorsByYear(int year)
+        {
+            List<Author> authors = new List<Author>();
+
+            foreach(var author in _context.Authors)
+            {
+                if(author.Death == year || author.Born==year)
+                {
+                    authors.Add(author);
+                }
+            }
+            return authors;
+        }
+
 
         //public async Task<IList<Author>> GetAuthorsByItemId(int itemId)
         //{
@@ -91,54 +97,63 @@ namespace ArchiveLogic.Authors
         //    }
         //    return authorList;
 
-=======
->>>>>>> Stashed changes
         //}
 
-
-
-
-
-
-        //public Task EditAuthorAbout(int id, string about)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Task EditAuthorBorn(int id, int born)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Task EditAuthorDeath(int idd, int? death)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public Task EditAuthorName(int id, string name)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-<<<<<<< Updated upstream
-        public Task<IList<Author>> GetAuthorsByYear(int year)
+        public async Task EditAuthorName(int id, string name)
         {
-            throw new NotImplementedException();
+            var author = _context.Authors.FirstOrDefault(g => g.Id == id);
+            author.Name = name;
+            await _context.SaveChangesAsync();
         }
-=======
-       
 
-        
+        public async Task EditAuthorBorn(int id, int born)
+        {
+            var author = _context.Authors.FirstOrDefault(g => g.Id == id);
+            author.Born=born;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task EditAuthorDeath(int id, int? death)
+        {
+            var author = _context.Authors.FirstOrDefault(g => g.Id == id);
+            if (author.Death != null) 
+            {
+                author.Death = death;
+                await _context.SaveChangesAsync();
+            }
+            else throw new Exception("Error, author's death cannot be Edited");
+        }
+
+
+        public async Task EditAuthorAbout(int id, string? about)
+        {
+            var author = _context.Authors.FirstOrDefault(g => g.Id == id);
+            if (author.About != null)
+            {
+                author.About = about;
+                await _context.SaveChangesAsync();
+            }
+            else throw new Exception("Error, Information about the author cannot be changed");
+        }
 
 
 
-        
 
-        //public Task<IList<Author>> GetAuthorsByYear(int year)
-        //{
-        //    throw new NotImplementedException();
-        //}
->>>>>>> Stashed changes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         //public Task Update(Author author)
         //{
