@@ -31,8 +31,8 @@ namespace Archive.Controllers
 
         [HttpPut]
         [Route("authors")]
-        public async Task AddAuthor([FromBody] CreateAuthorRequest request) => await _manager.AddAuthor(request.Name, request.Born, death: request.Death, about: request.About);
-
+        public async Task AddAuthor([FromBody] CreateAuthorRequest request) => await _manager.AddAuthor(request.Name, request.Born, request.Death, request.About);
+       
         [HttpGet]
         [Route("authors/{name}")]
         public async Task<Author> GetAuthorByName(string name) => await _manager.GetAuthorByName(name);
@@ -41,21 +41,21 @@ namespace Archive.Controllers
         [Route("authors/year/{year:int}")]
         public async Task<IList<Author>> GetAuthorsByYear(int year) => await _manager.GetAuthorsByYear(year);
 
-        [HttpPost]
-        [Route("authors/{id}/name/{name}")]
-        public async Task EditAuthorName(int id, string name)=> await _manager.EditAuthorName(id, name);
+        [HttpPut]
+        [Route("authors/name/{id:int}")]
+        public async Task EditAuthorName(int id, [FromBody] CreateAuthorRequest request) => await _manager.EditAuthorName(id, request.Name);
 
-        [HttpPost]
-        [Route("authors/{id}/born/{born:int}")]
-        public async Task EditAuthorBorn(int id, int born) => await _manager.EditAuthorBorn(id, born);
+        [HttpPut]
+        [Route("authors/born/{id:int}")]
+        public async Task EditAuthorBorn(int id, [FromBody] CreateAuthorRequest request) => await _manager.EditAuthorBorn(id, request.Born);
 
-        [HttpPost]
-        [Route("authors/{id}/death/{death:int}")]
-        public async Task EditAuthorDeath(int id, int? death) => await _manager.EditAuthorDeath(id, death);
+        [HttpPut]
+        [Route("authors/death/{id:int}")]
+        public async Task EditAuthorDeath(int id, [FromBody] CreateAuthorRequest request) => await _manager.EditAuthorDeath(id, request.Death);
 
-        [HttpPost]
-        [Route("authors/{id}/about/{about}")]
-        public async Task EditAuthorAbout(int id, string? about)=> await _manager.EditAuthorAbout(id, about);
+        [HttpPut]
+        [Route("authors/about/{id:int}")]
+        public async Task EditAuthorAbout(int id, [FromBody] CreateAuthorRequest request) => await _manager.EditAuthorAbout(id, request.About);
 
         public IActionResult Index()
         {

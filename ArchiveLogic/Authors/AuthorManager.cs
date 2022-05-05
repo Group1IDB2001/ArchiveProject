@@ -1,6 +1,7 @@
 ﻿using ArchiveStorage;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace ArchiveLogic.Authors
 {
     public class AuthorManager:IAuthorManager
@@ -19,6 +20,7 @@ namespace ArchiveLogic.Authors
                 var author = new Author { Name = name, Born = born, Death = death, About = about };
                 _context.Authors.Add(author);
                 await _context.SaveChangesAsync();
+
             }
             else
             {
@@ -46,7 +48,7 @@ namespace ArchiveLogic.Authors
 
         public async Task<Author> GetAuthorById(int id)
         {
-            var author = _context.Authors.FirstOrDefault(g => g.Id == id);
+            var author = await _context.Authors.FirstOrDefaultAsync(g => g.Id == id);
             if (author == null)
             {
                 throw new Exception("Error,I can't found,There is not author");
@@ -54,9 +56,10 @@ namespace ArchiveLogic.Authors
             return author;
         }
 
+
         public async Task<Author> GetAuthorByName(string name)
         {
-            var author = _context.Authors.FirstOrDefault(g => g.Name == name);
+            var author = await _context.Authors.FirstOrDefaultAsync(g => g.Name == name);
 
 
             if (author == null)
@@ -70,7 +73,7 @@ namespace ArchiveLogic.Authors
         {
             List<Author> authors = new List<Author>();
 
-            foreach(var author in _context.Authors)
+            foreach(var  author in  _context.Authors)
             {
                 if(author.Death == year || author.Born==year)
                 {
@@ -116,25 +119,34 @@ namespace ArchiveLogic.Authors
         public async Task EditAuthorDeath(int id, int? death)
         {
             var author = _context.Authors.FirstOrDefault(g => g.Id == id);
-            if (author.Death != null) 
-            {
-                author.Death = death;
-                await _context.SaveChangesAsync();
-            }
-            else throw new Exception("Error, author's death cannot be Edited");
+            author.Death = death;
+            await _context.SaveChangesAsync();
         }
 
 
         public async Task EditAuthorAbout(int id, string? about)
         {
             var author = _context.Authors.FirstOrDefault(g => g.Id == id);
-            if (author.About != null)
-            {
-                author.About = about;
-                await _context.SaveChangesAsync();
-            }
-            else throw new Exception("Error, Information about the author cannot be changed");
+            author.About = about;
+            await _context.SaveChangesAsync();
         }
+
+        //public async Task ReplaceAuthor(int id , string name, int born, int? death, string? about)
+        //{
+        //    var author = _context.Authors.FirstOrDefault(g => g.Id == id);
+        //    if(author == null)
+        //    {
+        //        AddAuthor(name, born, death, about);
+        //    }
+        //    else
+        //    {
+        //        author.Name= name;
+        //        author.Born= born;
+        //        author.Death=death;
+        //        author.About= about;
+        //        await _context.SaveChangesAsync();
+        //    }
+        //}
 
 
 
