@@ -13,6 +13,11 @@ namespace Archive.Controllers
             _manager=manager;
         }
 
+
+        [HttpPut]
+        [Route("authors")]
+        public async Task AddAuthor([FromBody] CreateAuthorRequest request) => await _manager.AddAuthor(request.Name, request.Born, request.Death, request.About);
+
         [HttpGet]
         [Route("authors")]
         public async Task<IList<Author>> GetAllAuthors() => await _manager.GetAllAuthors();
@@ -29,9 +34,6 @@ namespace Archive.Controllers
 
 
 
-        [HttpPut]
-        [Route("authors")]
-        public async Task AddAuthor([FromBody] CreateAuthorRequest request) => await _manager.AddAuthor(request.Name, request.Born, request.Death, request.About);
        
         [HttpGet]
         [Route("authors/{name}")]

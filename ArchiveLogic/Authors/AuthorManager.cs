@@ -7,9 +7,9 @@ namespace ArchiveLogic.Authors
     public class AuthorManager:IAuthorManager
     {
         private readonly ArchiveContext _context;
-        public AuthorManager(ArchiveContext archiveContext)
+        public AuthorManager(ArchiveContext context)
         {
-            _context=archiveContext;
+            _context=context;
         }
 
         public async Task AddAuthor(string name, int born, int? death, string? about)
@@ -29,6 +29,11 @@ namespace ArchiveLogic.Authors
 
         }
 
+        public async Task<IList<Author>> GetAllAuthors()
+        {
+            return await _context.Authors.ToListAsync();
+        }
+
         public async Task DeleteAuthor(int id)
         {
 
@@ -41,10 +46,7 @@ namespace ArchiveLogic.Authors
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IList<Author>> GetAllAuthors()
-        {
-            return await _context.Authors.ToListAsync();
-        }
+       
 
         public async Task<Author> GetAuthorById(int id)
         {
@@ -86,7 +88,7 @@ namespace ArchiveLogic.Authors
 
         //public async Task<IList<Author>> GetAuthorsByItemId(int itemId)
         //{
-        //    var itemauthor = _context.ItemAuthors.Find(item => item.ItemId == itemId);
+        //    var itemauthor = _context.ItemAuthors.FirstOrDefault(item => item.ItemId == itemId);
         //    List<ItemAuthor> itemAuthor = _context.ItemAuthors.Select(i => i.ItemId == itemId);
         //    if (itemAuthor != null)
         //    {
@@ -131,45 +133,5 @@ namespace ArchiveLogic.Authors
             await _context.SaveChangesAsync();
         }
 
-        //public async Task ReplaceAuthor(int id , string name, int born, int? death, string? about)
-        //{
-        //    var author = _context.Authors.FirstOrDefault(g => g.Id == id);
-        //    if(author == null)
-        //    {
-        //        AddAuthor(name, born, death, about);
-        //    }
-        //    else
-        //    {
-        //        author.Name= name;
-        //        author.Born= born;
-        //        author.Death=death;
-        //        author.About= about;
-        //        await _context.SaveChangesAsync();
-        //    }
-        //}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //public Task Update(Author author)
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

@@ -28,21 +28,8 @@ namespace ArchiveLogic.Authors
 
         Task EditAuthorAbout(int id, string? about);
 
-        //Task ReplaceAuthor(int id, string name, int born, int? death, string? about);
 
-        // Task<IList<Author>> GetAuthorsByItemId(int itemId);
-
-
-
-
-        // Task Update(Author author);
-
-
-
-
-
-
-
+        //Task<IList<Author>> GetAuthorsByItemId(int itemId);
 
 
     }

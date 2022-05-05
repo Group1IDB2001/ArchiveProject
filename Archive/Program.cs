@@ -1,3 +1,5 @@
+using ArchiveLogic.Countries;
+using ArchiveLogic.Items;
 using ArchiveStorage;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,6 +12,9 @@ var connectionString = builder.Configuration.GetConnectionString("DbConnection")
 services.AddDbContext<ArchiveContext>(param => param.UseSqlServer(connectionString));
 
 services.AddScoped<IAuthorManager, AuthorManager>();
+services.AddScoped<ICountryManager, CountryManager>();
+services.AddScoped<IItemManager, ItemManager>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

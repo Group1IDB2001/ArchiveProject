@@ -11,9 +11,5 @@ namespace ArchiveStorage.Entities
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        public Country(string name)
-        {
-            Name = name;
-        }
     }
 }
