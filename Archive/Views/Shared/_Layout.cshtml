@@ -1,33 +1,66 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html>
+    <!--*начало кода*-->
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Archive</title>
+    <title>@ViewData["Title"] - ARB</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Archive.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="/css/StyleSheet.css"/>
 </head>
+
+
+
 <body>
+    <!--*шапка сайта*-->
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Archive</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+        <nav class="siteNavidation">
+            
+            <div class="header_item"> 
+                 <img src="https://www.pinclipart.com/picdir/big/361-3616179_book-closed-clipart.png" alt="sorry image not uploaded" width="20"/>
+                 <a class="headerlogo" asp-area="" asp-controller="Home" asp-action="Index">ARB</a>
+            </div>  
+             
+           <div class="header_item">            
+                  <a class="headerButton" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+           </div> 
+           
+            <div class="header_item">          
+                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 Жанры
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                   <li><a class="dropdown-item" href="#">Драма</a></li>
+                   <li><a class="dropdown-item" href="#">Фэнтези</a></li>
+                   <li><a class="dropdown-item" href="#">Художественная проза</a></li>
+                   <li><a class="dropdown-item" href="#">Роман</a></li>
+                   <li><a class="dropdown-item" href="#">Поэзия</a></li>
+                   <li><a class="dropdown-item" href="#">Фольклер</a></li>
+                   <li><a class="dropdown-item" href="#">Историческая проза</a></li>
+                   <li><a class="dropdown-item" href="#">Хоррор</a></li>
+                   <li><a class="dropdown-item" href="#">Триллер</a></li>
+                   <li><a class="dropdown-item" href="#">Реализм</a></li>
+                   <li><a class="dropdown-item" href="#">Научная фантастика</a></li>
+                   <li><a class="dropdown-item" href="#">Комедия</a></li>
+                   <li><a class="dropdown-item" href="#">Биография</a></li>
+                   <li><a class="dropdown-item" href="#">Эссе</a></li>
+                   <li><a class="dropdown-item" href="#">Документальная литература</a></li>  
+                </ul>
+           </div>
+              
+           <div class="header_item">          
+                <a class="headerButton" asp-area="" asp-controller="Home" asp-action="Privacy">О нас</a>
+           </div>
+             
+           <form>
+                 <input type="text" placeholder="Искать здесь...">
+                 <button type="submit"></button>
+           </form> 
+             
+             <div class="header_item">
+                 <img src="https://i.pinimg.com/originals/95/79/05/957905e8d8c6074be7dc8378ddad4a69.png" alt="sorry image not uploaded" width="16"/>
+                 <a class="headerCome" href="">Войти</a>
+             </div>
         </nav>
     </header>
     <div class="container">
@@ -36,11 +69,14 @@
         </main>
     </div>
 
+    <!--*низ сайта*-->
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - Archive - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="ft">
+            &copy; 2022 - ARB - <a asp-area="" asp-controller="Home" asp-action="Privacy">О нас</a>
         </div>
     </footer>
+    
+    <!--*подключение фалов по умолчанию*-->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
