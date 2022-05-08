@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace ArchiveLogic.Tag
 {
-    public interface ITTagManager
+    public interface ITtagManager
     {
-        Task<IList<Ttag>> GetAllTTags();
-        Task<Ttag> GetTTagById (int id);
-        Task<Ttag> GetTTagByName (string name);
-        Task<IList<Ttag>> GetTTagsByUser(int userId);
-        Task<IList<Ttag>> GetTTagsByItem (int itemId);
+        Task<IList<Ttag>> GetAllTtags();
+        Task<Ttag> GetTtagById (int id);
+        Task<Ttag> GetTtagByName (string name);
+        //Task<IList<Ttag>> GetTtagsByUser(int userId);
+        //Task<IList<Ttag>> GetTtagsByItem (int itemId);
 
-        Task EditTTagName (int id,string name);
-        Task DeleteTTag (int id);
-        Task AddTTag(string name, int userId, string? description);
+        Task DeleteTtag (int id);
+        Task AddTtag(string name, int userId, string? description);
 
 
     }
