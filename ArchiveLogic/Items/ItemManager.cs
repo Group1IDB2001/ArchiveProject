@@ -69,7 +69,124 @@
             return item;
 
         }
+        public async Task<IList<Item>> GetItemsByYear(int year)
+        {
+            List<Item> items = new List<Item>();
+
+            foreach (var item in _context.Items)
+            {
+                if (item.Year == year)
+                {
+                    items.Add(item);
+                }
+            }
+            return items;
+        }
+
+        public async Task<IList<Item>> GetItemsByGenre(int genre)
+        {
+            List<Item> items = new List<Item>();
+
+            foreach (var item in _context.Items)
+            {
+                if (item.Genre == genre)
+                {
+                    items.Add(item);
+                }
+            }
+            return items;
+        }
+
+        public async Task<IList<Item>> GetItemsByField(string field)
+        {
+            List<Item> items = new List<Item>();
+
+            foreach (var item in _context.Items)
+            {
+                if (item.Field == field)
+                {
+                    items.Add(item);
+                }
+            }
+            return items;
+        }
+
+        public async Task DeleteItem(int id)
+        {
+            var item = await _context.Items.FirstOrDefaultAsync(g => g.Id == id);
+            if (item == null)
+            {
+                throw new Exception("Error,I can't Found,There is not item");
+            }
+            _context.Items.Remove(item);
+            _context.SaveChanges();
+        }
 
 
+
+
+
+
+
+
+
+
+
+        public async Task EditItemName(int id, string name)
+        {
+            var item = _context.Items.FirstOrDefault(g => g.Id == id);
+            if (item == null)
+            {
+                throw new Exception("Error,I can't Found,There is not item");
+            }
+            item.Name = name;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task EditItemYear(int id, int year)
+        {
+            var item = _context.Items.FirstOrDefault(g => g.Id == id);
+            if (item == null)
+            {
+                throw new Exception("Error,I can't Found,There is not item");
+            }
+            item.Year=year;
+            await _context.SaveChangesAsync();
+
+        }
+
+        public async Task EditItemGenre(int id, int genre)
+        {
+            var item = _context.Items.FirstOrDefault(g => g.Id == id);
+            if (item == null)
+            {
+                throw new Exception("Error,I can't Found,There is not item");
+            }
+            item.Genre = genre;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task EditItemField(int id, string field)
+        {
+            var item = _context.Items.FirstOrDefault(g => g.Id == id);
+            if (item == null)
+            {
+                throw new Exception("Error,I can't Found,There is not item");
+            }
+            item.Field = field;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task EditItemDescription(int id, string description)
+        {
+            var item = _context.Items.FirstOrDefault(g => g.Id == id);
+            if (item == null)
+            {
+                throw new Exception("Error,I can't Found,There is not item");
+            }
+            item.Description= description;
+            await _context.SaveChangesAsync();
+
+        }
     }
 }

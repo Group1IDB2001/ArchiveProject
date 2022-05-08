@@ -1,5 +1,7 @@
+using ArchiveLogic;
 using ArchiveLogic.Countries;
 using ArchiveLogic.Items;
+using ArchiveLogic.ItemsAuthors;
 using ArchiveStorage;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,6 +16,7 @@ services.AddDbContext<ArchiveContext>(param => param.UseSqlServer(connectionStri
 services.AddScoped<IAuthorManager, AuthorManager>();
 services.AddScoped<ICountryManager, CountryManager>();
 services.AddScoped<IItemManager, ItemManager>();
+services.AddScoped<IItemAuthorManager, ItemAuthorManager>();
 
 var app = builder.Build();
 

@@ -40,7 +40,7 @@ namespace ArchiveLogic.Authors
             var author = _context.Authors.FirstOrDefault(g => g.Id == id);
             if (author == null)
             {
-                throw new Exception("Error,I can't delete,There is not author");
+                throw new Exception("Error,I can't delete,There is not author with this id");
             }
             _context.Authors.Remove(author);
             await _context.SaveChangesAsync();
@@ -107,6 +107,10 @@ namespace ArchiveLogic.Authors
         public async Task EditAuthorName(int id, string name)
         {
             var author = _context.Authors.FirstOrDefault(g => g.Id == id);
+            if (author == null)
+            {
+                throw new Exception("Error,I can't found,There is not author");
+            }
             author.Name = name;
             await _context.SaveChangesAsync();
         }
@@ -114,6 +118,10 @@ namespace ArchiveLogic.Authors
         public async Task EditAuthorBorn(int id, int born)
         {
             var author = _context.Authors.FirstOrDefault(g => g.Id == id);
+            if (author == null)
+            {
+                throw new Exception("Error,I can't found,There is not author");
+            }
             author.Born=born;
             await _context.SaveChangesAsync();
         }
@@ -121,6 +129,10 @@ namespace ArchiveLogic.Authors
         public async Task EditAuthorDeath(int id, int? death)
         {
             var author = _context.Authors.FirstOrDefault(g => g.Id == id);
+            if (author == null)
+            {
+                throw new Exception("Error,I can't found,There is not author");
+            }
             author.Death = death;
             await _context.SaveChangesAsync();
         }
@@ -129,6 +141,10 @@ namespace ArchiveLogic.Authors
         public async Task EditAuthorAbout(int id, string? about)
         {
             var author = _context.Authors.FirstOrDefault(g => g.Id == id);
+            if (author == null)
+            {
+                throw new Exception("Error,I can't found,There is not author");
+            }
             author.About = about;
             await _context.SaveChangesAsync();
         }
