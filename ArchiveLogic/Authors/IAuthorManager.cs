@@ -27,9 +27,7 @@ namespace ArchiveLogic.Authors
         Task EditAuthorDeath(int idd, int? death);
 
         Task EditAuthorAbout(int id, string? about);
-
-
-        //Task<IList<Author>> GetAuthorsByItemId(int itemId);
+        Task<IList<Author>> GetAuthorsByItemId(int itemId);
 
 
     }

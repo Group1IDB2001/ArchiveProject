@@ -32,9 +32,11 @@ namespace Archive.Controllers
         [Route("authors/{id:int}")]
         public async Task<Author> GetAuthorById(int id) => await _manager.GetAuthorById(id);
 
+        [HttpGet]
+        [Route("authors/itemid/{itemid:int}")]
+        public async Task<IList<Author>> GetAuthorsByItemId(int itemId) => await _manager.GetAuthorsByItemId(itemId);
 
 
-       
         [HttpGet]
         [Route("authors/{name}")]
         public async Task<Author> GetAuthorByName(string name) => await _manager.GetAuthorByName(name);
