@@ -27,20 +27,17 @@ namespace ArchiveLogic.Authors
         Task EditItemYear(int id, int year);
         Task EditItemGenre(int id, int genre);
         Task EditItemField(int id, string field);
-
         Task EditItemDescription(int id, string description);
-
-
-        //Task<IList<Item>> GetItemsByAuthorId (int authorId);
-        //Task<IList<Item>> GetItemsByAuthorName (string authorName);
+        Task<IList<Item>> GetItemsByAuthorId (int authorId);
+        Task<IList<Item>> GetItemsByAuthorName (string authorname);
         //Task<IList<Item>> GetItemsByLanguage (int languageId);
 
 
 
 
-        //Task AddAuthorToItem (int id,int authorId);
-        //Task DeleteAuthorFromItem (int id, int authorId);
-        //Task ReplaceAllAuthorsInItem(int id, int newauthorId);
+        Task AddAuthorToItem (int itemid, int authorid);
+        Task DeleteAuthorFromItem(int itemid, int authorid);
+        Task ReplaceAllAuthorsInItem(int itemid, int newauthorid);
 
         //Task AddLanguageToItem(int id, int languageId);
         //Task DeleteLanguageFromItem(int id, int languageId);
@@ -51,14 +48,6 @@ namespace ArchiveLogic.Authors
         //Task AddTTagToItem (int id,int ttagId);
         //Task DeleteTTagFromItem (int id,int ttagId); 
         //Task ReplaceAllTTagsInItem (int id,int newttagId);
-
-
-        
-
-
-
-
-
 
 
     }

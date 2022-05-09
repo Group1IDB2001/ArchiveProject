@@ -1,7 +1,9 @@
 using ArchiveLogic;
 using ArchiveLogic.Countries;
+using ArchiveLogic.IItemLanguage;
 using ArchiveLogic.Items;
 using ArchiveLogic.ItemsAuthors;
+using ArchiveLogic.LLanguage;
 using ArchiveStorage;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +19,8 @@ services.AddScoped<IAuthorManager, AuthorManager>();
 services.AddScoped<ICountryManager, CountryManager>();
 services.AddScoped<IItemManager, ItemManager>();
 services.AddScoped<IItemAuthorManager, ItemAuthorManager>();
+services.AddScoped<ILanguageManager, LanguageManager>();
+services.AddScoped<IItemLanguageManager, ItemLanguageManager>();
 
 var app = builder.Build();
 
@@ -37,6 +41,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Authors}/{action=Main}/{id?}");
 
 app.Run();

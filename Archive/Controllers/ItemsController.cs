@@ -24,6 +24,7 @@ namespace Archive.Controllers
         {
             return View();
         }
+
         [HttpGet]
         [Route("items/{id:int}")]
         public async Task<Item> GetItemById(int id) => await _manager.GetItemById(id);
@@ -68,6 +69,25 @@ namespace Archive.Controllers
         [Route("items/description/{id:int}")]
         public async Task EditItemDescription(int id,[FromBody] CreateItemRequest request) => await _manager.EditItemDescription(id, request.Description);
 
+        [HttpGet]
+        [Route("items/authorid/{authorid:int}")]
+        public async Task<IList<Item>> GetItemsByAuthorId(int authorId) => await _manager.GetItemsByAuthorId(authorId);
+
+        [HttpGet]
+        [Route("items/authorname/{authorname}")]
+        public async Task<IList<Item>> GetItemsByAuthorName(string authorname) => await _manager.GetItemsByAuthorName(authorname);
+
+        [HttpPut]
+        [Route("items/{itemid:int}/{authorid:int}")]
+        public async Task AddAuthorToItem(int itemid, int authorid) => await _manager.AddAuthorToItem(itemid, authorid);
+
+        [HttpDelete]
+        [Route("items/itemid/{itemid:int}/authorid/{authorid:int}")]
+        public async Task DeleteAuthorFromItem(int itemid, int authorid) => await _manager.DeleteAuthorFromItem(itemid, authorid);
+
+        [HttpPut]
+        [Route("items/itemid/{itemid:int}/{newauthorid:int}")]
+        public async Task ReplaceAllAuthorsInItem(int itemid, int newauthorid) => await _manager.ReplaceAllAuthorsInItem(itemid, newauthorid);
 
     }
 }

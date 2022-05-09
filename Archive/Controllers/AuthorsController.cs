@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using ArchiveLogic.Authors;
 using ArchiveStorage.Entities;
+using Microsoft.EntityFrameworkCore;
+
 namespace Archive.Controllers
 
 {
@@ -61,10 +63,17 @@ namespace Archive.Controllers
         [Route("authors/about/{id:int}")]
         public async Task EditAuthorAbout(int id, [FromBody] CreateAuthorRequest request) => await _manager.EditAuthorAbout(id, request.About);
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        //Page
+        
 
+        //
+
+        public async Task<IActionResult> Main(int? page)
+        {
+            var authors = await _manager.GetAllAuthors();
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(authors.ToPagedList(pageNumber, pageSize));
+        }
     }
 }

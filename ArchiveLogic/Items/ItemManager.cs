@@ -1,4 +1,6 @@
-﻿namespace ArchiveLogic.Items
+﻿using ArchiveLogic.ItemsAuthors;
+
+namespace ArchiveLogic.Items
 {
     public class ItemManager : IItemManager
     {
@@ -123,15 +125,6 @@
         }
 
 
-
-
-
-
-
-
-
-
-
         public async Task EditItemName(int id, string name)
         {
             var item = _context.Items.FirstOrDefault(g => g.Id == id);
@@ -188,5 +181,104 @@
             await _context.SaveChangesAsync();
 
         }
+
+        public async Task<IList<Item>> GetItemsByAuthorId(int authorId)
+        {
+            List<Item> items = new List<Item>();
+            List<ItemAuthor> itemauthors = new List<ItemAuthor>();
+            foreach (var itemauthor in _context.ItemAuthors)
+            {
+                if (itemauthor.AuthorId == authorId) itemauthors.Add(itemauthor);
+            }
+            if (itemauthors.Count == 0)
+            {
+                throw new Exception("Error,I can't found,No authors belongs to this item");
+            }
+            else
+            {
+                foreach (var item in _context.Items)
+                {
+                    for (int i = 0; i < itemauthors.Count; i++)
+                    {
+                        if (itemauthors[i].ItemId == item.Id) items.Add(item);
+                    }
+                }
+            }
+            return items;
+        }
+
+        public async Task<IList<Item>> GetItemsByAuthorName(string authorname)
+        {
+            var author = await _context.Authors.FirstOrDefaultAsync(g => g.Name == authorname);
+            if (author == null)
+            {
+                throw new Exception("Error,I can't Found,There is not author with this name");
+            }
+            List<ItemAuthor> itemauthors = new List<ItemAuthor>();
+            foreach (var itemauthor in _context.ItemAuthors)
+            {
+                if (itemauthor.AuthorId == author.Id) itemauthors.Add(itemauthor);
+            }
+            if (itemauthors.Count == 0)
+            {
+                throw new Exception("Error,I can't found,No authors belongs to this item");
+            }
+            List<Item> items = new List<Item>();
+            foreach (var item in _context.Items)
+            {
+                for (int i = 0; i < itemauthors.Count; i++)
+                {
+                    if (itemauthors[i].ItemId == item.Id) items.Add(item);
+                }
+            }
+            return items;
+
+        }
+        public async Task AddAuthorToItem (int itemid, int authorid)
+        {
+            var itemAuthor_1 = _context.ItemAuthors.FirstOrDefault(x => x.Id == authorid && x.ItemId == itemid);
+            if (itemAuthor_1 == null)
+            {
+                var itemAuthor = new ItemAuthor { AuthorId = authorid, ItemId = itemid };
+                _context.ItemAuthors.Add(itemAuthor);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                throw new Exception("There is Author belongs to this item with the same Id");
+            }
+        }
+        public async Task DeleteAuthorFromItem (int itemid, int authorid)
+        {
+            var itemAuthor = _context.ItemAuthors.FirstOrDefault(x => x.Id == authorid && x.ItemId == itemid);
+            if (itemAuthor == null)
+            {
+                throw new Exception("There is not Author belongs to this item with the same Id");
+            }
+            else
+            {
+                _context.ItemAuthors.Remove(itemAuthor);
+                await _context.SaveChangesAsync();
+            }
+        }
+        public async Task ReplaceAllAuthorsInItem(int itemid, int newauthorid)
+        {
+           
+            foreach (var itemauthor in _context.ItemAuthors)
+            {
+                if (itemauthor.ItemId == itemid)
+                {
+                    itemauthor.AuthorId= newauthorid;
+  
+                }
+            }
+            await _context.SaveChangesAsync();
+
+        }
+
+
+
+
+
     }
 }
