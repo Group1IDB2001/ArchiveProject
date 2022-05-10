@@ -78,7 +78,7 @@ namespace Archive.Controllers
         public async Task<IList<Item>> GetItemsByAuthorName(string authorname) => await _manager.GetItemsByAuthorName(authorname);
 
         [HttpPut]
-        [Route("items/{itemid:int}/{authorid:int}")]
+        [Route("items/{itemid:int}/authorid/{authorid:int}")]
         public async Task AddAuthorToItem(int itemid, int authorid) => await _manager.AddAuthorToItem(itemid, authorid);
 
         [HttpDelete]
@@ -86,8 +86,28 @@ namespace Archive.Controllers
         public async Task DeleteAuthorFromItem(int itemid, int authorid) => await _manager.DeleteAuthorFromItem(itemid, authorid);
 
         [HttpPut]
-        [Route("items/itemid/{itemid:int}/{newauthorid:int}")]
+        [Route("items/itemid/{itemid:int}/newauthorid/{newauthorid:int}")]
         public async Task ReplaceAllAuthorsInItem(int itemid, int newauthorid) => await _manager.ReplaceAllAuthorsInItem(itemid, newauthorid);
+
+
+        [HttpGet]
+        [Route("items/languageId/{languageId:int}")]
+        public async Task<IList<Item>> GetItemsByLanguage(int languageId) => await _manager.GetItemsByLanguage(languageId);
+
+        [HttpPut]
+        [Route("items/{itemid:int}/languageId/{languageId:int}")]
+        public async Task AddLanguageToItem(int itemid, int languageId) => await _manager.AddLanguageToItem(itemid, languageId);
+
+        [HttpDelete]
+        [Route("items/itemid/{itemid:int}/languageId/{languageId:int}")]
+        public async Task DeleteLanguageFromItem(int itemid, int languageId) => await _manager.DeleteLanguageFromItem(itemid, languageId);
+
+        [HttpPut]
+        [Route("items/itemid/{itemid:int}/newlanguageId/{newlanguageId:int}")]
+        public async Task ReplaceAllLanguagesInItem(int itemid, int newlanguageId) => await _manager.ReplaceAllLanguagesInItem(itemid, newlanguageId);
+
+
+
 
     }
 }

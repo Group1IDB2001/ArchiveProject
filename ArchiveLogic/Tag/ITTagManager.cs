@@ -8,14 +8,16 @@ namespace ArchiveLogic.Tag
 {
     public interface ITtagManager
     {
+        Task AddTtag(string name, int userId, string? description);
         Task<IList<Ttag>> GetAllTtags();
         Task<Ttag> GetTtagById (int id);
         Task<Ttag> GetTtagByName (string name);
+        Task DeleteTtag(int id);
         //Task<IList<Ttag>> GetTtagsByUser(int userId);
         //Task<IList<Ttag>> GetTtagsByItem (int itemId);
 
-        Task DeleteTtag (int id);
-        Task AddTtag(string name, int userId, string? description);
+
+
 
 
     }

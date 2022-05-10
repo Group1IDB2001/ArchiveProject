@@ -21,15 +21,14 @@ namespace ArchiveLogic.Tag
 
         public async Task AddTtag(string name, int userId, string? description)
         {
-            var t1 = await _context.Ttags.FirstOrDefaultAsync(n => n.Name == name);
+            var t1 =  _context.Ttags.FirstOrDefault(n => n.Name == name);
             if (t1 == null)
             {
-                Ttag ttag = new Ttag(name, userId, description);
+                Ttag ttag = new Ttag{Name=name, UserId = userId, Description = description };
 
-                Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<Ttag> entityEntry = _context.Ttags.Add(ttag);
-
-
-                _context.SaveChanges();
+               // Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<Ttag> entityEntry = _context.Ttags.Add(ttag);
+                _context.Ttags.Add(ttag);
+                await _context.SaveChangesAsync();
             }
             else
             {
@@ -47,7 +46,7 @@ namespace ArchiveLogic.Tag
             return tag;
         }
 
-        public async void DeleteTtag(int id)
+        public async Task DeleteTtag(int id)
         {
             var tag = await _context.Ttags.FirstOrDefaultAsync(g => g.Id == id);
             if (tag == null)
@@ -68,12 +67,8 @@ namespace ArchiveLogic.Tag
             return tag;
         }
 
-        public async Task<IList<Ttag>> GetTtagsByUser(int userId)
-        {
-
-        }
 
 
-    }
+    
     }
 }

@@ -236,7 +236,7 @@ namespace ArchiveLogic.Items
         }
         public async Task AddAuthorToItem (int itemid, int authorid)
         {
-            var itemAuthor_1 = _context.ItemAuthors.FirstOrDefault(x => x.Id == authorid && x.ItemId == itemid);
+            var itemAuthor_1 = _context.ItemAuthors.FirstOrDefault(x => x.AuthorId == authorid && x.ItemId == itemid);
             if (itemAuthor_1 == null)
             {
                 var itemAuthor = new ItemAuthor { AuthorId = authorid, ItemId = itemid };
@@ -250,7 +250,7 @@ namespace ArchiveLogic.Items
         }
         public async Task DeleteAuthorFromItem (int itemid, int authorid)
         {
-            var itemAuthor = _context.ItemAuthors.FirstOrDefault(x => x.Id == authorid && x.ItemId == itemid);
+            var itemAuthor = _context.ItemAuthors.FirstOrDefault(x => x.AuthorId == authorid && x.ItemId == itemid);
             if (itemAuthor == null)
             {
                 throw new Exception("There is not Author belongs to this item with the same Id");
@@ -263,21 +263,93 @@ namespace ArchiveLogic.Items
         }
         public async Task ReplaceAllAuthorsInItem(int itemid, int newauthorid)
         {
-           
-            foreach (var itemauthor in _context.ItemAuthors)
+            var itemauthor_1 = _context.ItemAuthors.FirstOrDefault(x => x.ItemId == itemid);
+            if(itemauthor_1 == null) throw new Exception("Error,I can't Found,There is not item");
+            else
             {
-                if (itemauthor.ItemId == itemid)
+                foreach (var itemauthor in _context.ItemAuthors)
                 {
-                    itemauthor.AuthorId= newauthorid;
-  
+                    if (itemauthor.ItemId == itemid)
+                    {
+                        itemauthor.AuthorId = newauthorid;
+
+                    }
                 }
+                await _context.SaveChangesAsync();
             }
-            await _context.SaveChangesAsync();
+            
 
         }
+        public async Task<IList<Item>> GetItemsByLanguage(int languageId)
+        {
+            List<Item> items = new List<Item>();
+            List<ItemLanguage> itemlanguages = new List<ItemLanguage>();
+            foreach (var itemlanguage in _context.ItemLanguages)
+            {
+                if (itemlanguage.LanguageId == languageId) itemlanguages.Add(itemlanguage);
+            }
+            if (itemlanguages.Count == 0)
+            {
+                throw new Exception("Error,I can't found,No authors belongs to this item");
+            }
+            else
+            {
+                foreach (var item in _context.Items)
+                {
+                    for (int i = 0; i < itemlanguages.Count; i++)
+                    {
+                        if (itemlanguages[i].ItemId == item.Id) items.Add(item);
+                    }
+                }
+            }
+            return items;
+        }
+        public async Task AddLanguageToItem(int itemid, int languageId)
+        {
+            var itemlanguage_1 = _context.ItemLanguages.FirstOrDefault(x => x.LanguageId == languageId && x.ItemId == itemid);
+            if (itemlanguage_1 == null)
+            {
+                var itemlanguage = new ItemLanguage { LanguageId = languageId, ItemId = itemid };
+                _context.ItemLanguages.Add(itemlanguage);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                throw new Exception("There is Language belongs to this item with the same Id");
+            }
+        }
+        public async Task DeleteLanguageFromItem(int itemid, int languageId)
+        {
+            var itemlanguage = _context.ItemLanguages.FirstOrDefault(x => x.LanguageId == languageId && x.ItemId == itemid);
+            if (itemlanguage == null)
+            {
+                throw new Exception("There is not Author belongs to this item with the same Id");
+            }
+            else
+            {
+                _context.ItemLanguages.Remove(itemlanguage);
+                await _context.SaveChangesAsync();
+            }
+        }
 
+        public async Task ReplaceAllLanguagesInItem(int itemid, int newlanguageId)
+        {
+            var itemLanguage_1= _context.ItemLanguages.FirstOrDefault(x => x.ItemId == itemid);
+            if(itemLanguage_1 == null) throw new Exception("Error,I can't Found,There is not item");
+            else
+            {
+                foreach (var itemlanguage in _context.ItemLanguages)
+                {
+                    if (itemlanguage.ItemId == itemid)
+                    {
+                        itemlanguage.LanguageId = newlanguageId;
 
-
+                    }
+                }
+                await _context.SaveChangesAsync();
+            }
+            
+        }
 
 
     }

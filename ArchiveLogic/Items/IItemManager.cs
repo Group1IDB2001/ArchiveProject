@@ -30,7 +30,7 @@ namespace ArchiveLogic.Authors
         Task EditItemDescription(int id, string description);
         Task<IList<Item>> GetItemsByAuthorId (int authorId);
         Task<IList<Item>> GetItemsByAuthorName (string authorname);
-        //Task<IList<Item>> GetItemsByLanguage (int languageId);
+        Task<IList<Item>> GetItemsByLanguage (int languageId);
 
 
 
@@ -38,10 +38,9 @@ namespace ArchiveLogic.Authors
         Task AddAuthorToItem (int itemid, int authorid);
         Task DeleteAuthorFromItem(int itemid, int authorid);
         Task ReplaceAllAuthorsInItem(int itemid, int newauthorid);
-
-        //Task AddLanguageToItem(int id, int languageId);
-        //Task DeleteLanguageFromItem(int id, int languageId);
-        //Task ReplaceAllLanguagesInItem(int id, int newlanguageId); 
+        Task AddLanguageToItem(int itemid, int languageId);
+        Task DeleteLanguageFromItem(int itemid, int languageId);
+        Task ReplaceAllLanguagesInItem(int itemid, int newlanguageId); 
 
 
 
