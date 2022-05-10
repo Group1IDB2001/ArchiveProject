@@ -91,7 +91,7 @@ namespace ArchiveLogic.Items
 
             foreach (var item in _context.Items)
             {
-                if (item.Genre == genre)
+                if (item.Genre == (int)(Genres)genre)
                 {
                     items.Add(item);
                 }
@@ -155,7 +155,7 @@ namespace ArchiveLogic.Items
             {
                 throw new Exception("Error,I can't Found,There is not item");
             }
-            item.Genre = genre;
+            item.Genre = (int)(Genres)genre;
             await _context.SaveChangesAsync();
         }
 

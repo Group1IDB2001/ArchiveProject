@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ArchiveStorage.Entities
+﻿namespace Archive.Models
 {
-    public class User
+    public class CreateUserRequest
     {
-        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }

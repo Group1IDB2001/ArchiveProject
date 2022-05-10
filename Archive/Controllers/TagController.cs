@@ -31,11 +31,13 @@ namespace Archive.Controllers
         [Route("tags/{name}")]
         public async Task<Ttag> GetTtagByName(string name) => await _manager.GetTtagByName(name);
 
-
-
         [HttpDelete]
         [Route("tags/{id:int}")]
         public async Task DeleteTtag(int id) => await _manager.DeleteTtag(id);
+
+        [HttpGet]
+        [Route("tags/userId/{userId}")]
+        public async Task<IList<Ttag>> GetTtagsByUser(int userId) => await _manager.GetTtagsByUser(userId);
 
         public IActionResult Index()
         {

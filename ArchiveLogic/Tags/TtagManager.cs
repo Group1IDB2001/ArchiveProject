@@ -62,13 +62,22 @@ namespace ArchiveLogic.Tag
             var tag = await _context.Ttags.FirstOrDefaultAsync(g => g.Name == name);
             if (tag == null)
             {
-                throw new Exception("Error,I can't Found,There is not item");
+                throw new Exception("Error,I can't Found,There is not Tag");
             }
             return tag;
         }
 
+        public async Task<IList<Ttag>> GetTtagsByUser(int userId)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            if (user == null) throw new Exception("Error,I can't Found,There is not Tag with this User Id");
+            List<Ttag> ttags = new List<Ttag>();
+            foreach (var ttag in _context.Ttags)
+            {
+                if (user.Id == ttag.UserId) ttags.Add(ttag);
+            }
+            return ttags;
+        }
 
-
-    
     }
 }

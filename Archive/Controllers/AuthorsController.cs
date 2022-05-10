@@ -27,7 +27,7 @@ namespace Archive.Controllers
 
         [HttpDelete]
         [Route("authors/{id:int}")]
-        public Task DeleteAuthor(int id) => _manager.DeleteAuthor(id);
+        public async Task DeleteAuthor(int id) => await _manager.DeleteAuthor(id);
 
 
         [HttpGet]

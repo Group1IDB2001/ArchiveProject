@@ -13,7 +13,7 @@ namespace ArchiveLogic.Tag
         Task<Ttag> GetTtagById (int id);
         Task<Ttag> GetTtagByName (string name);
         Task DeleteTtag(int id);
-        //Task<IList<Ttag>> GetTtagsByUser(int userId);
+        Task<IList<Ttag>> GetTtagsByUser(int userId);
         //Task<IList<Ttag>> GetTtagsByItem (int itemId);
 
 
