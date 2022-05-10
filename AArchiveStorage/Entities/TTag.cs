@@ -16,11 +16,6 @@ namespace ArchiveStorage.Entities
         public int UserId { get; set; }
         [ForeignKey(nameof(UserId))]
         public virtual User User { get; set; }
-        public Ttag(string name, int userId, string? description)
-        {
-            Name = name;
-            UserId = userId;
-            Description = description;
-        }
+        
     }
 }
