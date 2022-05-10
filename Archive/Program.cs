@@ -5,6 +5,7 @@ using ArchiveLogic.Items;
 using ArchiveLogic.ItemsAuthors;
 using ArchiveLogic.LLanguage;
 using ArchiveLogic.Tag;
+using ArchiveLogic.TtagItems;
 using ArchiveLogic.Users;
 using ArchiveStorage;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,7 @@ services.AddScoped<ILanguageManager, LanguageManager>();
 services.AddScoped<IItemLanguageManager, ItemLanguageManager>();
 services.AddScoped<ITtagManager, TtagManager>();
 services.AddScoped<IUserManager, UserManager>();
+services.AddScoped<ITtagItemManager, TtagItemManager>();
 
 
 var app = builder.Build();

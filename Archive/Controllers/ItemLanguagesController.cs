@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Archive.Controllers
 {
-    public class ItemLanguageController : Controller
+    public class ItemLanguagesController : Controller
     {
         private readonly IItemLanguageManager _manager;
 
-        public ItemLanguageController(IItemLanguageManager manager)
+        public ItemLanguagesController(IItemLanguageManager manager)
         {
             _manager = manager;
         }

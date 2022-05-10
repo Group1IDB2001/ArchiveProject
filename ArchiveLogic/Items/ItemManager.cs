@@ -125,6 +125,8 @@ namespace ArchiveLogic.Items
         }
 
 
+
+
         public async Task EditItemName(int id, string name)
         {
             var item = _context.Items.FirstOrDefault(g => g.Id == id);
@@ -135,7 +137,6 @@ namespace ArchiveLogic.Items
             item.Name = name;
             await _context.SaveChangesAsync();
         }
-
         public async Task EditItemYear(int id, int year)
         {
             var item = _context.Items.FirstOrDefault(g => g.Id == id);
@@ -147,7 +148,6 @@ namespace ArchiveLogic.Items
             await _context.SaveChangesAsync();
 
         }
-
         public async Task EditItemGenre(int id, int genre)
         {
             var item = _context.Items.FirstOrDefault(g => g.Id == id);
@@ -158,7 +158,6 @@ namespace ArchiveLogic.Items
             item.Genre = (int)(Genres)genre;
             await _context.SaveChangesAsync();
         }
-
         public async Task EditItemField(int id, string field)
         {
             var item = _context.Items.FirstOrDefault(g => g.Id == id);
@@ -169,7 +168,6 @@ namespace ArchiveLogic.Items
             item.Field = field;
             await _context.SaveChangesAsync();
         }
-
         public async Task EditItemDescription(int id, string description)
         {
             var item = _context.Items.FirstOrDefault(g => g.Id == id);
@@ -182,6 +180,12 @@ namespace ArchiveLogic.Items
 
         }
 
+        
+        
+        
+        
+        
+        
         public async Task<IList<Item>> GetItemsByAuthorId(int authorId)
         {
             List<Item> items = new List<Item>();
@@ -206,7 +210,6 @@ namespace ArchiveLogic.Items
             }
             return items;
         }
-
         public async Task<IList<Item>> GetItemsByAuthorName(string authorname)
         {
             var author = await _context.Authors.FirstOrDefaultAsync(g => g.Name == authorname);
@@ -264,7 +267,9 @@ namespace ArchiveLogic.Items
         public async Task ReplaceAllAuthorsInItem(int itemid, int newauthorid)
         {
             var itemauthor_1 = _context.ItemAuthors.FirstOrDefault(x => x.ItemId == itemid);
-            if(itemauthor_1 == null) throw new Exception("Error,I can't Found,There is not item");
+            var author = _context.Authors.FirstOrDefault(T => T.Id == newauthorid);
+            if (author == null) throw new Exception("Error,I can't Found,There is not Author with this Id");
+            if (itemauthor_1 == null) throw new Exception("Error,I can't Found,There is not item");
             else
             {
                 foreach (var itemauthor in _context.ItemAuthors)
@@ -280,6 +285,13 @@ namespace ArchiveLogic.Items
             
 
         }
+        
+        
+        
+        
+        
+        
+        
         public async Task<IList<Item>> GetItemsByLanguage(int languageId)
         {
             List<Item> items = new List<Item>();
@@ -331,11 +343,12 @@ namespace ArchiveLogic.Items
                 await _context.SaveChangesAsync();
             }
         }
-
         public async Task ReplaceAllLanguagesInItem(int itemid, int newlanguageId)
         {
             var itemLanguage_1= _context.ItemLanguages.FirstOrDefault(x => x.ItemId == itemid);
-            if(itemLanguage_1 == null) throw new Exception("Error,I can't Found,There is not item");
+            var language = _context.Languages.FirstOrDefault(T => T.Id == newlanguageId);
+            if (language == null) throw new Exception("Error,I can't Found,There is not Language with this Id");
+            if (itemLanguage_1 == null) throw new Exception("Error,I can't Found,There is not item");
             else
             {
                 foreach (var itemlanguage in _context.ItemLanguages)
@@ -351,6 +364,58 @@ namespace ArchiveLogic.Items
             
         }
 
+
+
+
+
+        public async Task AddTTagToItem(int itemid, int ttagId)
+        {
+            var Ttagitem_1 = _context.TtagsItems.FirstOrDefault(x => x.TtagId == ttagId && x.ItemId == itemid);
+            if (Ttagitem_1 == null)
+            {
+                var Ttagitem = new TtagItem { TtagId = ttagId, ItemId = itemid };
+                _context.TtagsItems.Add(Ttagitem);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                throw new Exception("There is Tag belongs to this item with the same Id");
+            }
+        }
+
+        public async Task DeleteTTagFromItem(int itemid, int ttagId)
+        {
+            var Ttagitem = _context.TtagsItems.FirstOrDefault(x => x.TtagId == ttagId && x.ItemId == itemid);
+            if (Ttagitem == null)
+            {
+                throw new Exception("There is not Tag belongs to this item with the same Id");
+            }
+            else
+            {
+                _context.TtagsItems.Remove(Ttagitem);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task ReplaceAllTTagsInItem(int itemid, int newttagId)
+        {
+            var Ttagitem_1 = _context.TtagsItems.FirstOrDefault(x => x.ItemId == itemid);
+            var Tag = _context.Ttags.FirstOrDefault(T => T.Id == newttagId);
+            if (Tag == null) throw new Exception("Error,I can't Found,There is not Tag with this Id");
+            if (Ttagitem_1 == null) throw new Exception("Error,I can't Found,There is not item");
+            else
+            {
+                foreach (var Tagitem in _context.TtagsItems)
+                {
+                    if (Tagitem.ItemId == itemid)
+                    {
+                        Tagitem.TtagId = newttagId;
+
+                    }
+                }
+                await _context.SaveChangesAsync();
+            }
+        }
 
     }
 }

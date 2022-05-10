@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Archive.Controllers
 {
-    public class ItemAuthorController : Controller
+    public class ItemAuthorsController : Controller
     {
         private readonly IItemAuthorManager _manager;
 
-        public ItemAuthorController(IItemAuthorManager manager)
+        public ItemAuthorsController(IItemAuthorManager manager)
         {
             _manager = manager;
         }

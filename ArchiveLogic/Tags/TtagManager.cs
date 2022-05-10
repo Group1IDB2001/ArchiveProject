@@ -79,5 +79,29 @@ namespace ArchiveLogic.Tag
             return ttags;
         }
 
+        public async Task<IList<Ttag>> GetTtagsByItem(int itemId)
+        {
+            List<Ttag> Ttags = new List<Ttag>();
+            List<TtagItem> TtagItems = new List<TtagItem>();
+            foreach (var TtagItem in _context.TtagsItems)
+            {
+                if (TtagItem.ItemId == itemId) TtagItems.Add(TtagItem);
+            }
+            if (TtagItems.Count == 0)
+            {
+                throw new Exception("Error,I can't found,No tags belongs to this item");
+            }
+            else
+            {
+                foreach (var Ttag in _context.Ttags)
+                {
+                    for (int i = 0; i < TtagItems.Count; i++)
+                    {
+                        if (TtagItems[i].TtagId == Ttag.Id) Ttags.Add(Ttag);
+                    }
+                }
+            }
+            return Ttags;
+        }
     }
 }

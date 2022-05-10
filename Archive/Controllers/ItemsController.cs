@@ -49,6 +49,16 @@ namespace Archive.Controllers
         [Route("items/{id:int}")]
         public async Task DeleteItem(int id) => await _manager.DeleteItem(id);
 
+
+
+
+
+
+
+
+
+
+
         [HttpPut]
         [Route("items/name/{id:int}")]
         public async Task EditItemName(int id, [FromBody] CreateItemRequest request) => await _manager.EditItemName(id, request.Name);
@@ -68,6 +78,16 @@ namespace Archive.Controllers
         [HttpPut]
         [Route("items/description/{id:int}")]
         public async Task EditItemDescription(int id,[FromBody] CreateItemRequest request) => await _manager.EditItemDescription(id, request.Description);
+
+
+
+
+
+
+
+
+
+
 
         [HttpGet]
         [Route("items/authorid/{authorid:int}")]
@@ -90,6 +110,14 @@ namespace Archive.Controllers
         public async Task ReplaceAllAuthorsInItem(int itemid, int newauthorid) => await _manager.ReplaceAllAuthorsInItem(itemid, newauthorid);
 
 
+
+
+
+
+
+
+
+
         [HttpGet]
         [Route("items/languageId/{languageId:int}")]
         public async Task<IList<Item>> GetItemsByLanguage(int languageId) => await _manager.GetItemsByLanguage(languageId);
@@ -105,6 +133,27 @@ namespace Archive.Controllers
         [HttpPut]
         [Route("items/itemid/{itemid:int}/newlanguageId/{newlanguageId:int}")]
         public async Task ReplaceAllLanguagesInItem(int itemid, int newlanguageId) => await _manager.ReplaceAllLanguagesInItem(itemid, newlanguageId);
+
+
+
+
+
+
+
+        [HttpPut]
+        [Route("items/{itemid:int}/ttagId/{ttagId:int}")]
+        public async Task AddTTagToItem(int itemid, int ttagId) => await _manager.AddTTagToItem(itemid , ttagId);
+
+        [HttpDelete]
+        [Route("items/itemid/{itemid:int}/ttagId/{ttagId:int}")]
+        public async Task DeleteTTagFromItem(int itemid, int ttagId) => await _manager.DeleteTTagFromItem(itemid, ttagId);
+
+        [HttpPut]
+        [Route("items/itemid/{itemid:int}/newttagId/{newttagId:int}")]
+        public async Task ReplaceAllTTagsInItem(int itemid, int newttagId) => await _manager.ReplaceAllTTagsInItem(itemid, newttagId);
+
+
+
 
 
 

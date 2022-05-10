@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Archive.Controllers
 {
-    public class UserController : Controller
+    public class UsersController : Controller
     {
         private readonly IUserManager _manager;
 
-        public UserController(IUserManager manager)
+        public UsersController(IUserManager manager)
         {
             _manager = manager;
         }

@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Archive.Controllers
 {
-    public class TagController : Controller
+    public class TagsController : Controller
     {
         private readonly ITtagManager _manager;
 
-        public TagController(ITtagManager manager)
+        public TagsController(ITtagManager manager)
         {
             _manager = manager;
         }
@@ -38,6 +38,10 @@ namespace Archive.Controllers
         [HttpGet]
         [Route("tags/userId/{userId}")]
         public async Task<IList<Ttag>> GetTtagsByUser(int userId) => await _manager.GetTtagsByUser(userId);
+
+        [HttpGet]
+        [Route("tags/itemId/{itemId}")]
+        public async Task<IList<Ttag>> GetTtagsByItem(int itemId) => await _manager.GetTtagsByItem(itemId);
 
         public IActionResult Index()
         {

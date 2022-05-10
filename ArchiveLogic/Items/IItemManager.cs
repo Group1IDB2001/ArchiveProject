@@ -44,9 +44,9 @@ namespace ArchiveLogic.Authors
 
 
 
-        //Task AddTTagToItem (int id,int ttagId);
-        //Task DeleteTTagFromItem (int id,int ttagId); 
-        //Task ReplaceAllTTagsInItem (int id,int newttagId);
+        Task AddTTagToItem (int itemid, int ttagId);
+        Task DeleteTTagFromItem (int itemid,int ttagId); 
+        Task ReplaceAllTTagsInItem (int itemid,int newttagId);
 
 
     }

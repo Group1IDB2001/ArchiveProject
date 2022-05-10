@@ -2,11 +2,11 @@
 
 namespace Archive.Controllers
 {
-    public class CountryController : Controller
+    public class CountrysController : Controller
     {
         private readonly ICountryManager _manager;
 
-        public CountryController(ICountryManager manager)
+        public CountrysController(ICountryManager manager)
         {
             _manager = manager;
         }
