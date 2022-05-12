@@ -32,7 +32,7 @@ namespace ArchiveLogic.Tag
             }
             else
             {
-                throw new Exception("There is Item with the same name");
+                throw new Exception("There is Tag with the same name");
             }
         }
 
@@ -41,7 +41,7 @@ namespace ArchiveLogic.Tag
             var tag = await _context.Ttags.FirstOrDefaultAsync(g => g.Id == id);
             if (tag == null)
             {
-                throw new Exception("Error,I can't Found,There is not item");
+                throw new Exception("Error,I can't Found,There is not Tag");
             }
             return tag;
         }
@@ -51,7 +51,7 @@ namespace ArchiveLogic.Tag
             var tag = await _context.Ttags.FirstOrDefaultAsync(g => g.Id == id);
             if (tag == null)
             {
-                throw new Exception("Error,I can't Found,There is not item");
+                throw new Exception("Error,I can't Found,There is not Tag");
             }
             _context.Ttags.Remove(tag);
             _context.SaveChanges();
@@ -76,6 +76,7 @@ namespace ArchiveLogic.Tag
             {
                 if (user.Id == ttag.UserId) ttags.Add(ttag);
             }
+            if(ttags.Count == 0 ) throw new Exception("Error,I can't Found,There is not Tag with this User Id");
             return ttags;
         }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ArchiveLogic.CollectionItems
 {
-    public interface ICollectionItem
+    public interface ICollectionItemManager
     {
         Task AddCollectionItem(int collectionId, int itemId);
         Task DeleteCollectionItem(int collectionId, int itemId);

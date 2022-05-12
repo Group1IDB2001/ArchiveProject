@@ -46,8 +46,6 @@ namespace ArchiveLogic.Authors
             await _context.SaveChangesAsync();
         }
 
-       
-
         public async Task<Author> GetAuthorById(int id)
         {
             var author = await _context.Authors.FirstOrDefaultAsync(g => g.Id == id);
@@ -57,13 +55,10 @@ namespace ArchiveLogic.Authors
             }
             return author;
         }
-
-
+        
         public async Task<Author> GetAuthorByName(string name)
         {
             var author = await _context.Authors.FirstOrDefaultAsync(g => g.Name == name);
-
-
             if (author == null)
             {
                 throw new Exception("Error,I can't found,There is not author with this Name");
@@ -82,6 +77,7 @@ namespace ArchiveLogic.Authors
                     authors.Add(author);
                 }
             }
+            if(authors.Count == 0) throw new Exception("Error,I can't found,There is not authors");
             return authors;
         }
 
@@ -110,6 +106,13 @@ namespace ArchiveLogic.Authors
             return authors;
         }
 
+        
+        
+        
+        
+        
+        
+        
         public async Task EditAuthorName(int id, string name)
         {
             var author = _context.Authors.FirstOrDefault(g => g.Id == id);
@@ -142,7 +145,6 @@ namespace ArchiveLogic.Authors
             author.Death = death;
             await _context.SaveChangesAsync();
         }
-
 
         public async Task EditAuthorAbout(int id, string? about)
         {
