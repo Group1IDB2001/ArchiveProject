@@ -33,6 +33,9 @@ namespace ArchiveLogic.Items
         
         public async Task AddItem(string name, string? description, int year, string? field, int genre, int countryId)
         {
+            var country = _context.Countries.FirstOrDefault(C => C.Id == countryId);
+            if(country == null) throw new Exception("There is not Country with the same Id");
+
             var item_1 = await _context.Items.FirstOrDefaultAsync(n => n.Name == name);
             if (item_1 == null)
             {

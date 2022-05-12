@@ -21,6 +21,12 @@ namespace ArchiveLogic.IItemLanguage
 
         public async Task AddItemLanguage(int? languageid, int? itemid)
         {
+            var item = _context.Items.FirstOrDefault(i => i.Id == itemid);
+            if (item == null) throw new Exception("There is not Item with the same Id");
+
+            var language = _context.Languages.FirstOrDefault(a => a.Id == languageid);
+            if (language == null) throw new Exception("There is not Language with the same Id");
+
             var itemlanguage_1 = _context.ItemLanguages.FirstOrDefault(x => x.LanguageId == languageid && x.ItemId == itemid);
             if (itemlanguage_1 == null)
             {

@@ -1,4 +1,5 @@
 using ArchiveLogic;
+using ArchiveLogic.Collections;
 using ArchiveLogic.Countries;
 using ArchiveLogic.IItemLanguage;
 using ArchiveLogic.Items;
@@ -27,6 +28,8 @@ services.AddScoped<IItemLanguageManager, ItemLanguageManager>();
 services.AddScoped<ITtagManager, TtagManager>();
 services.AddScoped<IUserManager, UserManager>();
 services.AddScoped<ITtagItemManager, TtagItemManager>();
+services.AddScoped<ICollectionManager, CollectionManager>();
+
 
 
 var app = builder.Build();

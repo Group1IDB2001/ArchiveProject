@@ -21,8 +21,11 @@ namespace ArchiveLogic.Tag
 
         public async Task AddTtag(string name, int userId, string? description)
         {
-            var t1 =  _context.Ttags.FirstOrDefault(n => n.Name == name);
-            if (t1 == null)
+            var user = _context.Users.FirstOrDefault(x => x.Id == userId);
+            if(user == null) throw new Exception("There is not User with the same Id");
+
+            var ttag_1 =  _context.Ttags.FirstOrDefault(n => n.Name == name);
+            if (ttag_1 == null)
             {
                 Ttag ttag = new Ttag{Name=name, UserId = userId, Description = description };
 
@@ -69,12 +72,10 @@ namespace ArchiveLogic.Tag
 
         public async Task<IList<Ttag>> GetTtagsByUser(int userId)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
-            if (user == null) throw new Exception("Error,I can't Found,There is not Tag with this User Id");
             List<Ttag> ttags = new List<Ttag>();
             foreach (var ttag in _context.Ttags)
             {
-                if (user.Id == ttag.UserId) ttags.Add(ttag);
+                if (ttag.UserId == userId) ttags.Add(ttag);
             }
             if(ttags.Count == 0 ) throw new Exception("Error,I can't Found,There is not Tag with this User Id");
             return ttags;
