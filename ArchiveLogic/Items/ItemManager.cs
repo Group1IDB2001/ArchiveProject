@@ -36,13 +36,13 @@ namespace ArchiveLogic.Items
             var country = _context.Countries.FirstOrDefault(C => C.Id == countryId);
             if(country == null) throw new Exception("There is not Country with the same Id");
 
-            var item_1 = await _context.Items.FirstOrDefaultAsync(n => n.Name == name);
+            var item_1 =  _context.Items.FirstOrDefault(n => n.Name == name);
             if (item_1 == null)
             {
                 var item = new Item { Name = name, Description = description, Year=year, Field = field, Genre = (int)(Genres)genre, CountryId = countryId };
                 
                 _context.Items.Add(item);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             else
             {

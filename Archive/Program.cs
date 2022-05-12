@@ -1,9 +1,11 @@
 using ArchiveLogic;
+using ArchiveLogic.CollectionItems;
 using ArchiveLogic.Collections;
 using ArchiveLogic.Countries;
 using ArchiveLogic.IItemLanguage;
 using ArchiveLogic.Items;
 using ArchiveLogic.ItemsAuthors;
+using ArchiveLogic.Likes;
 using ArchiveLogic.LLanguage;
 using ArchiveLogic.Tag;
 using ArchiveLogic.TtagItems;
@@ -29,6 +31,8 @@ services.AddScoped<ITtagManager, TtagManager>();
 services.AddScoped<IUserManager, UserManager>();
 services.AddScoped<ITtagItemManager, TtagItemManager>();
 services.AddScoped<ICollectionManager, CollectionManager>();
+services.AddScoped<ICollectionItemManager, CollectionItemManager>();
+services.AddScoped<ILikeManager, LikeManager>();
 
 
 
