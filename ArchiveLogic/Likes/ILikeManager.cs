@@ -8,8 +8,11 @@ namespace ArchiveLogic.Likes
 {
     public interface ILikeManager
     {
-        Task AddLike(int userId, int itemId);
-        Task DeleteLike(int userId, int itemId);
-        Task<IList<Like>> GetByUser(int userId);
+        Task AddLike(int? userid, int? itemid);
+        Task<IList<Like>> GetAllLike();
+        Task<IList<Like>> GetByUser(int userid);
+        Task<IList<Like>> GetByItem(int itemid);
+        Task DeleteLike(int userid, int itemid);
+        
     }
 }

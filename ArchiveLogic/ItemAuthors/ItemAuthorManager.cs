@@ -11,8 +11,15 @@
         {
             return await _context.ItemAuthors.ToListAsync();
         }
+        
         public async Task AddItemAuthor(int? authorId, int? itemId)
         {
+            var item = _context.Items.FirstOrDefault(i => i.Id == itemId);
+            if (item == null) throw new Exception("There is not Item with the same Id");
+
+            var author = _context.Items.FirstOrDefault(a => a.Id == authorId);
+            if (author == null) throw new Exception("There is not Author with the same Id");
+
             var itemAuthor_1 = _context.ItemAuthors.FirstOrDefault(x => x.AuthorId == authorId && x.ItemId == itemId);
             if(itemAuthor_1 == null)
             {
@@ -22,7 +29,7 @@
             }
             else
             {
-                throw new Exception("There is ItemAuthor with the same Id");
+                throw new Exception("There is Item_Author with the same Id");
             }
         }
 
@@ -31,7 +38,7 @@
             var itemauthor = _context.ItemAuthors.FirstOrDefault(x => x.Id == id);
             if(itemauthor == null)
             {
-                throw new Exception("Error,I can't Found,There is not itemauthor");
+                throw new Exception("Error,I can't Found,There is not Item_Author");
             }
             itemauthor.ItemId = itemid;
             await _context.SaveChangesAsync();
@@ -42,7 +49,7 @@
             var itemauthor = _context.ItemAuthors.FirstOrDefault(x => x.Id == id);
             if (itemauthor == null)
             {
-                throw new Exception("Error,I can't Found,There is not itemauthor");
+                throw new Exception("Error,I can't Found,There is not Item_Author");
             }
             itemauthor.AuthorId= authorid;
             await _context.SaveChangesAsync();

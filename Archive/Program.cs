@@ -1,9 +1,16 @@
 using ArchiveLogic;
+using ArchiveLogic.CollectionItems;
+using ArchiveLogic.Collections;
 using ArchiveLogic.Countries;
 using ArchiveLogic.IItemLanguage;
 using ArchiveLogic.Items;
 using ArchiveLogic.ItemsAuthors;
+using ArchiveLogic.Likes;
 using ArchiveLogic.LLanguage;
+using ArchiveLogic.Qestions;
+using ArchiveLogic.Reactions;
+using ArchiveLogic.Responses;
+using ArchiveLogic.Saves;
 using ArchiveLogic.Tag;
 using ArchiveLogic.TtagItems;
 using ArchiveLogic.Users;
@@ -27,6 +34,14 @@ services.AddScoped<IItemLanguageManager, ItemLanguageManager>();
 services.AddScoped<ITtagManager, TtagManager>();
 services.AddScoped<IUserManager, UserManager>();
 services.AddScoped<ITtagItemManager, TtagItemManager>();
+services.AddScoped<ICollectionManager, CollectionManager>();
+services.AddScoped<ICollectionItemManager, CollectionItemManager>();
+services.AddScoped<ILikeManager, LikeManager>();
+services.AddScoped<IQestionManager, QestionManager>();
+services.AddScoped<IReactionManager, ReactionManager>();
+services.AddScoped<IResponseManager, ResponseManager>();
+services.AddScoped<ISaveManager, SaveManager>();
+
 
 
 var app = builder.Build();

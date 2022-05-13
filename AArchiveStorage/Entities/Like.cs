@@ -18,10 +18,6 @@ namespace ArchiveStorage.Entities
         public int? ItemId { get; set; }
       //  [ForeignKey(nameof(ItemId))]
         public virtual Item Item { get; set; }
-        public Like(int? userId, int? itemId)
-        {
-            UserId = userId;
-            ItemId = itemId;
-        }
+
     }
 }

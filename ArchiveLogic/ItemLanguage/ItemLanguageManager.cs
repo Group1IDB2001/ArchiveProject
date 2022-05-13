@@ -13,6 +13,7 @@ namespace ArchiveLogic.IItemLanguage
         {
             _context = context;
         }
+        
         public async Task<IList<ItemLanguage>> GetAllItemLanguages()
         {
             return await _context.ItemLanguages.ToListAsync();
@@ -20,6 +21,12 @@ namespace ArchiveLogic.IItemLanguage
 
         public async Task AddItemLanguage(int? languageid, int? itemid)
         {
+            var item = _context.Items.FirstOrDefault(i => i.Id == itemid);
+            if (item == null) throw new Exception("There is not Item with the same Id");
+
+            var language = _context.Languages.FirstOrDefault(a => a.Id == languageid);
+            if (language == null) throw new Exception("There is not Language with the same Id");
+
             var itemlanguage_1 = _context.ItemLanguages.FirstOrDefault(x => x.LanguageId == languageid && x.ItemId == itemid);
             if (itemlanguage_1 == null)
             {
@@ -29,15 +36,16 @@ namespace ArchiveLogic.IItemLanguage
             }
             else
             {
-                throw new Exception("There is ItemLanguage with the same Id");
+                throw new Exception("There is Item_Language with the same Id");
             }
         }
+        
         public async Task EditItemId(int id, int? itemid)
         {
             var itemlanguage = _context.ItemLanguages.FirstOrDefault(x => x.Id == id);
             if (itemlanguage == null)
             {
-                throw new Exception("Error,I can't Found,There is not itemlanguage");
+                throw new Exception("Error,I can't Found,There is not Item_Language");
             }
             itemlanguage.ItemId = itemid;
             await _context.SaveChangesAsync();
@@ -48,7 +56,7 @@ namespace ArchiveLogic.IItemLanguage
             var itemlanguage = _context.ItemLanguages.FirstOrDefault(x => x.Id == id);
             if (itemlanguage == null)
             {
-                throw new Exception("Error,I can't Found,There is not itemlanguage");
+                throw new Exception("Error,I can't Found,There is not Item_Language");
             }
             itemlanguage.LanguageId = languageid;
             await _context.SaveChangesAsync();

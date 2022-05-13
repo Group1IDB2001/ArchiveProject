@@ -15,10 +15,6 @@ namespace ArchiveStorage.Entities
         public int? UserId { get; set; }
         //[ForeignKey(nameof(UserId))]
         public virtual User User { get; set; }
-        public Qestion(string text, int? userId)
-        {
-            Text = text;
-            UserId = userId;
-        }
+
     }
 }

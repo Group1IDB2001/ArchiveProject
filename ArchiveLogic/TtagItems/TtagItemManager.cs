@@ -17,6 +17,12 @@ namespace ArchiveLogic.TtagItems
 
         public async Task AddTtagToItem(int? itemId, int? ttagId)
         {
+            var item = _context.Items.FirstOrDefault(i => i.Id == itemId);
+            if (item == null) throw new Exception("There is not Item with the same Id");
+
+            var tag = _context.Ttags.FirstOrDefault(i => i.Id == ttagId);
+            if (tag == null) throw new Exception("There is not Tag with the same Id");
+
             var ttagitem_1 = _context.TtagsItems.FirstOrDefault(t => t.TtagId == ttagId &&  t.ItemId == itemId);
             if(ttagitem_1 == null)
             {
@@ -46,6 +52,7 @@ namespace ArchiveLogic.TtagItems
             return Tagitems;
 
         }
+        
         public async Task<IList<TtagItem>> GetByTtag(int ttagId)
         {
             List<TtagItem> Tagitems = new List<TtagItem>();

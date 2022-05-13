@@ -35,6 +35,7 @@ namespace ArchiveLogic.Users
                 throw new Exception("There is such a Usre");
             }
         }
+        
         public async Task<IList<User>> GetAllUsers()
         {
             return await _context.Users.ToListAsync();
@@ -50,6 +51,7 @@ namespace ArchiveLogic.Users
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
         }
+        
         public async Task<User> GetUserById(int id)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
@@ -69,6 +71,15 @@ namespace ArchiveLogic.Users
             }
             return user;
         }
+        
+        
+        
+        
+        
+        
+        
+        
+        
         public async Task EditUserName(int id, string name)
         {
             var user = _context.Users.FirstOrDefault(u => u.Id == id);
@@ -90,6 +101,7 @@ namespace ArchiveLogic.Users
             user.Email = email;
             await _context.SaveChangesAsync();
         }
+        
         public async Task EditUserPassword(int id, string password)
         {
             var user = _context.Users.FirstOrDefault(u => u.Id == id);
@@ -111,6 +123,7 @@ namespace ArchiveLogic.Users
             user.Role = (int)(usersituation)role;
             await _context.SaveChangesAsync();
         }
+        
         public async Task EditUser(int id, string name, string email, string password, int role)
         {
             var user = _context.Users.FirstOrDefault(u => u.Id == id);

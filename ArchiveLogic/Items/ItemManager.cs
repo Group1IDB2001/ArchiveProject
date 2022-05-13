@@ -33,13 +33,16 @@ namespace ArchiveLogic.Items
         
         public async Task AddItem(string name, string? description, int year, string? field, int genre, int countryId)
         {
-            var item_1 = await _context.Items.FirstOrDefaultAsync(n => n.Name == name);
+            var country = _context.Countries.FirstOrDefault(C => C.Id == countryId);
+            if(country == null) throw new Exception("There is not Country with the same Id");
+
+            var item_1 =  _context.Items.FirstOrDefault(n => n.Name == name);
             if (item_1 == null)
             {
                 var item = new Item { Name = name, Description = description, Year=year, Field = field, Genre = (int)(Genres)genre, CountryId = countryId };
                 
                 _context.Items.Add(item);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
             else
             {
@@ -61,6 +64,7 @@ namespace ArchiveLogic.Items
             }
             return item;
         }
+        
         public async Task<Item> GetItemByName(string name)
         {
             var item = await _context.Items.FirstOrDefaultAsync(g => g.Name == name);
@@ -71,6 +75,7 @@ namespace ArchiveLogic.Items
             return item;
 
         }
+        
         public async Task<IList<Item>> GetItemsByYear(int year)
         {
             List<Item> items = new List<Item>();
@@ -82,6 +87,7 @@ namespace ArchiveLogic.Items
                     items.Add(item);
                 }
             }
+            if(items.Count == 0) throw new Exception("Error,I can't Found,There is not item");
             return items;
         }
 
@@ -96,6 +102,7 @@ namespace ArchiveLogic.Items
                     items.Add(item);
                 }
             }
+            if (items.Count == 0) throw new Exception("Error,I can't Found,There is not item");
             return items;
         }
 
@@ -110,6 +117,7 @@ namespace ArchiveLogic.Items
                     items.Add(item);
                 }
             }
+            if (items.Count == 0) throw new Exception("Error,I can't Found,There is not item");
             return items;
         }
 
@@ -137,6 +145,7 @@ namespace ArchiveLogic.Items
             item.Name = name;
             await _context.SaveChangesAsync();
         }
+        
         public async Task EditItemYear(int id, int year)
         {
             var item = _context.Items.FirstOrDefault(g => g.Id == id);
@@ -148,6 +157,7 @@ namespace ArchiveLogic.Items
             await _context.SaveChangesAsync();
 
         }
+        
         public async Task EditItemGenre(int id, int genre)
         {
             var item = _context.Items.FirstOrDefault(g => g.Id == id);
@@ -158,6 +168,7 @@ namespace ArchiveLogic.Items
             item.Genre = (int)(Genres)genre;
             await _context.SaveChangesAsync();
         }
+        
         public async Task EditItemField(int id, string field)
         {
             var item = _context.Items.FirstOrDefault(g => g.Id == id);
@@ -168,6 +179,7 @@ namespace ArchiveLogic.Items
             item.Field = field;
             await _context.SaveChangesAsync();
         }
+        
         public async Task EditItemDescription(int id, string description)
         {
             var item = _context.Items.FirstOrDefault(g => g.Id == id);
@@ -210,6 +222,7 @@ namespace ArchiveLogic.Items
             }
             return items;
         }
+        
         public async Task<IList<Item>> GetItemsByAuthorName(string authorname)
         {
             var author = await _context.Authors.FirstOrDefaultAsync(g => g.Name == authorname);
@@ -237,8 +250,15 @@ namespace ArchiveLogic.Items
             return items;
 
         }
+        
         public async Task AddAuthorToItem (int itemid, int authorid)
         {
+            var item = _context.Items.FirstOrDefault(i => i.Id == itemid);
+            if (item == null) throw new Exception("Error,I can't Found,There is not Item with this Id");
+
+            var author = _context.Authors.FirstOrDefault(i => i.Id == authorid);
+            if (author == null) throw new Exception("Error,I can't Found,There is not Author with this Id");
+
             var itemAuthor_1 = _context.ItemAuthors.FirstOrDefault(x => x.AuthorId == authorid && x.ItemId == itemid);
             if (itemAuthor_1 == null)
             {
@@ -251,6 +271,7 @@ namespace ArchiveLogic.Items
                 throw new Exception("There is Author belongs to this item with the same Id");
             }
         }
+        
         public async Task DeleteAuthorFromItem (int itemid, int authorid)
         {
             var itemAuthor = _context.ItemAuthors.FirstOrDefault(x => x.AuthorId == authorid && x.ItemId == itemid);
@@ -264,12 +285,14 @@ namespace ArchiveLogic.Items
                 await _context.SaveChangesAsync();
             }
         }
+        
         public async Task ReplaceAllAuthorsInItem(int itemid, int newauthorid)
         {
             var itemauthor_1 = _context.ItemAuthors.FirstOrDefault(x => x.ItemId == itemid);
-            var author = _context.Authors.FirstOrDefault(T => T.Id == newauthorid);
-            if (author == null) throw new Exception("Error,I can't Found,There is not Author with this Id");
             if (itemauthor_1 == null) throw new Exception("Error,I can't Found,There is not item");
+
+            var author = _context.Authors.FirstOrDefault(A => A.Id == newauthorid);
+            if (author == null) throw new Exception("Error,I can't Found,There is not Author with this Id");
             else
             {
                 foreach (var itemauthor in _context.ItemAuthors)
@@ -316,8 +339,15 @@ namespace ArchiveLogic.Items
             }
             return items;
         }
+        
         public async Task AddLanguageToItem(int itemid, int languageId)
         {
+            var item = _context.Items.FirstOrDefault(i => i.Id == itemid);
+            if (item == null) throw new Exception("Error,I can't Found,There is not Item with this Id");
+
+            var language = _context.Languages.FirstOrDefault(L => L.Id == languageId);
+            if (language == null) throw new Exception("Error,I can't Found,There is not Language with this Id");
+
             var itemlanguage_1 = _context.ItemLanguages.FirstOrDefault(x => x.LanguageId == languageId && x.ItemId == itemid);
             if (itemlanguage_1 == null)
             {
@@ -330,6 +360,7 @@ namespace ArchiveLogic.Items
                 throw new Exception("There is Language belongs to this item with the same Id");
             }
         }
+        
         public async Task DeleteLanguageFromItem(int itemid, int languageId)
         {
             var itemlanguage = _context.ItemLanguages.FirstOrDefault(x => x.LanguageId == languageId && x.ItemId == itemid);
@@ -343,12 +374,14 @@ namespace ArchiveLogic.Items
                 await _context.SaveChangesAsync();
             }
         }
+        
         public async Task ReplaceAllLanguagesInItem(int itemid, int newlanguageId)
         {
             var itemLanguage_1= _context.ItemLanguages.FirstOrDefault(x => x.ItemId == itemid);
+            if (itemLanguage_1 == null) throw new Exception("Error,I can't Found,There is not item with this Id");
+
             var language = _context.Languages.FirstOrDefault(T => T.Id == newlanguageId);
             if (language == null) throw new Exception("Error,I can't Found,There is not Language with this Id");
-            if (itemLanguage_1 == null) throw new Exception("Error,I can't Found,There is not item");
             else
             {
                 foreach (var itemlanguage in _context.ItemLanguages)
@@ -370,6 +403,12 @@ namespace ArchiveLogic.Items
 
         public async Task AddTTagToItem(int itemid, int ttagId)
         {
+            var item = _context.Items.FirstOrDefault(i => i.Id == itemid);
+            if (item == null) throw new Exception("Error,I can't Found,There is not Item with this Id");
+
+            var tag = _context.Ttags.FirstOrDefault(L => L.Id == ttagId);
+            if (tag == null) throw new Exception("Error,I can't Found,There is not Tag with this Id");
+
             var Ttagitem_1 = _context.TtagsItems.FirstOrDefault(x => x.TtagId == ttagId && x.ItemId == itemid);
             if (Ttagitem_1 == null)
             {
@@ -400,9 +439,10 @@ namespace ArchiveLogic.Items
         public async Task ReplaceAllTTagsInItem(int itemid, int newttagId)
         {
             var Ttagitem_1 = _context.TtagsItems.FirstOrDefault(x => x.ItemId == itemid);
+            if (Ttagitem_1 == null) throw new Exception("Error,I can't Found,There is not item");
+
             var Tag = _context.Ttags.FirstOrDefault(T => T.Id == newttagId);
             if (Tag == null) throw new Exception("Error,I can't Found,There is not Tag with this Id");
-            if (Ttagitem_1 == null) throw new Exception("Error,I can't Found,There is not item");
             else
             {
                 foreach (var Tagitem in _context.TtagsItems)
