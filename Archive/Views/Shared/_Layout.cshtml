@@ -7,6 +7,7 @@
     <title>@ViewData["Title"] - ARB</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/StyleSheet.css"/>
+    
 </head>
 
 
@@ -21,10 +22,6 @@
                  <a class="headerlogo" asp-area="" asp-controller="Home" asp-action="Index">ARB</a>
             </div>  
              
-           <div class="header_item">            
-                  <a class="headerButton" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
-           </div> 
-           
             <div class="header_item">          
                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                  Жанры
@@ -49,12 +46,16 @@
            </div>
               
            <div class="header_item">          
-                <a class="headerButton" asp-area="" asp-controller="Home" asp-action="Privacy">О нас</a>
+                <a class="headerButton" asp-area="" asp-controller="Home" asp-action="Privacy">Авторы</a>
+           </div>
+
+           <div class="header_item">          
+                <a class="headerButton" asp-area="" asp-controller="Home" asp-action="Privacy">Вопросы</a>
            </div>
              
            <form>
-                 <input type="text" placeholder="Искать здесь...">
-                 <button type="submit"></button>
+                 <input type="search" placeholder="Искать здесь...">
+                 <button class="search" type="submit"></button>
            </form> 
              
              <div class="header_item">
@@ -72,7 +73,7 @@
     <!--*низ сайта*-->
     <footer class="border-top footer text-muted">
         <div class="ft">
-            &copy; 2022 - ARB - <a asp-area="" asp-controller="Home" asp-action="Privacy">О нас</a>
+            &copy; 2022 - ARB - <a asp-area="" asp-controller="Home" asp-action="Privacy">Авторы</a>
         </div>
     </footer>
     
