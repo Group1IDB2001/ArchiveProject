@@ -8,13 +8,22 @@ namespace ArchiveLogic.Responses
 {
     public interface IResponseManager
     {
-        Task AddResponse(int userId, int qestionId, string text);
-        Task AddResponse(int userId, int qestionId, string text,int itemId,int collectionId);
+        Task AddResponse(int? userid, int? qestionid, string text, int? itemid, int? collectionid);
+        Task<IList<Response>> GetAllResponse();
+        Task<IList<Response>> GetResponseByUser(int userid);
+        Task<IList<Response>> GetResponseByQestion(int qestionid);
         Task DeleteResponse(int responseId);
+
+
+
+
+
         Task EditResponse (int responseId,string newtext,int? itemId,int? collectionId);
-        Task<IList<Response>> GetResponseByUser(int userId);
-        Task<IList<Response>> GetResponseByQestion(int qestionId);
-        
+        Task EditResponseText(int responseId, string newtext);
+        Task EditResponseItem(int responseId,int? itemId);
+        Task EditResponseCollection(int responseId,int? collectionId);
+
+
 
     }
 }

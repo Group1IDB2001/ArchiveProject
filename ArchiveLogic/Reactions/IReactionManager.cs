@@ -8,11 +8,13 @@ namespace ArchiveLogic.Reactions
 {
     public interface IReactionManager
     {
-        Task AddReaction(int userId, int itemId,int rating,string? text);
-        Task DeleteReaction(int reactionId);
-        Task<IList<Reaction>> GetByItem(int itemId);
-        Task<IList<Reaction>> GetByUser(int userId);
-        Task EditReaction (int reactionId,int newtext);
+        Task AddReaction(int? userid, int? itemid,int rating,string? text);
+        Task<IList<Reaction>> GetAllReactions();
+        Task<IList<Reaction>> GetByItem(int itemid);
+        Task<IList<Reaction>> GetByUser(int userid);
+        Task DeleteReaction(int reactionid);
+        Task EditReactionText (int reactionid,string? newtext);
+        Task EditReactionRating (int reactionid, int newrating);
 
 
     }

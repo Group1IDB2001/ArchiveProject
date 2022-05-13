@@ -7,6 +7,10 @@ using ArchiveLogic.Items;
 using ArchiveLogic.ItemsAuthors;
 using ArchiveLogic.Likes;
 using ArchiveLogic.LLanguage;
+using ArchiveLogic.Qestions;
+using ArchiveLogic.Reactions;
+using ArchiveLogic.Responses;
+using ArchiveLogic.Saves;
 using ArchiveLogic.Tag;
 using ArchiveLogic.TtagItems;
 using ArchiveLogic.Users;
@@ -33,6 +37,10 @@ services.AddScoped<ITtagItemManager, TtagItemManager>();
 services.AddScoped<ICollectionManager, CollectionManager>();
 services.AddScoped<ICollectionItemManager, CollectionItemManager>();
 services.AddScoped<ILikeManager, LikeManager>();
+services.AddScoped<IQestionManager, QestionManager>();
+services.AddScoped<IReactionManager, ReactionManager>();
+services.AddScoped<IResponseManager, ResponseManager>();
+services.AddScoped<ISaveManager, SaveManager>();
 
 
 

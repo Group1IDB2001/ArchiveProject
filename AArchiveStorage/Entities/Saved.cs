@@ -18,10 +18,6 @@ namespace ArchiveStorage.Entities
         public int? CollectionId { get; set; }
        // [ForeignKey(nameof(CollectionId))]
         public virtual Collection Collection { get; set; }
-        public Saved(int? userId, int? collectionId)
-        {
-            UserId = userId;
-            CollectionId = collectionId;
-        }
+
     }
 }

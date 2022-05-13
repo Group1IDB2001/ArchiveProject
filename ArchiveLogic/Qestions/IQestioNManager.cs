@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace ArchiveLogic.Qestions
 {
-    public interface IQestioNManager
+    public interface IQestionManager
     {
-        Task AddQestion(int userId, string text);
-        Task DeleteQestion(int qestionId);
-        Task EditQestion (int qestionId,string newtext);
-        Task<IList<Qestion>> GetByUser (int userId);
+        Task AddQestion(int? userid, string text);
+        Task<IList<Qestion>> GetAllQestion();
+        Task<IList<Qestion>> GetByUser(int userid);
+        Task DeleteQestion(int qestionid);
+        Task EditQestion (int qestionid,string newtext);
+        
     }
 }

@@ -21,12 +21,6 @@ namespace ArchiveStorage.Entities
         public int? UserId { get; set; }
         //[ForeignKey(nameof(UserId))]
         public virtual User User { get; set; }
-        public Reaction(string? text, int rating, int? itemId, int? userId)
-        {
-            Text = text;
-            Rating = rating;
-            ItemId = itemId;
-            UserId = userId;
-        }
+
     }
 }
