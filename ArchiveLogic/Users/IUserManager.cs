@@ -13,6 +13,7 @@ namespace ArchiveLogic.Users
         Task DeleteUser(int id);
         Task<User> GetUserById (int id);
         Task<User> GetUserByName(string name);
+        Task<User> UserLogin(string name , string password);
         Task EditUserName(int id, string name);
         Task EditUserMail(int id, string email);
         Task EditUserPassword (int id ,string password);

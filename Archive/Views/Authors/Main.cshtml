@@ -1,0 +1,105 @@
+﻿@*@using PagedList.Mvc; 
+@using PagedList;
+@model PagedList.IPagedList<ArchiveStorage.Entities.Author>*@
+@{
+
+    ViewData["Title"] = "Home Page";
+    Pager pager = new Pager();
+    int pageNo = 0;
+    if(ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
+}
+
+<h1>Authors</h1>
+<table>
+    <tr>
+        <th>
+            Author ID
+        </th>
+        <th>
+            Name Author
+        </th>
+        <th>
+            Born Author
+        </th>
+        <th>
+            Death Author
+        </th>
+        <th>
+            About Author
+        </th>
+    </tr>
+    @foreach(var author in Model)
+    {
+        <tr>
+            <td>@author.Id</td>
+            <td>@author.Name</td>
+            <td>@author.Born</td>
+            <td>@author.Death</td>
+            <td>@author.About</td>
+        </tr>
+    }
+</table>
+
+@*<div style="margin:5px;">
+    page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, Page => Url.Action ("Main",
+    new { Page , sortOrder = ViewBag.CurrentSort , currentFilter = ViewBag.currentFilter}))
+</div>*@
+
+<div class ="container">
+    @if(pager.TotalPages > 0)
+    {
+        <ul class ="pagination justify-content-end">
+            @*@for (var pag = pager.StartPage; pag <= pager.EndPage; pag++)
+            {
+                <li class ="page-item @(pag == pager.CurrentPage ? "active":"")">
+                    <a class ="page-link" asp-controller="Authors" asp-action="Main" asp-route-pg="@pag"> @pag </a>
+                </li>
+            }
+
+            @if(pager.CurrentPage < pager.TotalPages)
+            {
+                <li class="page-item">
+                    <a class ="page-link" asp-controller="Authors" asp-action="Main" asp-route-pg="@(pager.CurrentPage+1)"> Next </a>
+                </li>
+                <li>
+                     <a class ="page-link" asp-controller="Authors" asp-action="Main" asp-route-pg="@(pager.TotalPages)"> Last </a>
+                </li>
+            }
+            @if(pager.CurrentPage > 1)
+            {
+                <li class ="page-item">
+                    <a class="page-link" asp-controller="Authors" asp-action="Main" asp-route-pg="1">First</a>
+                </li>
+                <li>
+                    <a class="page-link" asp-controller="Authors" asp-action="Main" asp-route-pg=@(pager.CurrentPage -1)>Previous</a>
+                </li>
+            }*@
+
+
+            @for (var pag = pager.StartPage; pag <= pager.EndPage; pag++)
+            {
+                <li class ="page-item @(pag == pager.CurrentPage ? "active":"")">
+                    <a class ="page-link" asp-controller="Authors" asp-action="Main" asp-route-pg="@pag"> @pag </a>
+                </li>
+            }
+            @if(pager.CurrentPage < pager.TotalPages)
+            {
+                <li class="page-item">
+                    <a class ="page-link" asp-controller="Authors" asp-action="Main" asp-route-pg="@(pager.CurrentPage+1)"> Next </a>
+                </li>
+                <li>
+                     <a class ="page-link" asp-controller="Authors" asp-action="Main" asp-route-pg=@(pager.CurrentPage -1)>Previous</a>
+                </li>
+            }
+
+            
+        </ul>
+    }
+</div>
+

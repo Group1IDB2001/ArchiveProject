@@ -26,13 +26,23 @@ namespace ArchiveLogic.Users
             var user_1 = _context.Users.FirstOrDefault(u => u.Name == name);
             if(user_1 == null)
             {
+                foreach(var user_2 in _context.Users)
+                {
+                    if(user_2.Email == email) throw new Exception("There is such a Email");
+                }
                 var user = new User { Name = name, Email = email, Password = password, Role = (int)(usersituation)role };
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
             }
             else
             {
-                throw new Exception("There is such a Usre");
+                if(user_1.Email == email) throw new Exception("There is such a Usre");
+                else
+                {
+                    var user = new User { Name = name, Email = email, Password = password, Role = (int)(usersituation)role };
+                    _context.Users.Add(user);
+                    await _context.SaveChangesAsync();
+                }
             }
         }
         
@@ -71,15 +81,23 @@ namespace ArchiveLogic.Users
             }
             return user;
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+        public async Task<User> UserLogin(string name, string password)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Name == name && u.Password==password );
+            //if (user == null)
+            //{
+            //    throw new Exception("Error,I can't found ,There is not User");
+            //}
+            return user;
+        }
+
+
+
+
+
+
+
         public async Task EditUserName(int id, string name)
         {
             var user = _context.Users.FirstOrDefault(u => u.Id == id);
