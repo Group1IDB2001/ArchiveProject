@@ -21,36 +21,37 @@ namespace ArchiveLogic.Users
             Moderator = 2,
             User = 3,
         }
-        public async Task AddUser(string name, string email, string password, int role)
+
+
+        public async Task<bool> AddUser(string name, string email, string password, int role)
         {
-            var user_1 = _context.Users.FirstOrDefault(u => u.Name == name);
-            if(user_1 == null)
+            var user_1 = _context.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+            if (user_1 == null)
             {
-                foreach(var user_2 in _context.Users)
-                {
-                    if(user_2.Email == email) throw new Exception("There is such a Email");
-                }
                 var user = new User { Name = name, Email = email, Password = password, Role = (int)(usersituation)role };
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
+                return true;
             }
-            else
-            {
-                if(user_1.Email == email) throw new Exception("There is such a Usre");
-                else
-                {
-                    var user = new User { Name = name, Email = email, Password = password, Role = (int)(usersituation)role };
-                    _context.Users.Add(user);
-                    await _context.SaveChangesAsync();
-                }
-            }
+            else return false;
         }
+        public async Task<bool> SingIn(string email, string password)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
+            if (user != null) return true;
+            else return false;
+        }
+
         
+
+
+
+
+
         public async Task<IList<User>> GetAllUsers()
         {
             return await _context.Users.ToListAsync();
         }
-
         public async Task DeleteUser(int id)
         {
             var user = _context.Users.FirstOrDefault(u => u.Id == id);
@@ -62,35 +63,23 @@ namespace ArchiveLogic.Users
             await _context.SaveChangesAsync();
         }
         
-        public async Task<User> GetUserById(int id)
+
+
+
+
+        public  User GetUserByEmail(string email)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
-            if (user == null)
-            {
-                throw new Exception("Error,I can't found ,There is not User");
-            }
-            return user;
+            var user = _context.Users.FirstOrDefault(u => u.Email == email);
+            if(user != null) return user;
+            else return null;
         }
-        
-        public async Task<User> GetUserByName(string name)
+        public async Task<bool> FindUserByEmail(string email)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Name == name);
-            if (user == null)
-            {
-                throw new Exception("Error,I can't found ,There is not User");
-            }
-            return user;
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (user != null) return true;
+            else return false;
         }
 
-        public async Task<User> UserLogin(string name, string password)
-        {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Name == name && u.Password==password );
-            //if (user == null)
-            //{
-            //    throw new Exception("Error,I can't found ,There is not User");
-            //}
-            return user;
-        }
 
 
 
@@ -155,5 +144,9 @@ namespace ArchiveLogic.Users
             user.Role = (int)(usersituation)role;
             await _context.SaveChangesAsync();
         }
+
+
+
+       
     }
 }
