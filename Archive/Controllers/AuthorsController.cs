@@ -66,14 +66,24 @@ namespace Archive.Controllers
         //Page
         
 
-        //
+        
 
-        public async Task<IActionResult> Main(int? page)
+        public async Task<IActionResult> Main(int pg =1)
         {
             var authors = await _manager.GetAllAuthors();
-            int pageSize = 3;
-            int pageNumber = (page ?? 1);
-            return View(authors.ToPagedList(pageNumber, pageSize));
+            int counter = authors.Count();
+            const int pagesize = 2;
+            if(pg < 1) pg = 1;
+
+            var pager = new Pager(counter, pg, pagesize);
+
+            int recSkip = (pg - 1) * pagesize;
+
+            var data = authors.Skip(recSkip).Take(pager.PageSize).ToList();
+
+            this.ViewBag.Pager = pager;
+
+            return View(data);
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using ArchiveLogic.Users;
+using ArchiveStorage;
 using Microsoft.AspNetCore.Mvc;
+using System.Web;
 
 namespace Archive.Controllers
 {
@@ -12,9 +14,72 @@ namespace Archive.Controllers
             _manager = manager;
         }
 
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> Register(string name , string email , string password , int role)
+        {
+            if (ModelState.IsValid)
+            {
+                await _manager.AddUser(name, email, password, role);
+                ModelState.Clear();
+                ViewBag.Message = name + " " + " successfully register.";
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(string name , string password)
+        {
+            var user = _manager.UserLogin(name, password);
+            if(user != null) return RedirectToAction("Index", "Home");
+            else
+            {
+                return RedirectToAction("Login", "Users");
+            }
+        }
+
+
+
+
+
         [HttpPut]
         [Route("users")]
         public async Task AddUser([FromBody] CreateUserRequest request) => await _manager.AddUser(request.Name, request.Email, request.Password, request.Role);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         [HttpGet]
         [Route("users")]
@@ -54,9 +119,6 @@ namespace Archive.Controllers
         public async Task EditUser(int id, [FromBody] CreateUserRequest request) => await _manager.EditUser(id, request.Name, request.Email, request.Password, request.Role);
 
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        
     }
 }

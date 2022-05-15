@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="PagedList.Mvc" Version="4.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\AArchiveStorage\ArchiveStorage.csproj" />
   </ItemGroup>
 
