@@ -5,7 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 namespace ArchiveStorage.Entities
 {
-    
+    public enum Genres
+    {
+        no_info = 0,
+        literary_fiction = 1,
+        mystery = 2,
+        thriller = 3,
+        horror = 4,
+        historical = 5,
+        romance = 6,
+        western = 7,
+        bildungsroman = 8,
+        speculative_fiction = 9,
+        science_fiction = 10,
+        fantasy = 11,
+        dystopyan = 12,
+        magical_realism = 13,
+        realist_literature = 14,
+        subject_literature = 15
+    }
+
     public class Item
     {
         [Key]
@@ -14,7 +33,7 @@ namespace ArchiveStorage.Entities
         public string? Description { get; set; }
         public int Year { get; set; }
         public string? Field { get; set; }
-        public int Genre { get; set; } //= { (int)Genre.no_info };
+        public Genres Genre { get; set; } //= { (int)Genre.no_info };
 
         [Required]
         public int CountryId { get; set; }

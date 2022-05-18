@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace ArchiveLogic.Authors
 {
     public interface IItemManager
     {
-        Task AddItem(string name, string? description, int year, string? field, int genre, int countryId);
+        Task AddItem(string name, string? description, int year, string? field, Genres genre, int countryId);
 
         Task<IList<Item>> GetAllItems();
 
@@ -17,7 +18,7 @@ namespace ArchiveLogic.Authors
         Task<Item> GetItemByName(string name);
         Task<IList<Item>> GetItemsByYear(int year);
 
-        Task<IList<Item>> GetItemsByGenre(int genre);
+        Task<IList<Item>> GetItemsByGenre(Genres genre);
 
         Task<IList<Item>> GetItemsByField(string field);
         Task DeleteItem(int id);
@@ -25,7 +26,7 @@ namespace ArchiveLogic.Authors
 
         Task EditItemName(int id, string name);
         Task EditItemYear(int id, int year);
-        Task EditItemGenre(int id, int genre);
+        Task EditItemGenre(int id, Genres genre);
         Task EditItemField(int id, string field);
         Task EditItemDescription(int id, string description);
         Task<IList<Item>> GetItemsByAuthorId (int authorId);

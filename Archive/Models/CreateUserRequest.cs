@@ -19,6 +19,6 @@ namespace Archive.Models
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Role is required.")]
-        public int Role { get; set; }
+        public usersituation Role { get; set; }
     }
 }

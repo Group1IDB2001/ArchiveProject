@@ -7,7 +7,7 @@
         public string? Description { get; set; }
         public int Year { get; set; }
         public string? Field { get; set; }
-        public int Genre { get; set; }
+        public Genres Genre { get; set; }
         public int CountryId { get; set; }
     }
 }
