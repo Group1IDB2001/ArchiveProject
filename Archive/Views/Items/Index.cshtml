@@ -1,26 +1,46 @@
 ﻿@{
-    
+    ViewData["Title"] = "List of Items";
+    Pager pager = new Pager();
+    int pageNo = 0;
+    if(ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
 }
-
+<html lang="ru" dir="ltr">
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Genres</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  
+        <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">               
+        <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
 <header>
     <h2 class="tm-main-title">Каталог</h2>
 </header>
 <div class="tm-gallery">
-    
+    <div class="row">
+    @foreach(var item in Model)
     {
-        <div class="row">
-            <figure class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+        
+        
+            <figure class="col-lg-2 col-md-2 col-sm-3 col-6 tm-gallery-item">
                   <a href="preview.cshtml">
                         <div class="tm-gallery-item-overlay">
-                            <img src="img/image-01.jpg" alt="Image" class="img-fluid tm-img-center">
+                            <img src="img/cover.jpg" alt="Image" class="img-fluid tm-img-center">
                         </div>
 
-                        <p class="tm-figcaption">item.Name</p>
+                        <p class="tm-figcaption">@item.Name</p>
                   </a>
             </figure>
-        </div>
+        
 
-      }
+    }
+    </div>
 </div>
 
 <div class ="container">
@@ -31,16 +51,16 @@
             @for (var pag = pager.StartPage; pag <= pager.EndPage; pag++)
             {
                 <li class ="page-item @(pag == pager.CurrentPage ? "active":"")">
-                    <a class ="page-link" asp-controller="Authors" asp-action="Index" asp-route-pg="@pag"> @pag </a>
+                    <a class ="page-link" asp-controller="Items" asp-action="Index" asp-route-pg="@pag"> @pag </a>
                 </li>
             }
             @if(pager.CurrentPage < pager.TotalPages)
             {
                 <li class="page-item">
-                    <a class ="page-link" asp-controller="Authors" asp-action="Index" asp-route-pg="@(pager.CurrentPage+1)"> Next </a>
+                    <a class ="page-link" asp-controller="Items" asp-action="Index" asp-route-pg="@(pager.CurrentPage+1)"> Next </a>
                 </li>
                 <li>
-                     <a class ="page-link" asp-controller="Authors" asp-action="Index" asp-route-pg=@(pager.CurrentPage -1)>Previous</a>
+                     <a class ="page-link" asp-controller="Items" asp-action="Index" asp-route-pg=@(pager.CurrentPage -1)>Previous</a>
                 </li>
             }
 
@@ -57,7 +77,7 @@
 
     }
                 <li>
-                     <a asp-controller="Authors" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Add New Author</a>
+                     <a asp-controller="Items" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Add New Item</a>
                 </li>
 
 </div>
