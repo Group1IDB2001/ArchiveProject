@@ -16,8 +16,6 @@ namespace Archive.Controllers
         }
 
 
-        [HttpGet]
-        [Route("Authors")]
         public async Task<IActionResult> Index(int pg = 1)
         {
             var authors = await _manager.GetAllAuthors();
@@ -34,6 +32,22 @@ namespace Archive.Controllers
             this.ViewBag.Pager = pager;
 
             return View(data);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([Bind("Name,Born ,Death ,About")]Author author)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(author);
+            }
+            _manager.AddAuthor(author);
+            return RedirectToAction(nameof(Index));
         }
 
 

@@ -12,22 +12,30 @@ namespace ArchiveLogic.Authors
             _context=context;
         }
 
-        public async Task AddAuthor(string name, int born, int? death, string? about)
+        public void AddAuthor(Author author)
         {
-            var author_1 = _context.Authors.FirstOrDefault(n => n.Name == name);
-            if (author_1 == null)
-            {
-                var author = new Author { Name = name, Born = born, Death = death, About = about };
-                _context.Authors.Add(author);
-                await _context.SaveChangesAsync();
-
-            }
-            else
-            {
-                throw new Exception("There is author with the same name");
-            }
-
+            _context.Authors.Add(author);
+            _context.SaveChanges();
         }
+        public async Task<bool> FindAuthor(string name, int born)
+        {
+            var author = await _context.Authors.FirstOrDefaultAsync(g => g.Name == name && g.Born == born);
+            if (author != null) return true;
+            else return false;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public async Task<IList<Author>> GetAllAuthors()
         {
