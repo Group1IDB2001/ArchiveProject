@@ -1,10 +1,70 @@
 ﻿@{
     ViewData["Title"] = "ARB";
 }
+<html>
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>ARCHIVE</title>
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  
+        <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">               
+        <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
+        <link rel="stylesheet" href="~/css/bootstrap.min.css"/> 
+       
+    </head>
 
+<body>
 
-<div class="text-center">
-    <h1 class="display-4">Книги в алфавитном порядке</h1>
-    <p>На данной странице отображены книги, отсортированные по алфавиту</p>
+        <div class="container">
+            <div class="tm-main-content">
+                <section class="tm-margin-b-l">
+                    <header>
+                        <h2 class="tm-main-title">Каталог</h2>
+                    </header>
+                    <div class="tm-gallery">
+                        
+                        
 
-</div>
+                            <div class="row">
+                                <figure class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                                    <a href="preview.cshtml">
+                                        <div class="tm-gallery-item-overlay">
+                                            <img src="img/image-01.jpg" alt="Image" class="img-fluid tm-img-center">
+                                        </div>
+
+                                        <p class="tm-figcaption">item.Name[1]</p>
+                                    </a>
+                                </figure>
+                            </div>
+
+                        }
+                    </div>
+
+                    </section>
+
+                
+            </div>
+
+            
+        </div>
+
+        <!-- load JS files -->
+        <script src="js/jquery-1.11.3.min.js"></script>         <!-- jQuery (https://jquery.com/download/) -->
+        <script src="js/popper.min.js"></script>                <!-- Popper (https://popper.js.org/) -->
+        <script src="js/bootstrap.min.js"></script>             <!-- Bootstrap (https://getbootstrap.com/) -->
+        <script>
+
+            $(document).ready(function () {
+
+                // Update the current year in copyright
+                $('.tm-current-year').text(new Date().getFullYear());
+
+            });
+
+        </script>
+
+    </body>
+    </html>

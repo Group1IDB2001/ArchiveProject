@@ -1,10 +1,121 @@
 ﻿@{
-    ViewData["Title"] = "ARB";
+
+    ViewData["Title"] = "List of Authors";
+    Pager pager = new Pager();
+    int pageNo = 0;
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>ARCHIVE</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/tooplate-style.css" />
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+
+</head>
+
+<body>
+
+    <div class="container">
+        <header class="tm-site-header">
+            <h1 class="tm-site-name">ARCHIVE</h1>
+            <p class="tm-site-description">архив книг, статей, сайтов ...</p>
+
+            <nav class="navbar navbar-expand-md tm-main-nav-container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#tmMainNav" aria-controls="tmMainNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <div class="collapse navbar-collapse tm-main-nav" id="tmMainNav">
+                    <ul class="nav nav-fill tm-main-nav-ul">
+                        <li class="nav-item"><a class="nav-link active" href="index.cshtml">Каталог</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="genres.cshtml">Жанры</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="authors.cshtmal">Авторы</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="searchpage.cshtml">Поиск</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="authtorization.cshtml">Профиль</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="team.cshtml">Наша Команда</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+        </header>
+
+        <div class="tm-main-content">
+            <section class="tm-margin-b-l">
+                <header>
+                    <h2 class="tm-main-title">Авторы</h2>
+                </header>
+                <table class="table">
+                    <tr>
+                        <th>
+                            Author ID
+                        </th>
+                        <th>
+                            Name Author
+                        </th>
+                        <th>
+                            Born Author
+                        </th>
+                        <th>
+                            Death Author
+                        </th>
+                        <th class="text-center">
+                            About Author
+                        </th>
+
+                    </tr>
+                    @foreach (var author in Model)
+                    {
+                        <tr>
+                            <td>@author.Id</td>
+                            <td>@author.Name</td>
+                            <td>@author.Born</td>
+                            <td>@author.Death</td>
+                            <td>@author.About</td>
+
+                            <td class="aling-middle">
+                                <a class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i>Edit</a>
+                                <a class="btn btn-outline-info"><i class="bi bi-eye"></i>Details</a>
+                                <a class="btn btn-danger"><i class="bi bi-trash"></i>Delete</a>
+                            </td>
+                        </tr>
+
+                    }
+                </table>
+
+            </section>
 
 
-<div class="text-center">
-    <h1 class="display-4">Книги в алфавитном порядке</h1>
-    <p>На данной странице отображены книги, отсортированные по алфавиту</p>
+        </div>
 
-</div>
+
+    </div>
+
+    <!-- load JS files -->
+    <script src="js/jquery-1.11.3.min.js"></script>         <!-- jQuery (https://jquery.com/download/) -->
+    <script src="js/popper.min.js"></script>                <!-- Popper (https://popper.js.org/) -->
+    <script src="js/bootstrap.min.js"></script>             <!-- Bootstrap (https://getbootstrap.com/) -->
+    <script>
+
+        $(document).ready(function () {
+
+            // Update the current year in copyright
+            $('.tm-current-year').text(new Date().getFullYear());
+
+        });
+
+    </script>
+
+</body>
+</html>
