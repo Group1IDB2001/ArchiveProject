@@ -1,10 +1,3 @@
-/*
-
-Template 2092 Shelf
-
-http://www.tooplate.com/view/2092-shelf
-
-*/
 
 body {
 	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
@@ -162,7 +155,7 @@ button:focus { outline: none; }
 	transition: .3s ease-in-out;
 }
 
-/* https://codepen.io/nxworld/pen/ZYNOBZ */
+
 .tm-gallery-item-overlay {
 	background: #0066CC;
 	max-width: 240px;
