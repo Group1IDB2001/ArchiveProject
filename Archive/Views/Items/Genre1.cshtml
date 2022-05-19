@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "List of Items";
+    ViewData["Title"] = "List of drama";
     Pager pager = new Pager();
     int pageNo = 0;
     if(ViewBag.Pager != null)
@@ -29,7 +29,7 @@
         
         
             <figure class="col-lg-2 col-md-2 col-sm-3 col-6 tm-gallery-item">
-                  <a asp-area="" asp-controller="Items" asp-action="ItemPage">
+                  <a href="preview.cshtml">
                         <div class="tm-gallery-item-overlay">
                             <img src="img/cover.jpg" alt="Image" class="img-fluid tm-img-center">
                         </div>

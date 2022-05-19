@@ -34,62 +34,36 @@ namespace Archive.Controllers
             return View(data);
         }
 
+<<<<<<< HEAD
+        public async Task<IActionResult> AuthorPage(int pg = 1)
+        {
+            var authors = await _manager.GetAuthorById(1);
+            
+=======
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("Name,Born ,Death ,About")]CreateAuthorRequest Author)
+        public async Task<IActionResult> Create([Bind("Name,Born ,Death ,About")]Author author)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var author = await _manager.AddAuthor(Author.Name,Author.Born ,Author.Death, Author.About);
-                if (author)
-                    return Redirect("Index");
-                else
-                {
-                    var author_1 = await _manager.FindAuthor(Author.Name,Author.Born);
-                    if (author_1) ModelState.AddModelError("", "Author is already exists");
-                }
+                return View(author);
             }
-            return View();
+            _manager.AddAuthor(author);
+            return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Edit(int id,[Bind("Name,Born ,Death ,About")] CreateAuthorRequest Author)
-        {
-            var author_1 = await _manager.FindAuthor(Author.Name, Author.Born);
-            if (author_1) ModelState.AddModelError("", "Author is already exists");
-            else
-            {
-                var author = await _manager.EditAuthor(id, Author.Name, Author.Born, Author.Death, Author.About);
-                if (author)
-                    return Redirect("Index");
-            }
-            return View();
+>>>>>>> 700c6735c0058ff9f2b2cc35aa414db47759bc50
+
+            var data = authors;
+
+            
+
+            return View(data);
         }
-
-
-        [HttpGet]
-        public async Task<IActionResult> Details(int id)
-        {
-            var actorDetails = await _manager.GetAuthorById(id);
-            if (actorDetails == null) return View();
-            return View(actorDetails);
-        }
-        //[HttpPost]
-        //public async Task<IActionResult> Create([Bind("Name,Born ,Death ,About")]Author author)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(author);
-        //    }
-        //    _manager.AddAuthor(author);
-        //    return RedirectToAction(nameof(Index));
-        //}
-
-
         //[HttpPut]
         //[Route("authors")]
         //public async Task AddAuthor([FromBody] CreateAuthorRequest request) => await _manager.AddAuthor(request.Name, request.Born, request.Death, request.About);
