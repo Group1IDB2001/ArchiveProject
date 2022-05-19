@@ -9,7 +9,7 @@ namespace Archive.Models
 
 
         [Display(Name= "Name")]
-        [Required(ErrorMessage = "Name is required.")]
+        [Required(ErrorMessage = "Name is required")]
         [StringLength(50,MinimumLength = 3 , ErrorMessage ="Name must be between 3 and 50 chars")]
         public string Name { get; set; }
 

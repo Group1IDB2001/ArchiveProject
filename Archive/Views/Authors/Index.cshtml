@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<Author>
+@{
 
     ViewData["Title"] = "List of Authors";
     Pager pager = new Pager();
@@ -40,9 +41,9 @@
             <td>@author.About</td>
 
             <td class="aling-middle">
-            <a class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i>Edit</a>
-            <a class="btn btn-outline-info"><i class="bi bi-eye"></i>Details</a>
-            <a class="btn btn-danger"><i class="bi bi-trash"></i>Delete</a>
+            <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@author.Id"><i class="bi bi-pencil-square"></i>Edit</a>
+            <a class="btn btn-outline-info" asp-controller="Authors" asp-action="Details"><i class="bi bi-eye"></i>Details</a>
+            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@author.Id"><i class="bi bi-trash"></i>Delete</a>
             </td>
         </tr>
         

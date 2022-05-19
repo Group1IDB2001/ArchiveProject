@@ -1,45 +1,129 @@
-﻿@model Author
+﻿@model CreateAuthorRequest
 @{
     ViewData["Title"] = "Add a new Author";
 }
 
-<div class="row text">
-    <div class="col-md-8 offset-2">
-        <p>
-             <h1>Add a new Author</h1>
-        </p>
-        <div class="row">
-            <div class="col-md-8 offset-2">
-                <from asp-action ="Create">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        
-                        <div class="form-group">
-                            <label asp-for="Name" class="control-lable"></label>
-                            <input asp-for="Name" class="form-control" />
-                            <span asp-validation-for="Name" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Born" class="control-lable"></label>
-                            <input asp-for="Born" class="form-control" />
-                            <span asp-validation-for="Born" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                            <label asp-for="Death" class="control-lable"></label>
-                            <input asp-for="Death" class="form-control" />
-                            <span asp-validation-for="Death" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                             <label asp-for="About" class="control-lable"></label>
-                             <input asp-for="About" class="form-control" />
-                             <span asp-validation-for="About" class="text-danger"></span>
-                        </div>
-                        <div class="form-group">
-                             <input type="submit" value="Create" class="btn btn-outline-success float-right" />
-                             <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
-                        </div>
-
-                </from>
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
-    </div>
-</div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Born, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Born, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Born, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Death, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Death, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Death, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.About, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.About, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.About, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                 <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                 <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
+            </div>
+        </div>
+    </div>          
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*код который работает*@
+@*
+
+model Author
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Born, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Born, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Born, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Death, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Death, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Death, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.About, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.About, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.About, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                 <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                 <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
+            </div>
+        </div>
+    </div>          
+}
+*@

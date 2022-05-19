@@ -40,15 +40,54 @@ namespace Archive.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("Name,Born ,Death ,About")]Author author)
+        public async Task<IActionResult> Create([Bind("Name,Born ,Death ,About")]CreateAuthorRequest Author)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(author);
+                var author = await _manager.AddAuthor(Author.Name,Author.Born ,Author.Death, Author.About);
+                if (author)
+                    return Redirect("Index");
+                else
+                {
+                    var author_1 = await _manager.FindAuthor(Author.Name,Author.Born);
+                    if (author_1) ModelState.AddModelError("", "Author is already exists");
+                }
             }
-            _manager.AddAuthor(author);
-            return RedirectToAction(nameof(Index));
+            return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id,[Bind("Name,Born ,Death ,About")] CreateAuthorRequest Author)
+        {
+            var author_1 = await _manager.FindAuthor(Author.Name, Author.Born);
+            if (author_1) ModelState.AddModelError("", "Author is already exists");
+            else
+            {
+                var author = await _manager.EditAuthor(id, Author.Name, Author.Born, Author.Death, Author.About);
+                if (author)
+                    return Redirect("Index");
+            }
+            return View();
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var actorDetails = await _manager.GetAuthorById(id);
+            if (actorDetails == null) return View();
+            return View(actorDetails);
+        }
+        //[HttpPost]
+        //public async Task<IActionResult> Create([Bind("Name,Born ,Death ,About")]Author author)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View(author);
+        //    }
+        //    _manager.AddAuthor(author);
+        //    return RedirectToAction(nameof(Index));
+        //}
 
 
         //[HttpPut]
@@ -99,10 +138,10 @@ namespace Archive.Controllers
         //public async Task EditAuthorAbout(int id, [FromBody] CreateAuthorRequest request) => await _manager.EditAuthorAbout(id, request.About);
 
         ////Page
-        
 
-        
 
-        
+
+
+
     }
 }

@@ -10,9 +10,12 @@ namespace ArchiveLogic.Authors
     {
         void AddAuthor(Author author);
 
+        Task<bool> AddAuthor(string name, int born, int? death, string? about);
+
         Task<bool> FindAuthor(string name, int born);
+        Task<bool> EditAuthor(int id,string name, int born, int? death, string? about);
 
-
+        Task<Author> GetAuthorById(int id);
 
 
 
@@ -27,7 +30,7 @@ namespace ArchiveLogic.Authors
         
         Task<IList<Author>> GetAllAuthors();
         
-        Task<Author> GetAuthorById(int id);
+        
 
         Task<Author> GetAuthorByName(string name);
         
