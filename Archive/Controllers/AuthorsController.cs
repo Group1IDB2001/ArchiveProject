@@ -36,7 +36,17 @@ namespace Archive.Controllers
             return View(data);
         }
 
+        public async Task<IActionResult> AuthorPage(int pg = 1)
+        {
+            var authors = await _manager.GetAuthorById(1);
+            
 
+            var data = authors;
+
+            
+
+            return View(data);
+        }
         //[HttpPut]
         //[Route("authors")]
         //public async Task AddAuthor([FromBody] CreateAuthorRequest request) => await _manager.AddAuthor(request.Name, request.Born, request.Death, request.About);
@@ -85,10 +95,10 @@ namespace Archive.Controllers
         //public async Task EditAuthorAbout(int id, [FromBody] CreateAuthorRequest request) => await _manager.EditAuthorAbout(id, request.About);
 
         ////Page
-        
 
-        
 
-        
+
+
+
     }
 }
