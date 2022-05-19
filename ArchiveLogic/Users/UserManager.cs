@@ -14,21 +14,15 @@ namespace ArchiveLogic.Users
         {
             _context = context;
         }
-        enum usersituation
-        {
-            no_info = 0,
-            Admin = 1,
-            Moderator = 2,
-            User = 3,
-        }
 
 
-        public async Task<bool> AddUser(string name, string email, string password, int role)
+
+        public async Task<bool> AddUser(string name, string email, string password, usersituation role)
         {
             var user_1 = _context.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
             if (user_1 == null)
             {
-                var user = new User { Name = name, Email = email, Password = password, Role = (int)(usersituation)role };
+                var user = new User { Name = name, Email = email, Password = password, Role = (usersituation)role };
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();
                 return true;
@@ -120,18 +114,18 @@ namespace ArchiveLogic.Users
             await _context.SaveChangesAsync();
         }
 
-        public async Task EditUserRole(int id, int role)
+        public async Task EditUserRole(int id, usersituation role)
         {
             var user = _context.Users.FirstOrDefault(u => u.Id == id);
             if (user == null)
             {
                 throw new Exception("Error,I can't found ,There is not User");
             }
-            user.Role = (int)(usersituation)role;
+            user.Role = (usersituation)role;
             await _context.SaveChangesAsync();
         }
         
-        public async Task EditUser(int id, string name, string email, string password, int role)
+        public async Task EditUser(int id, string name, string email, string password, usersituation role)
         {
             var user = _context.Users.FirstOrDefault(u => u.Id == id);
             if (user == null)
@@ -141,7 +135,7 @@ namespace ArchiveLogic.Users
             user.Name = name;
             user.Email = email;
             user.Password = password;
-            user.Role = (int)(usersituation)role;
+            user.Role = (usersituation)role;
             await _context.SaveChangesAsync();
         }
 

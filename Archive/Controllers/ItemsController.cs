@@ -39,7 +39,7 @@ namespace Archive.Controllers
 
         [HttpGet]
         [Route("items/genre/{genre:int}")]
-        public async Task<IList<Item>> GetItemsByGenre(int genre) => await _manager.GetItemsByGenre(genre);
+        public async Task<IList<Item>> GetItemsByGenre(Genres genre) => await _manager.GetItemsByGenre(genre);
         
         [HttpGet]
         [Route("items/field/{field}")]

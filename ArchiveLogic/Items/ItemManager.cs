@@ -10,28 +10,8 @@ namespace ArchiveLogic.Items
         {
             _context = context;
         }
-
-        enum Genres
-        {
-            no_info = 0,
-            literary_fiction = 1,
-            mystery = 2,
-            thriller = 3,
-            horror = 4,
-            historical = 5,
-            romance = 6,
-            western = 7,
-            bildungsroman = 8,
-            speculative_fiction = 9,
-            science_fiction = 10,
-            fantasy = 11,
-            dystopyan = 12,
-            magical_realism = 13,
-            realist_literature = 14,
-            subject_literature = 15
-        }
         
-        public async Task AddItem(string name, string? description, int year, string? field, int genre, int countryId)
+        public async Task AddItem(string name, string? description, int year, string? field, Genres genre, int countryId)
         {
             var country = _context.Countries.FirstOrDefault(C => C.Id == countryId);
             if(country == null) throw new Exception("There is not Country with the same Id");
@@ -39,7 +19,7 @@ namespace ArchiveLogic.Items
             var item_1 =  _context.Items.FirstOrDefault(n => n.Name == name);
             if (item_1 == null)
             {
-                var item = new Item { Name = name, Description = description, Year=year, Field = field, Genre = (int)(Genres)genre, CountryId = countryId };
+                var item = new Item { Name = name, Description = description, Year=year, Field = field, Genre = (Genres)genre, CountryId = countryId };
                 
                 _context.Items.Add(item);
                 await _context.SaveChangesAsync();
@@ -91,13 +71,13 @@ namespace ArchiveLogic.Items
             return items;
         }
 
-        public async Task<IList<Item>> GetItemsByGenre(int genre)
+        public async Task<IList<Item>> GetItemsByGenre(Genres genre)
         {
             List<Item> items = new List<Item>();
 
             foreach (var item in _context.Items)
             {
-                if (item.Genre == (int)(Genres)genre)
+                if (item.Genre == (Genres)genre)
                 {
                     items.Add(item);
                 }
@@ -158,14 +138,14 @@ namespace ArchiveLogic.Items
 
         }
         
-        public async Task EditItemGenre(int id, int genre)
+        public async Task EditItemGenre(int id, Genres genre)
         {
             var item = _context.Items.FirstOrDefault(g => g.Id == id);
             if (item == null)
             {
                 throw new Exception("Error,I can't Found,There is not item");
             }
-            item.Genre = (int)(Genres)genre;
+            item.Genre = (Genres)genre;
             await _context.SaveChangesAsync();
         }
         
