@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Views\Authors\**" />
-    <Content Remove="Views\Authors\**" />
-    <EmbeddedResource Remove="Views\Authors\**" />
-    <None Remove="Views\Authors\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 

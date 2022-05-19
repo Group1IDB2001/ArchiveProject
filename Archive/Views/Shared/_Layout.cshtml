@@ -1,74 +1,46 @@
-﻿<!DOCTYPE html>
-<html>
-    <!--*начало кода*-->
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/StyleSheet.css"/>
-    
-</head>
-
-
+﻿ <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>ARCHIVE</title>
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  
+        <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">               
+        <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
+        <link rel="stylesheet" href="~/css/bootstrap.min.css"/> 
+       
+    </head>
 
 <body>
     <!--*шапка сайта*-->
-    <header>
-        <nav class="siteNavidation">
-            
-            <div class="header_item"> 
-                 <img src="https://www.pinclipart.com/picdir/big/361-3616179_book-closed-clipart.png" alt="sorry image not uploaded" width="20"/>
-                 <a class="headerlogo" asp-area="" asp-controller="Home" asp-action="Index">ARB</a>
-            </div>  
-             
-            <div class="header_item">          
-                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                 Жанры
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                   <li><a class="dropdown-item" href="#">Драма</a></li>
-                   <li><a class="dropdown-item" href="#">Фэнтези</a></li>
-                   <li><a class="dropdown-item" href="#">Художественная проза</a></li>
-                   <li><a class="dropdown-item" href="#">Роман</a></li>
-                   <li><a class="dropdown-item" href="#">Поэзия</a></li>
-                   <li><a class="dropdown-item" href="#">Фольклер</a></li>
-                   <li><a class="dropdown-item" href="#">Историческая проза</a></li>
-                   <li><a class="dropdown-item" href="#">Хоррор</a></li>
-                   <li><a class="dropdown-item" href="#">Триллер</a></li>
-                   <li><a class="dropdown-item" href="#">Реализм</a></li>
-                   <li><a class="dropdown-item" href="#">Научная фантастика</a></li>
-                   <li><a class="dropdown-item" href="#">Комедия</a></li>
-                   <li><a class="dropdown-item" href="#">Биография</a></li>
-                   <li><a class="dropdown-item" href="#">Эссе</a></li>
-                   <li><a class="dropdown-item" href="#">Документальная литература</a></li>  
-                </ul>
-           </div>
-              
-           <div class="header_item">          
-                <a class="headerButton" asp-area="" asp-controller="Home" asp-action="Privacy">Авторы</a>
-           </div>
 
-           <div class="header_item">          
-                <a class="headerButton" asp-area="" asp-controller="Home" asp-action="Privacy">Вопросы</a>
-           </div>
-             
-           <form>
-                 <input type="search" placeholder="Искать здесь...">
-                 <button class="search" type="submit"></button>
-           </form> 
-             
-             <div class="header_item">
-                 <img src="https://i.pinimg.com/originals/95/79/05/957905e8d8c6074be7dc8378ddad4a69.png" alt="sorry image not uploaded" width="16"/>
-                 <a class="headerCome" asp-area="" asp-controller="Users" asp-action="Register">Войти</a>
-                 
-             </div>
-        </nav>
-    </header>
     <div class="container">
         <main role="main" class="pb-3">
+            <header class="tm-site-header">
+                <h1 class="tm-site-name">ARCHIVE</h1>
+                <p class="tm-site-description">архив книг, статей, сайтов ...</p>
+
+                <nav class="navbar navbar-expand-md tm-main-nav-container">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#tmMainNav" aria-controls="tmMainNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse tm-main-nav" id="tmMainNav">
+                        <ul class="nav nav-fill tm-main-nav-ul">
+                            <li class="nav-item"><a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">Каталог</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="genres.cshtml">Жанры</a></li>
+                            <li class="nav-item"><a class="nav-link active" asp-area="" asp-controller="Authors" asp-action="Index">Авторы</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="searchpage.cshtml">Поиск</a></li>
+                            <li class="nav-item"><a class="nav-link active" asp-area="" asp-controller="Users" asp-action="Register">Профиль</a></li>
+                            <li class="nav-item"><a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Privacy">Наша Команда</a></li>
+                        </ul>
+                    </div>
+                </nav>
+
+            </header>
             @RenderBody()
         </main>
     </div>
@@ -81,10 +53,18 @@
     </footer>
     
     <!--*подключение фалов по умолчанию*-->
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    <script src="js/jquery-1.11.3.min.js"></script>         
+        <script src="js/popper.min.js"></script>                
+        <script src="js/bootstrap.min.js"></script>             
+        <script>
+
+            $(document).ready(function () {
+
+                // Update the current year in copyright
+                $('.tm-current-year').text(new Date().getFullYear());
+
+            });
+
+        </script>
 </body>
 </html>

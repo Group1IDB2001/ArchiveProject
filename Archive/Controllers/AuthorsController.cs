@@ -68,7 +68,7 @@ namespace Archive.Controllers
 
         
 
-        public async Task<IActionResult> Main(int pg =1)
+        public async Task<IActionResult> Index(int pg =1)
         {
             var authors = await _manager.GetAllAuthors();
             int counter = authors.Count();
