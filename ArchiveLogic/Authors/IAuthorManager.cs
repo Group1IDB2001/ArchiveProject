@@ -8,7 +8,20 @@ namespace ArchiveLogic.Authors
 {
     public interface IAuthorManager
     {
-        Task AddAuthor(string name, int born, int? death, string? about);
+        void AddAuthor(Author author);
+
+        Task<bool> FindAuthor(string name, int born);
+
+
+
+
+
+
+
+
+
+
+
 
         Task DeleteAuthor(int id);
         
