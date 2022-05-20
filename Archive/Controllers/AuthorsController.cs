@@ -106,7 +106,12 @@ namespace Archive.Controllers
             }
         }
 
+        public async Task<IActionResult> AuthorPage(int id)
+        {
+            var author = await _manager.GetAuthorsByItemId(id);
 
+            return View(author);
+        }
 
 
 
