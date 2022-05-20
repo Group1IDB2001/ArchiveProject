@@ -36,6 +36,16 @@ namespace Archive.Controllers
             return View();
         }
 
+        [HttpGet]
+
+        public async Task<IActionResult> UserPage(string mail)
+        {
+            
+            var us =  _manager.GetUserByEmail("amin@mail.ru");
+            var data = us;
+            return View(data);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(CreateUserRequest Request)
