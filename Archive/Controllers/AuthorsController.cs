@@ -77,18 +77,18 @@ namespace Archive.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-            var authors = await _manager.GetAuthorById(id);
-            return View(authors);
+            var author = await _manager.GetAuthorById(id);
+            return View(author);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit([Bind("Name,Born ,Death ,About")] CreateAuthorRequest author)
+        public async Task<IActionResult> Edit(int id,[Bind("Id,Name,Born ,Death ,About")] Author author)
         {
             if (ModelState.IsValid)
             {
-                var Author = await _manager.AddAuthor(author.Name, author.Born, author.Death, author.About);
+                var Author = await _manager.EditAuthor(id,author.Name, author.Born, author.Death, author.About);
                 if (Author)
-                    return Redirect("Index");
+                    return RedirectToAction("Index");
                 else
                 {
                     var Author_1 = await _manager.FindAuthor(author.Name, author.Born);

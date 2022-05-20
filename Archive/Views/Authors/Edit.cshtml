@@ -1,15 +1,19 @@
-﻿@model CreateAuthorRequest
+﻿@model Author
 @{
-    ViewData["Title"] = "Add a new Author";
+    ViewData["Title"] = "Edit Author";
 }
 
-@using (Html.BeginForm()) 
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
         <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -43,10 +47,9 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                 <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                 <input type="submit" value="Edit" class="btn btn-outline-success float-right"/>
                  <a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
-            </div>
         </div>
-    </div>          
+    </div>
 }
+
