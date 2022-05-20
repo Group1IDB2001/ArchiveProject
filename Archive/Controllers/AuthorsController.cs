@@ -20,7 +20,7 @@ namespace Archive.Controllers
         {
             var authors = await _manager.GetAllAuthors();
             int counter = authors.Count();
-            const int pagesize = 2;
+            const int pagesize = 12;
             if (pg < 1) pg = 1;
 
             var pager = new Pager(counter, pg, pagesize);

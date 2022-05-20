@@ -13,12 +13,15 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Genres</title>
+        
+        <title>ARCHIVE</title>
+        
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  
         <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">               
         <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-</head>
+         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+       
+    </head>
 <header>
     <h2 class="tm-main-title">Каталог</h2>
 </header>
@@ -29,7 +32,7 @@
         
         
             <figure class="col-lg-2 col-md-2 col-sm-3 col-6 tm-gallery-item">
-                  <a href="preview.cshtml">
+                  <a asp-area="" asp-controller="Items" asp-action="ItemPage">
                         <div class="tm-gallery-item-overlay">
                             <img src="img/cover.jpg" alt="Image" class="img-fluid tm-img-center">
                         </div>

@@ -17,7 +17,7 @@ namespace Archive.Controllers
         {
             var items = await _manager.GetAllItems();
             int counter = items.Count();
-            const int pagesize = 2;
+            const int pagesize = 12;
             if (pg < 1) pg = 1;
 
             var pager = new Pager(counter, pg, pagesize);
@@ -33,9 +33,9 @@ namespace Archive.Controllers
 
         [HttpGet]
         
-        public async Task<IActionResult> ItemPage(int pg = 1)
+        public async Task<IActionResult> ItemPage(int id)
         {
-            var items = await _manager.GetItemById(1);
+            var items = await _manager.GetItemById(id);
 
 
             var data = items;
@@ -51,7 +51,7 @@ namespace Archive.Controllers
         {
             var items = await _manager.GetItemsByGenre((Genres)1);
             int counter = items.Count();
-            const int pagesize = 2;
+            const int pagesize = 12;
             if (pg < 1) pg = 1;
 
             var pager = new Pager(counter, pg, pagesize);
