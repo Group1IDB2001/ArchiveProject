@@ -34,12 +34,15 @@ namespace Archive.Controllers
             return View(data);
         }
 
-<<<<<<< HEAD
+
         public async Task<IActionResult> AuthorPage(int pg = 1)
         {
             var authors = await _manager.GetAuthorById(1);
-            
-=======
+            var data = authors;
+            return View(data);
+        }
+
+    
         public IActionResult Create()
         {
             return View();
@@ -56,14 +59,8 @@ namespace Archive.Controllers
             return RedirectToAction(nameof(Index));
         }
 
->>>>>>> 700c6735c0058ff9f2b2cc35aa414db47759bc50
 
-            var data = authors;
-
-            
-
-            return View(data);
-        }
+           
         //[HttpPut]
         //[Route("authors")]
         //public async Task AddAuthor([FromBody] CreateAuthorRequest request) => await _manager.AddAuthor(request.Name, request.Born, request.Death, request.About);
