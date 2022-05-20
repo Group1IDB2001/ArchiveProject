@@ -13,9 +13,16 @@ namespace Archive.Controllers
         }
 
         [HttpPut]
-        [Route("tags")]
+        [Route("TagPage")]
         public async Task AddTtag([FromBody] CreateTagRequest request) => await _manager.AddTtag(request.Name, request.UserId, request.Description);
+        public async Task<IActionResult> TagPage(int id)
+        {
+            var tags = await _manager.GetTtagsByItem(id);
 
+            var data = tags;
+
+            return View(data);
+        }
 
         [HttpGet]
         [Route("tags")]
