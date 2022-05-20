@@ -9,9 +9,10 @@
 <head>
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <title>Регистрация</title>
+   <link rel="stylesheet" href="~/css/reg-style.css"/> 
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
-   <link rel="stylesheet" href="~/css/reg-style.css"/> 
+   
 </head>
 
 <body>
@@ -41,7 +42,14 @@
 
          <div class="form-group">
             <i class="fa fa-user icon"></i>
-            <input type="text" asp-for="Role" placeholder="Роль" name="role">
+            
+            <label for="role">Выберите роль:</label>
+               <select name="role" id="role">
+                 <option value="admin">Admin</option>
+                  <option value="moderator">Moderator</option>
+                  <option value="user">User</option>
+               </select>
+
          </div>
 
          <div>

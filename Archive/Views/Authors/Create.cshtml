@@ -1,8 +1,13 @@
 ﻿@model CreateAuthorRequest
-@{
-    ViewData["Title"] = "Add a new Author";
-}
+<head>
+    <meta charset="utf-8">
+    <title>Добавить автора</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+     <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
+     <link rel="stylesheet" href="~/css/autor-style.css"/> 
+</head>
 
+<h1>Добавить автора</h1>
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
