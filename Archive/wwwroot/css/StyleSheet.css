@@ -1,0 +1,47 @@
+﻿.kadupis-decung {
+    margin-top: 50px;
+}
+
+    .kadupis-decung h1 {
+        
+        font-size: 52px;
+        margin-bottom: 60px;
+        text-align: center;
+    }
+
+.cumconevu {
+    display: flex;
+    justify-content: center;
+    width: auto;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+    .cumconevu .volupavum {
+        background: #fdfafa;
+        margin: 4px;
+        margin-bottom: 50px;
+        width: 315px;
+        padding: 18px;
+        line-height: 20px;
+        color: #888dad;
+        position: relative;
+    }
+
+.cumconevu .volupavum h3 {
+            
+            font-size: 26px;
+            margin-top: 50px;
+}
+
+.cumconevu .volupavum p.role {
+            color: #676363;
+            margin: 10px 0;
+            font-size: 13px;
+            text-transform: uppercase;
+ }
+
+img {
+    height: 375px;
+    width: 250px;
+}

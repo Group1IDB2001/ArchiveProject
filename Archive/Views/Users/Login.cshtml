@@ -5,36 +5,49 @@
 
 <head>
     <meta charset="utf-8">
-    <title>@ViewData["Title"]</title>
+    <title>Вход</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
-   
-    <style>
-        body {
-            margin: 0; /* Убираем отступы */
-            height: 100%;
-            background-position: center;
-            background-size: cover;
-        }
-    </style>
+   <link rel="stylesheet" href="~/css/login-style.css"/>
+    
 </head>
 
-<div class="login">
-  <div class="heading">
-    <h2>Sign in</h2>
-    <form action="#">
+<body>
+ <div class="login">
+      <div class="heading">
+           
+            <form asp-action="Login" asp-controller="Account" asp-anti-forgery="true" class="Login">
+               
+                <a class="back" asp-area="" asp-controller="Items" asp-action="Index">
+                   <img src="~/img/img5.png" align="right"  alt="Нет изображения">
+                </a>
 
-      <div class="input-group input-group-lg">
-        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-        <input type="text" class="form-control" placeholder="Username or email">
-          </div>
+                <h2>Вход в аккаунт</h2>
 
-        <div class="input-group input-group-lg">
-          <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-          <input type="password" class="form-control" placeholder="Password">
-        </div>
+               <div class="form-group">
+                   <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                   <input type="text" class="form-control" placeholder="Email">
+              </div>
 
-        <button type="submit" class="float">Login</button>
-       </form>
+              <div class="form-group">
+                   <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                   <input type="password" class="form-control" placeholder="Введите пароль">
+              </div>
+
+              <div class="form-group">
+                  <button type="submit" class="float">Войти</button>
+                
+              </div>
+              
+              <div class="form-group">
+                  
+                   <a class="Register" href="/Users/Register">У вас нет аккаунта? Зарегестрируйтесь<br></a>
+              </div>
+        
+           </form>
+       
  		</div>
+        
  </div>
+</body>
+

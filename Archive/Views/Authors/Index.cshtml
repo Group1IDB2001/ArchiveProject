@@ -1,6 +1,5 @@
 ﻿@{
 
-    ViewData["Title"] = "List of Authors";
     Pager pager = new Pager();
     int pageNo = 0;
     if(ViewBag.Pager != null)
@@ -9,6 +8,12 @@
         pageNo = pager.CurrentPage;
     }
 }
+<head>
+    <meta charset="utf-8">
+    <title>Авторы</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+     <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
+</head>
 
 <h1>Authors</h1>
 <table class="table">
