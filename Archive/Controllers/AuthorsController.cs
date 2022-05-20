@@ -62,6 +62,13 @@ namespace Archive.Controllers
             return View(authors);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> AuthorPage(int id)
+        {
+            var authors = await _manager.GetAuthorsByItemId(id);
+            return View(authors);
+        }
+
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
