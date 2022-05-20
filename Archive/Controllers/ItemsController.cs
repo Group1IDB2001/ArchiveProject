@@ -37,11 +37,8 @@ namespace Archive.Controllers
         {
             var items = await _manager.GetItemById(id);
 
-
             var data = items;
-
             
-
             return View(data);
         }
 

@@ -33,34 +33,79 @@ namespace Archive.Controllers
 
             return View(data);
         }
-
-
-        public async Task<IActionResult> AuthorPage(int pg = 1)
-        {
-            var authors = await _manager.GetAuthorById(1);
-            var data = authors;
-            return View(data);
-        }
-
-    
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("Name,Born ,Death ,About")]Author author)
+        public async Task<IActionResult> Create([Bind("Name,Born ,Death ,About")] CreateAuthorRequest author)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return View(author);
+                var Author = await _manager.AddAuthor(author.Name,author.Born,author.Death,author.About);
+                if (Author)
+                    return Redirect("Index");
+                else
+                {
+                    var Author_1 = await _manager.FindAuthor(author.Name,author.Born);
+                    if (Author_1) ModelState.AddModelError("", "Author is already existing");
+                }
             }
-            _manager.AddAuthor(author);
-            return RedirectToAction(nameof(Index));
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var authors = await _manager.GetAuthorById(id);
+            return View(authors);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var author = await _manager.DeleteAuthor(id);
+            if (author) return RedirectToAction("Index");
+            else
+            {
+                ModelState.AddModelError("", "Author is already not existing");
+                return RedirectToAction("Index");
+            }
         }
 
 
-           
+        public async Task<IActionResult> Edit(int id)
+        {
+            var authors = await _manager.GetAuthorById(id);
+            return View(authors);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit([Bind("Name,Born ,Death ,About")] CreateAuthorRequest author)
+        {
+            if (ModelState.IsValid)
+            {
+                var Author = await _manager.AddAuthor(author.Name, author.Born, author.Death, author.About);
+                if (Author)
+                    return Redirect("Index");
+                else
+                {
+                    var Author_1 = await _manager.FindAuthor(author.Name, author.Born);
+                    if (Author_1) ModelState.AddModelError("", "Author is already existing");
+                }
+            }
+            return View();
+        }
+
+
+
+
+
+
+
+
+
         //[HttpPut]
         //[Route("authors")]
         //public async Task AddAuthor([FromBody] CreateAuthorRequest request) => await _manager.AddAuthor(request.Name, request.Born, request.Death, request.About);

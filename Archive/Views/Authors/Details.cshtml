@@ -1,67 +1,9 @@
-﻿@*@model Author
-
+﻿@model Author
 @{
-    ViewBag.Title = "Edit Author";
+    ViewBag.Title = "Author";
 }
 
-<h2>Details for Author</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.Id)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Born, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Born, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Born, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-*@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@model CreateAuthorRequest
 
 <div class="row text">
 	<div class="col-md-8 offset-2">
@@ -71,7 +13,7 @@
 		<div class="row">
 			<div class="col-md-8 offset-2">
 				<div class="form-group">
-					<label asp-for="Name" class="control-lable"></label>
+					<label asp-for="@Model.Name" class="control-lable"></label>
 					<input asp-for="Name" class="form-control" readonly />
 					<span asp-validation-for="Name" class="text-danger"></span>
 				</div>
@@ -92,7 +34,7 @@
 				</div>
 
 				<div class="form-group">
-					<a class="btn btn-outline-success float-right"  asp-action="Edit" asp-route-id="@Model.Id" ></a>
+					<a class="btn btn-outline-success float-right"  asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
 					<a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
 
 				</div>

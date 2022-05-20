@@ -40,14 +40,15 @@
             <td>@author.About</td>
 
             <td class="aling-middle">
-            <a class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i>Edit</a>
-            <a asp-area="" asp-controller="Authors" asp-action="AuthorPage" class="btn btn-outline-info"><i class="bi bi-eye"></i>Details</a>
-            <a class="btn btn-danger"><i class="bi bi-trash"></i>Delete</a>
+            <a asp-area="" asp-controller="Authors" asp-action="Edit" asp-route-id=@author.Id class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i>Edit</a>
+            <a asp-area="" asp-controller="Authors" asp-action="Details" asp-route-id=@author.Id class="btn btn-outline-info"><i class="bi bi-eye"></i>Details</a>
+            <a asp-area="" asp-controller="Authors" asp-action="Delete" asp-route-id=@author.Id class="btn btn-danger"><i class="bi bi-trash"></i>Delete</a>
             </td>
         </tr>
         
     }
 </table>
+
 
 
 <div class ="container">

@@ -17,6 +17,7 @@ namespace ArchiveLogic.Authors
 
         Task<Author> GetAuthorById(int id);
 
+        Task<bool> DeleteAuthor(int id);
 
 
 
@@ -26,8 +27,7 @@ namespace ArchiveLogic.Authors
 
 
 
-        Task DeleteAuthor(int id);
-        
+
         Task<IList<Author>> GetAllAuthors();
         
         

@@ -58,6 +58,18 @@ namespace ArchiveLogic.Authors
             return author;
         }
 
+        public async Task<bool> DeleteAuthor(int id)
+        {
+
+            var author = _context.Authors.FirstOrDefault(g => g.Id == id);
+            if (author == null) return false;
+            _context.Authors.Remove(author);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+
+
 
 
 
@@ -74,17 +86,7 @@ namespace ArchiveLogic.Authors
             return await _context.Authors.ToListAsync();
         }
 
-        public async Task DeleteAuthor(int id)
-        {
-
-            var author = _context.Authors.FirstOrDefault(g => g.Id == id);
-            if (author == null)
-            {
-                throw new Exception("Error,I can't delete,There is not author with this id");
-            }
-            _context.Authors.Remove(author);
-            await _context.SaveChangesAsync();
-        }
+        
 
         
         
