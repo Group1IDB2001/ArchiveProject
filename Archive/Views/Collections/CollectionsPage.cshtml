@@ -1,8 +1,6 @@
 ﻿@{
-    ViewData["Title"] = "TagPage";
-    Layout = null;
+    ViewData["Title"] = "CollectionsPage";
 }
-
 <html lang="ru" dir="ltr">
 <head>
         <meta charset="utf-8">
@@ -18,18 +16,19 @@
     
                 
                 <header>
-    <h2 class="tm-main-title">Теги</h2>
+    <h2 class="tm-main-title">Мои Коллекции</h2>
 </header>
 <div class="tm-gallery">
     <div class="row">
-                        @foreach(var tag in Model)
+                        @foreach(var collection in Model)
                             {
-                                <figure class="col-lg-2 col-md-2 col-sm-3 col-3 tm-gallery-item">
-                                    <a asp-area="" asp-controller="Tag" asp-action="Details" asp-route-id=@tag.Id>
+                                    <figure class="col-lg-2 col-md-2 col-sm-3 col-3 tm-gallery-item">
+                                        <a asp-area="" asp-controller="Collections" asp-action="Collection" asp-route-id=@collection.Id>
                             
-                                        <p class="tm-figcaption">@tag.Name</p>
-                                    </a>
-                            </figure>
+                                            <p class="tm-figcaption">@collection.Name</p>
+                                        </a>
+                                    </figure>
+                            
         
 
                             }

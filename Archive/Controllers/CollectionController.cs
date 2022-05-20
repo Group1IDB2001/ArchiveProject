@@ -11,6 +11,16 @@ namespace Archive.Controllers
         {
             _manager = manager;
         }
+        [HttpGet]
+        
+        public async Task<IActionResult> CollectionsPage(int id)
+        {
+
+            var col = _manager.GetCollectionsByUsreId(id);
+            var data = col;
+            return View(data);
+        }
+
 
         [HttpPut]
         [Route("collections")]

@@ -437,5 +437,31 @@ namespace ArchiveLogic.Items
             }
         }
 
+
+        public async Task<IList<Item>> GetItemsByTag(int tagId)
+        {
+            List<Item> items = new List<Item>();
+            List<TtagItem> itemtages = new List<TtagItem>();
+            foreach (var itemtage in _context.TtagsItems)
+            {
+                if (itemtage.TtagId == tagId) itemtages.Add(itemtage);
+            }
+            if (itemtages.Count == 0)
+            {
+                throw new Exception("Error,I can't found,No authors belongs to this item");
+            }
+            else
+            {
+                foreach (var item in _context.Items)
+                {
+                    for (int i = 0; i < itemtages.Count; i++)
+                    {
+                        if (itemtages[i].ItemId == item.Id) items.Add(item);
+                    }
+                }
+            }
+            return items;
+        }
+
     }
 }

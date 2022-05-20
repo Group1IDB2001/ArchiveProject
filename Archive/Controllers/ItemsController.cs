@@ -44,9 +44,9 @@ namespace Archive.Controllers
 
         [HttpGet]
         
-        public async Task<IActionResult> Genre1(int pg = 1)
+        public async Task<IActionResult> Genre(int id, int pg = 1)
         {
-            var items = await _manager.GetItemsByGenre((Genres)1);
+            var items = await _manager.GetItemsByGenre((Genres)id);
             int counter = items.Count();
             const int pagesize = 12;
             if (pg < 1) pg = 1;
