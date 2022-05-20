@@ -41,7 +41,7 @@ namespace Archive.Controllers
         public async Task<IActionResult> UserPage(string mail)
         {
             
-            var us =  _manager.GetUserByEmail("amin@mail.ru");
+            var us =  _manager.GetUserByEmail("Oliver.Jackson@gmail.com");
             var data = us;
             return View(data);
         }

@@ -21,7 +21,27 @@
                     <div class="col-md-6 col-sm-12">
                         <h2 class="tm-blue-text tm-margin-b-p">@Model.Name</h2>
                         <p class="tm-margin-b-p">@Model.Description</p>
-                        <p class="tm-margin-b-p">    <a asp-area="" asp-controller="Authors" asp-action="AuthorPage" asp-route-id=@Model.Id class="tm-blue-text">Авторы</a></p>
+                        @*<p class="tm-margin-b-p">    <a asp-area="" asp-controller="Authors" asp-action="AuthorPage" asp-route-id=@Model.Id class="tm-blue-text">Авторы</a></p>*@
+                        <h1>Автора</h1>
+                        
+                            <tr>
+                                <th>
+                                    Имя Автора
+                                </th>
+                            </tr>
+                        @foreach(var item in Model)
+                         {
+
+                
+                         }
+
+
+
+
+
+
+
+
                         <p class="tm-margin-b-p">    <a asp-area="" asp-controller="Tags" asp-action="TagPage" asp-route-id=@Model.Id class="tm-blue-text">Теги</a></p>
                         
                         <p class="tm-blue-text tm-margin-b">Рейтинг: <a href="#" class="tm-blue-text">#avgrating</a></p>
