@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Item";
+}
+<html lang="ru" dir="ltr">
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Genres</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  
+        <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">               
+        <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<div class="tm-main-content no-pad-b">
+    
+                <section class="row tm-item-preview">
+                    <div class="col-md-6 col-sm-12 mb-md-0 mb-5">
+                        <img src="img/cover.jpg" alt="Image" class="img-fluid tm-img-center-sm">
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <h2 class="tm-blue-text tm-margin-b-p">@Model.Name</h2>
+                        <p class="tm-margin-b-p">@Model.Description</p>
+                        <p class="tm-margin-b-p">    <a asp-area="" asp-controller="Authors" asp-action="AuthorPage" asp-route-id=@Model.Id class="tm-blue-text">Авторы</a></p>
+                        <p class="tm-margin-b-p">    <a asp-area="" asp-controller="Tags" asp-action="TagPage" asp-route-id=@Model.Id class="tm-blue-text">Теги</a></p>
+                        
+                        <p class="tm-blue-text tm-margin-b">Рейтинг: <a href="#" class="tm-blue-text">#avgrating</a></p>
+                        <a href="#" class="tm-btn tm-btn-gray tm-margin-r-20 tm-margin-b-s">Нравится</a><a href="#" class="tm-btn tm-btn-blue">Комментарии</a>
+                    </div>
+                </section>
+
+            </div>

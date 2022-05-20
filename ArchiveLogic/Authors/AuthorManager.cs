@@ -12,49 +12,84 @@ namespace ArchiveLogic.Authors
             _context=context;
         }
 
-        public async Task AddAuthor(string name, int born, int? death, string? about)
+        public void AddAuthor(Author author)
         {
-            var author_1 = _context.Authors.FirstOrDefault(n => n.Name == name);
+            _context.Authors.Add(author);
+            _context.SaveChanges();
+        }
+        public async Task<bool> AddAuthor(string name, int born, int? death, string? about)
+        {
+            var author_1 = _context.Authors.FirstOrDefault(u => u.Name == name && u.Born == born);
             if (author_1 == null)
             {
-                var author = new Author { Name = name, Born = born, Death = death, About = about };
+                var author = new Author { Name = name, Born = born, Death = death , About = about};
                 _context.Authors.Add(author);
                 await _context.SaveChangesAsync();
-
+                return true;
             }
-            else
-            {
-                throw new Exception("There is author with the same name");
-            }
-
+            else return false;
         }
+        public async Task<bool> FindAuthor(string name, int born)
+        {
+            var author = await _context.Authors.FirstOrDefaultAsync(g => g.Name == name && g.Born == born);
+            if (author != null) return true;
+            else return false;
+        }
+
+        public async Task<bool> EditAuthor(int id, string name, int born, int? death, string? about)
+        {
+            //foreach(var author_1 in _context.Authors)
+            //{
+            //    if (author_1.Name == name && author_1.Born == born) return false;
+            //}
+            var author = _context.Authors.FirstOrDefault(g => g.Id == id);
+            if(author == null) return false;
+            author.Name = name;
+            author.Born = born;
+            author.Death = death;
+            author.About = about;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+
+        public async Task<Author> GetAuthorById(int id)
+        {
+            var author = await _context.Authors.FirstOrDefaultAsync(g => g.Id == id);
+            return author;
+        }
+
+        public async Task<bool> DeleteAuthor(int id)
+        {
+
+            var author = _context.Authors.FirstOrDefault(g => g.Id == id);
+            if (author == null) return false;
+            _context.Authors.Remove(author);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public async Task<IList<Author>> GetAllAuthors()
         {
             return await _context.Authors.ToListAsync();
         }
 
-        public async Task DeleteAuthor(int id)
-        {
+        
 
-            var author = _context.Authors.FirstOrDefault(g => g.Id == id);
-            if (author == null)
-            {
-                throw new Exception("Error,I can't delete,There is not author with this id");
-            }
-            _context.Authors.Remove(author);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<Author> GetAuthorById(int id)
-        {
-            var author = await _context.Authors.FirstOrDefaultAsync(g => g.Id == id);
-            if (author == null)
-            {
-                throw new Exception("Error,I can't found,There is not author");
-            }
-            return author;
-        }
+        
         
         public async Task<Author> GetAuthorByName(string name)
         {

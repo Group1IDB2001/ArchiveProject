@@ -16,13 +16,11 @@ namespace Archive.Controllers
         }
 
 
-        [HttpGet]
-        [Route("Authors")]
         public async Task<IActionResult> Index(int pg = 1)
         {
             var authors = await _manager.GetAllAuthors();
             int counter = authors.Count();
-            const int pagesize = 2;
+            const int pagesize = 12;
             if (pg < 1) pg = 1;
 
             var pager = new Pager(counter, pg, pagesize);
@@ -35,6 +33,88 @@ namespace Archive.Controllers
 
             return View(data);
         }
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([Bind("Name,Born ,Death ,About")] CreateAuthorRequest author)
+        {
+            if (ModelState.IsValid)
+            {
+                var Author = await _manager.AddAuthor(author.Name,author.Born,author.Death,author.About);
+                if (Author)
+                    return Redirect("Index");
+                else
+                {
+                    var Author_1 = await _manager.FindAuthor(author.Name,author.Born);
+                    if (Author_1) ModelState.AddModelError("", "Author is already existing");
+                }
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(int id)
+        {
+            var author = await _manager.GetAuthorById(id);
+            return View(author);
+        }
+
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var author = await _manager.GetAuthorById(id);
+            return View(author);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id,[Bind("Id,Name,Born ,Death ,About")] Author author)
+        {
+            if (ModelState.IsValid)
+            {
+                var Author = await _manager.EditAuthor(id,author.Name, author.Born, author.Death, author.About);
+                if (Author)
+                    return RedirectToAction("Index");
+                else
+                {
+                    var Author_1 = await _manager.FindAuthor(author.Name, author.Born);
+                    if (Author_1) ModelState.AddModelError("", "Author is already existing");
+                }
+            }
+            return View();
+        }
+
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var author = await _manager.GetAuthorById(id);
+            return View(author);
+        }
+
+
+        [HttpPost ,ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var author = await _manager.DeleteAuthor(id);
+            if (author) return RedirectToAction("Index");
+            else
+            {
+                ModelState.AddModelError("", "Author is already not existing");
+                return RedirectToAction("Index");
+            }
+        }
+
+        public async Task<IActionResult> AuthorPage(int id)
+        {
+            var author = await _manager.GetAuthorsByItemId(id);
+
+            return View(author);
+        }
+
+
+
 
 
         //[HttpPut]
@@ -85,10 +165,10 @@ namespace Archive.Controllers
         //public async Task EditAuthorAbout(int id, [FromBody] CreateAuthorRequest request) => await _manager.EditAuthorAbout(id, request.About);
 
         ////Page
-        
 
-        
 
-        
+
+
+
     }
 }

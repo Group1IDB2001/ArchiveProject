@@ -17,7 +17,7 @@ namespace Archive.Controllers
         {
             var items = await _manager.GetAllItems();
             int counter = items.Count();
-            const int pagesize = 2;
+            const int pagesize = 12;
             if (pg < 1) pg = 1;
 
             var pager = new Pager(counter, pg, pagesize);
@@ -31,6 +31,36 @@ namespace Archive.Controllers
             return View(data);
         }
 
+        [HttpGet]
+        
+        public async Task<IActionResult> ItemPage(int id)
+        {
+            var items = await _manager.GetItemById(id);
+
+            var data = items;
+            
+            return View(data);
+        }
+
+        [HttpGet]
+        
+        public async Task<IActionResult> Genre1(int pg = 1)
+        {
+            var items = await _manager.GetItemsByGenre((Genres)1);
+            int counter = items.Count();
+            const int pagesize = 12;
+            if (pg < 1) pg = 1;
+
+            var pager = new Pager(counter, pg, pagesize);
+
+            int recSkip = (pg - 1) * pagesize;
+
+            var data = items.Skip(recSkip).Take(pager.PageSize).ToList();
+
+            this.ViewBag.Pager = pager;
+
+            return View(data);
+        }
 
         //[HttpPut]
         //[Route("items")]
@@ -60,7 +90,7 @@ namespace Archive.Controllers
         //[HttpGet]
         //[Route("items/genre/{genre:int}")]
         //public async Task<IList<Item>> GetItemsByGenre(Genres genre) => await _manager.GetItemsByGenre(genre);
-        
+
         //[HttpGet]
         //[Route("items/field/{field}")]
         //public async Task<IList<Item>> GetItemsByField(string field) => await _manager.GetItemsByField(field);

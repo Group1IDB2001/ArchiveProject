@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "AuthorPage";
+}
+<html lang="ru" dir="ltr">
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Genres</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  
+        <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">               
+        <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<div class="tm-main-content no-pad-b">
+    
+                
+                <header>
+    <h2 class="tm-main-title">Авторы</h2>
+</header>
+<div class="tm-gallery">
+    <div class="row">
+                        @foreach(var author in Model)
+                            {
+                                    <figure class="col-lg-2 col-md-2 col-sm-3 col-3 tm-gallery-item">
+                                        <a asp-area="" asp-controller="Author" asp-action="Details" asp-route-id=@author.Id>
+                            
+                                            <p class="tm-figcaption">@author.Name</p>
+                                        </a>
+                                    </figure>
+                            
+        
+
+                            }
+    </div>
+                            
+</div>
+
+            

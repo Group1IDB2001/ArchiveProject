@@ -8,13 +8,29 @@ namespace ArchiveLogic.Authors
 {
     public interface IAuthorManager
     {
-        Task AddAuthor(string name, int born, int? death, string? about);
+        void AddAuthor(Author author);
 
-        Task DeleteAuthor(int id);
-        
+        Task<bool> AddAuthor(string name, int born, int? death, string? about);
+
+        Task<bool> FindAuthor(string name, int born);
+        Task<bool> EditAuthor(int id,string name, int born, int? death, string? about);
+
+        Task<Author> GetAuthorById(int id);
+
+        Task<bool> DeleteAuthor(int id);
+
+
+
+
+
+
+
+
+
+
         Task<IList<Author>> GetAllAuthors();
         
-        Task<Author> GetAuthorById(int id);
+        
 
         Task<Author> GetAuthorByName(string name);
         
