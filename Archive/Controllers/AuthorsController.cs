@@ -58,20 +58,8 @@ namespace Archive.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var authors = await _manager.GetAuthorById(id);
-            return View(authors);
-        }
-
-        [HttpDelete]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var author = await _manager.DeleteAuthor(id);
-            if (author) return RedirectToAction("Index");
-            else
-            {
-                ModelState.AddModelError("", "Author is already not existing");
-                return RedirectToAction("Index");
-            }
+            var author = await _manager.GetAuthorById(id);
+            return View(author);
         }
 
 
@@ -99,6 +87,24 @@ namespace Archive.Controllers
         }
 
 
+        public async Task<IActionResult> Delete(int id)
+        {
+            var author = await _manager.GetAuthorById(id);
+            return View(author);
+        }
+
+
+        [HttpPost ,ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var author = await _manager.DeleteAuthor(id);
+            if (author) return RedirectToAction("Index");
+            else
+            {
+                ModelState.AddModelError("", "Author is already not existing");
+                return RedirectToAction("Index");
+            }
+        }
 
 
 
