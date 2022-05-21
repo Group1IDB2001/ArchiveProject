@@ -18,7 +18,7 @@ namespace ArchiveLogic.Users
 
         Task<IList<User>> GetAllUsers();
         Task DeleteUser(int id);
-        User GetUserByEmail(string email);
+        Task<User> GetUserByEmail(string email);
 
 
 

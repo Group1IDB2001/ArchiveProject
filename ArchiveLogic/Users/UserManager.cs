@@ -19,7 +19,7 @@ namespace ArchiveLogic.Users
 
         public async Task<bool> AddUser(string name, string email, string password, usersituation role)
         {
-            var user_1 = _context.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+            var user_1 = _context.Users.FirstOrDefault(u => u.Email == email);
             if (user_1 == null)
             {
                 var user = new User { Name = name, Email = email, Password = password, Role = (usersituation)role };
@@ -56,16 +56,16 @@ namespace ArchiveLogic.Users
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
         }
-        
 
 
 
 
-        public  User GetUserByEmail(string email)
+
+        public async Task<User> GetUserByEmail(string email)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Email == email);
-            if(user != null) return user;
-            else return null;
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            return user;
+
         }
         public async Task<bool> FindUserByEmail(string email)
         {
