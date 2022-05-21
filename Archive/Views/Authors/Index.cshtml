@@ -1,5 +1,5 @@
 ﻿@{
-
+    ViewData["Title"] = "List of Authors";
     Pager pager = new Pager();
     int pageNo = 0;
     if(ViewBag.Pager != null)
@@ -20,9 +20,6 @@
 <table class="table">
     <tr>
         <th>
-            Author ID
-        </th>
-        <th>
             Полное имя
         </th>
         <th>
@@ -39,7 +36,6 @@
     @foreach(var author in Model)
     {
         <tr>
-            <td>@author.Id</td>
             <td>@author.Name</td>
             <td>@author.Born</td>
             <td>@author.Death</td>

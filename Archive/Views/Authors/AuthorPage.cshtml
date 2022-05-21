@@ -1,6 +1,5 @@
 ﻿@{
     ViewData["Title"] = "AuthorPage";
-    Layout = null;
 }
 <html lang="ru" dir="ltr">
 <head>
@@ -13,7 +12,7 @@
         <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 </head>
-<div class="tm-main-content no-pad-b">
+@*<div class="tm-main-content no-pad-b">
     
                 
 <header>
@@ -22,16 +21,50 @@
 <div class="tm-gallery">
     <div class="row">
            @foreach(var author in Model)
-                  {
-                         <figure class="col-lg-2 col-md-2 col-sm-3 col-3 tm-gallery-item">
-                              <a asp-area="" asp-controller="Author" asp-action="Details" asp-route-id=@author.Id>
-                               <p class="tm-figcaption">@author.Name</p>
-                              </a>
-                         </figure>
-
-                   }
+           {
+               <figure class="col-lg-2 col-md-2 col-sm-3 col-3 tm-gallery-item">
+                   <a asp-area="" asp-controller="Author" asp-action="Details" asp-route-id=@author.Id>
+                      <p class="tm-figcaption">@author.Name</p>
+                      <bi></bi>
+                   </a>
+               </figure>
+           }
     </div>
                             
+</div>*@
+
+
+<h1>Авторы предмета</h1>
+<table class="table">
+    <tr>
+        <th>
+            Полное имя
+        </th>
+        <th>
+            Дата рождения
+        </th>
+        <th>
+            Дата смерти
+        </th>
+        <th class="text-center">
+            Немного о авторе
+        </th>
+
+    </tr>
+    @foreach(var author in Model)
+    {
+        <tr>
+            <td>@author.Name</td>
+            <td>@author.Born</td>
+            <td>@author.Death</td>
+            <td>@author.About</td>
+        </tr>
+    }
+</table>
+<div class="form-group">
+      <div class="col-md-offset-2 col-md-10">
+          <a class="btn btn-outline-secondary" asp-controller="Items" asp-action="Index">Вернуться к предметам</a>
+      </div>
 </div>
 
             
