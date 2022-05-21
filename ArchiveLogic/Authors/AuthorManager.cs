@@ -38,10 +38,6 @@ namespace ArchiveLogic.Authors
 
         public async Task<bool> EditAuthor(int id, string name, int born, int? death, string? about)
         {
-            //foreach(var author_1 in _context.Authors)
-            //{
-            //    if (author_1.Name == name && author_1.Born == born) return false;
-            //}
             var author = _context.Authors.FirstOrDefault(g => g.Id == id);
             if(author == null) return false;
             author.Name = name;

@@ -81,6 +81,7 @@ namespace Archive.Controllers
                 {
                     var Author_1 = await _manager.FindAuthor(author.Name, author.Born);
                     if (Author_1) ModelState.AddModelError("", "Author is already existing");
+                    
                 }
             }
             return View();

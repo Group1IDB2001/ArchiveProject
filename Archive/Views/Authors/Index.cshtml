@@ -13,25 +13,26 @@
     <title>Авторы</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
      <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
+     <link rel="stylesheet" href="~/css/autor-style.css"/> 
 </head>
 
-<h1>Authors</h1>
+<h1>Наши Авторы</h1>
 <table class="table">
     <tr>
         <th>
             Author ID
         </th>
         <th>
-            Name Author
+            Полное имя
         </th>
         <th>
-            Born Author
+            Дата рождения
         </th>
         <th>
-            Death Author
+            Дата смерти
         </th>
         <th class="text-center">
-            About Author
+            Немного о авторе
         </th>
 
     </tr>
@@ -76,15 +77,12 @@
                      <a class ="page-link" asp-controller="Authors" asp-action="Index" asp-route-pg=@(pager.CurrentPage -1)>Previous</a>
                 </li>
             }
-
-           
-
             
         </ul>
     }
-   <li>
-     <a asp-controller="Authors" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Add New Author</a>
-   </li>
+   
+     <a asp-controller="Authors" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить нового автора</a>
+   
 
 </div>
 

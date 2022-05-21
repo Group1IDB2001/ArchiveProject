@@ -8,6 +8,15 @@
     background-size: cover;
 
 }
+select {
+    background: #f7f7f7;
+    text-align: center;
+    padding: 10px 5px;
+    width: 125px;
+    height: 35px;
+    color: black;
+    text-decoration-color: white;
+}
 
 .Register {
     width: 400px;
@@ -31,7 +40,6 @@
     .Register input[type="text"], .Register input[type="password"], .Register input[type="password"] {
         
         background: #f7f7f7;
-        
         text-align: center;
         border: 2px solid white;
         padding: 10px 5px;
@@ -68,6 +76,6 @@
 img {
     height: 25px;
     width: 25px;
-  
     
 }
+

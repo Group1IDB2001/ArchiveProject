@@ -1,55 +1,62 @@
-﻿@model Archive.Models.CreateUserRequest;
+﻿@model CreateUserRequest
 @{
+    ViewBag.Title = "User";
     Layout = null;
 }
 
-<!DOCTYPE html>
-<html>
-
 <head>
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <title>Регистрация</title>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
-   <link rel="stylesheet" href="~/css/reg-style.css"/> 
+    <meta charset="utf-8">
+    <title>Вход</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
+   <link rel="stylesheet" href="~/css/login-style.css"/>
+    
 </head>
 
-<body>
-
-   <form asp-action="Register" asp-controller="Account" asp-anti-forgery="false" class="Register"> 
-        
-       <a class="back" asp-area="" asp-controller="Users" asp-action="Login">
-          <img src="~/img/img4.png" align="left"  alt="Нет изображения">
-       </a>
-
-        <h2>Регистрация</h2>
-       
-        <div class="form-group">
-          <i class="fa fa-user icon"></i>
-          <input type="text" asp-for="Name" placeholder="Никнейм" name="usrnm">
+<div id="Пользователь">
+    <div class="container-fluid">
+        <div id="User-row" class="row justify-content-center aling-items-crnter">
+            <div id="User-column" class="col-md-6">
+                <div id="User-box" class="col-md-12 User-box-login">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <h3 class="text-center text-info">Зарегистрировать</h3>
+                        <div class="form-group">
+                            @Html.LabelFor(m=>m.Name ,new{@class = "text-info"})
+                            @Html.TextBoxFor(m=>m.Name ,new{@class = "form-control"})
+                            @Html.ValidationMessageFor(m=>m.Name,"",new{@class = "text-danger"})
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m=>m.Email ,new{@class = "text-info"})
+                            @Html.TextBoxFor(m=>m.Email ,new{@class = "form-control"})
+                            @Html.ValidationMessageFor(m=>m.Email,"",new{@class = "text-danger"})
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m=>m.Password ,new{@class = "text-info"})
+                            @Html.TextBoxFor(m=>m.Password ,new{@class = "form-control"})
+                            @Html.ValidationMessageFor(m=>m.Password,"",new{@class = "text-danger"})
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m=>m.Role ,new{@class = "text-info"})
+                            @Html.TextBoxFor(m=>m.Role ,new{@class = "form-control"})
+                            @Html.ValidationMessageFor(m=>m.Role,"",new{@class = "text-danger"})
+                        </div>
+                       <div class="form-group">
+                           <div class="col-md-offset-2 col-md-10">
+                              <input type="submit" value="Создавать" class="btn btn-outline-success float-right" />
+                              <a class="btn btn-outline-secondary" asp-action="Login">Авторизоваться</a>
+                           </div>
+                       </div>
+                    }
+                </div>
+            </div>
         </div>
+    </div>
+</div>
 
-        <div class="form-group">
-           <i class="fa fa-envelope icon"></i>
-           <input type="text" asp-for="Email" placeholder="Email" name="email">
-        </div>
-  
-        <div class="form-group">
-           <i class="fa fa-key icon"></i>
-           <input type="password" asp-for="Password" placeholder="Введите пароль" name="psw">
-        </div>
 
-         <div class="form-group">
-            <i class="fa fa-user icon"></i>
-            <input type="text" asp-for="Role" placeholder="Роль" name="role">
-         </div>
 
-         <div>
-            <button type="submit" class="btn">Register</button>
-         </div>
-  
-  </form>
 
-</body>
 
-</html>
+

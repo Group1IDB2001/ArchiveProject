@@ -1,5 +1,6 @@
-﻿@model Archive.Models.CreateUserRequest;
+﻿@model CreateUserRequest
 @{
+    ViewBag.Title = "User";
     Layout = null;
 }
 
@@ -12,42 +13,41 @@
     
 </head>
 
-<body>
- <div class="login">
-      <div class="heading">
-           
-            <form asp-action="Login" asp-controller="Account" asp-anti-forgery="true" class="Login">
-               
-                <a class="back" asp-area="" asp-controller="Items" asp-action="Index">
-                   <img src="~/img/img5.png" align="right"  alt="Нет изображения">
-                </a>
+<div id="Пользователь">
+    <div class="container-fluid">
+        <div id="User-row" class="row justify-content-center aling-items-crnter">
+            <div id="User-column" class="col-md-6">
+                <div id="User-box" class="col-md-12 User-box-login">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <h3 class="text-center text-info">Авторизоваться</h3>
+                        <div class="form-group">
+                            @Html.LabelFor(m=>m.Email ,new{@class = "text-info"})
+                            @Html.TextBoxFor(m=>m.Email ,new{@class = "form-control"})
+                            @Html.ValidationMessageFor(m=>m.Email,"",new{@class = "text-danger"})
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m=>m.Password ,new{@class = "text-info"})
+                            @Html.TextBoxFor(m=>m.Password ,new{@class = "form-control"})
+                            @Html.ValidationMessageFor(m=>m.Password,"",new{@class = "text-danger"})
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="submit" class="btn btn-info btn-md" value="Login" />
+                        </div>
+                        <div class="form-group">
+                            <a class="Register" href="/Users/Register">У вас нет аккаунта? Зарегестрируйтесь<br></a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-                <h2>Вход в аккаунт</h2>
 
-               <div class="form-group">
-                   <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                   <input type="text" class="form-control" placeholder="Email">
-              </div>
 
-              <div class="form-group">
-                   <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                   <input type="password" class="form-control" placeholder="Введите пароль">
-              </div>
 
-              <div class="form-group">
-                  <button type="submit" class="float">Войти</button>
-                
-              </div>
-              
-              <div class="form-group">
-                  
-                   <a class="Register" href="/Users/Register">У вас нет аккаунта? Зарегестрируйтесь<br></a>
-              </div>
-        
-           </form>
-       
- 		</div>
-        
- </div>
-</body>
+
+
 
