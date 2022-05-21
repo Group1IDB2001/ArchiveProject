@@ -61,18 +61,7 @@
                      <a class ="page-link" asp-controller="Items" asp-action="Index" asp-route-pg=@(pager.CurrentPage -1)>Previous</a>
                 </li>
             }
-            
         </ul>
-
-
-        @* @*кнопка Create*@
-    @*<div style="position:fixed ;right:25px ;bottom: 25px" class="text-white">
-    <a asp-controller="Authors" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Add New Author</a>
-    </div>*@
-
     }
-                
-       <a asp-controller="Items" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Add New Item</a>
-                
-
+       <a asp-controller="Items" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить нового Item</a>
 </div>

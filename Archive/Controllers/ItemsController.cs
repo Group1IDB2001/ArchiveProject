@@ -11,8 +11,6 @@ namespace Archive.Controllers
             _manager = manager;
         }
 
-        [HttpGet]
-        [Route("Items")]
         public async Task<IActionResult> Index(int pg = 1)
         {
             var items = await _manager.GetAllItems();
@@ -60,6 +58,28 @@ namespace Archive.Controllers
             this.ViewBag.Pager = pager;
 
             return View(data);
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([Bind("Name,Description ,Year ,Field, Genre, CountryId")] CreateItemRequest item)
+        {
+            if (ModelState.IsValid)
+            {
+                var Item = await _manager.AddItem(item.Name, item.Description, item.Year, item.Field, item.Genre, item.CountryId);
+                if (Item)
+                    return RedirectToAction("Index");
+                else
+                {
+                    var Item_1 = await _manager.FindItemByName(item.Name);
+                    if (Item_1) ModelState.AddModelError("", "Item is already existing");
+                }
+            }
+            return View();
         }
 
         //[HttpPut]

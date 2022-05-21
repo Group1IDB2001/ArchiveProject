@@ -4,32 +4,37 @@ namespace ArchiveLogic.Items
 {
     public class ItemManager : IItemManager
     {
-        
+
         private readonly ArchiveContext _context;
         public ItemManager(ArchiveContext context)
         {
             _context = context;
         }
-        
-        public async Task AddItem(string name, string? description, int year, string? field, Genres genre, int countryId)
+
+        public async Task<bool> AddItem(string name, string? description, int year, string? field, Genres genre, int countryId)
         {
             var country = _context.Countries.FirstOrDefault(C => C.Id == countryId);
-            if(country == null) throw new Exception("There is not Country with the same Id");
+            if (country == null) return false;
 
-            var item_1 =  _context.Items.FirstOrDefault(n => n.Name == name);
+            var item_1 = _context.Items.FirstOrDefault(n => n.Name == name);
             if (item_1 == null)
             {
-                var item = new Item { Name = name, Description = description, Year=year, Field = field, Genre = (Genres)genre, CountryId = countryId };
-                
+                var item = new Item { Name = name, Description = description, Year = year, Field = field, Genre = (Genres)genre, CountryId = countryId };
+
                 _context.Items.Add(item);
                 await _context.SaveChangesAsync();
+                return true;
             }
-            else
-            {
-                throw new Exception("There is Item with the same name");
-            }
+            else return false;
         }
 
+
+        public async Task<bool> FindItemByName(string name)
+        {
+            var item = await _context.Items.FirstOrDefaultAsync(g => g.Name == name);
+            if (item != null) return true;
+            else return false;
+        }
         public async Task<IList<Item>> GetAllItems()
         {
             return await _context.Items.ToListAsync();

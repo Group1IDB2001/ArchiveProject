@@ -65,6 +65,33 @@ namespace ArchiveLogic.Authors
             return true;
         }
 
+        public async Task<IList<Author>> GetAuthorsByItemId(int itemId)
+        {
+            List<Author> authors = new List<Author>();
+            List<ItemAuthor> itemauthors = new List<ItemAuthor>();
+            foreach (var itemauthor in _context.ItemAuthors)
+            {
+                if (itemauthor.ItemId == itemId) itemauthors.Add(itemauthor);
+            }
+            if (itemauthors.Count == 0)
+            {
+                throw new Exception("Error,I can't found,No authors belongs to this item");
+            }
+            else
+            {
+                foreach (var author in _context.Authors)
+                {
+                    for (int i = 0; i < itemauthors.Count; i++)
+                    {
+                        if (itemauthors[i].AuthorId == author.Id) authors.Add(author);
+                    }
+                }
+            }
+            return authors;
+        }
+
+
+
 
 
 
@@ -112,30 +139,7 @@ namespace ArchiveLogic.Authors
             return authors;
         }
 
-        public async Task<IList<Author>> GetAuthorsByItemId(int itemId)
-        {
-            List<Author> authors = new List<Author>();
-            List<ItemAuthor> itemauthors= new List<ItemAuthor>();
-            foreach(var itemauthor in _context.ItemAuthors)
-            {
-                if (itemauthor.ItemId == itemId) itemauthors.Add(itemauthor);
-            }
-            if (itemauthors.Count == 0)
-            {
-                throw new Exception("Error,I can't found,No authors belongs to this item");
-            }
-            else
-            {
-                foreach (var author in _context.Authors)
-                {
-                    for (int i = 0; i < itemauthors.Count; i++)
-                    {
-                        if (itemauthors[i].AuthorId == author.Id) authors.Add(author);
-                    }
-                }
-            }
-            return authors;
-        }
+       
 
         
         

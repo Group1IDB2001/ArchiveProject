@@ -106,11 +106,11 @@ namespace Archive.Controllers
                 return RedirectToAction("Index");
             }
         }
-
+       
         public async Task<IActionResult> AuthorPage(int id)
         {
             var author = await _manager.GetAuthorsByItemId(id);
-
+            
             return View(author);
         }
 
