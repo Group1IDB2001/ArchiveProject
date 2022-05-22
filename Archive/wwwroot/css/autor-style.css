@@ -1,5 +1,6 @@
-﻿body {
-    margin: 0; /* Убираем отступы */
+﻿
+body {
+    margin: 20px auto; /* Убираем отступы */
     height: 100%;
 }
 
@@ -29,6 +30,27 @@ h1 {
     text-align: center;
     margin: 20px auto;
 }
-tr {
-    margin: 20px auto;
+
+table {
+    text-align: left;
+    border-collapse: separate;
+    border-spacing: 5px;
+    color: #656665;
+    border: 16px solid #ECE9E0;
+    border-radius: 20px;
 }
+
+th {
+    font-size: 18px;
+    padding: 10px;
+}
+
+td {
+    background: #F5D7BF;
+    padding: 10px;
+}
+
+a {
+    margin-left: 20px;
+}
+
