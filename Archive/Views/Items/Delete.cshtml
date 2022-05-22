@@ -1,0 +1,60 @@
+﻿@model Item
+@{
+    ViewBag.Title = "Delete Author";
+}
+<div class="row text">
+	<div class="col-md-8 offset-2">
+		<p>
+			<h1>Details confirmation for author </h1>
+		</p>
+		<div class="row">
+			<div class="col-md-8 offset-2">
+				<div class="form-group">
+					<label asp-for="@Model.Name" class="control-lable"></label>
+					<input asp-for="Name" class="form-control" readonly />
+					<span asp-validation-for="Name" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Description" class="control-lable"></label>
+					<input asp-for="Description" class="form-control" readonly />
+					<span asp-validation-for="Description" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Year" class="control-lable"></label>
+					<input asp-for="Year" class="form-control" readonly />
+					<span asp-validation-for="Year" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="Field" class="control-lable"></label>
+					<input asp-for="Field" class="form-control" readonly />
+					<span asp-validation-for="Field" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="Genre" class="control-lable"></label>
+					<input asp-for="Genre" class="form-control" readonly />
+					<span asp-validation-for="Genre" class="text-danger"></span>
+				</div>
+
+				<div class="form-group">
+					<label asp-for="CountryId" class="control-lable"></label>
+					<input asp-for="CountryId" class="form-control" readonly />
+					<span asp-validation-for="CountryId" class="text-danger"></span>
+				</div>
+
+
+
+
+				<div class="form-group">
+					<form asp-action="Delete">
+						<input type="hidden" asp-for="Id"/>
+						<input type="submit" value="Confirm" class="btn btn-danger float-right"  />
+					</form>
+					<a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
