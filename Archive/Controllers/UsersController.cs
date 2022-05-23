@@ -26,10 +26,6 @@ namespace Archive.Controllers
         
 
 
-
-        
-
-
         [HttpGet]
         public async Task<IActionResult> UserPage(string mail)
         {
