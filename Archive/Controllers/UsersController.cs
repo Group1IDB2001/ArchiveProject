@@ -12,6 +12,7 @@ namespace Archive.Controllers
     public class UsersController : Controller
     {
         private readonly IUserManager _manager;
+        static private string _email;
 
         public UsersController(IUserManager manager)
         {
@@ -23,16 +24,18 @@ namespace Archive.Controllers
         {
             return View();
         }
-        
-
 
         [HttpGet]
-        public async Task<IActionResult> UserPage(string mail)
+        public async Task<IActionResult> UserPage()
         {
-            
-            var user = await _manager.GetUserByEmail(mail);
+
+            var user = await _manager.GetUserByEmail(_email);
             return View(user);
         }
+
+
+
+
 
 
         //login
@@ -49,8 +52,10 @@ namespace Archive.Controllers
              var Account = await _manager.SingIn(account.Email, account.Password);
              if (Account)
              {
-                return RedirectToAction("UserPage", new { mail = account.Email });
-             }
+                _email= account.Email;
+                return RedirectToAction("UserPage");
+                //return RedirectToAction("UserPage", new { mail = account.Email });
+            }
              else
              {
                  var account_1 = await _manager.FindUserByEmail(account.Email);
@@ -93,11 +98,10 @@ namespace Archive.Controllers
             return View();
         }
 
-        //public async Task<IActionResult> Logout()
-        //{
-        //    await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        //    return RedirectToAction("Login", "Account");
-        //}
+        public async Task<IActionResult> Logout()
+        {
+            return RedirectToAction("Login");
+        }
 
 
 
