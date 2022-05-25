@@ -37,18 +37,17 @@ select {
     border: 0;
     display: block;
 }
-.Register input[type="text"], .Register input[type="password"], .Register input[type="password"] {
-        
-        background: #f7f7f7;
-        text-align: center;
-        border: 2px solid white;
-        padding: 10px 5px;
-        width: 250px;
-        outline: none;
-        color: black;
-        border-radius: 0px;
-        transition: 0.25s;
-        text-decoration-color: white;
+.form-group {
+    background: #f7f7f7;
+    text-align: center;
+    border: 2px solid white;
+    padding: 10px 5px;
+    width: 250px;
+    outline: none;
+    color: black;
+    border-radius: 0px;
+    transition: 0.25s;
+    text-decoration-color: white;
 }
 
 input,a {
