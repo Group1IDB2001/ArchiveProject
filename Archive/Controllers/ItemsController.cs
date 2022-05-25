@@ -34,10 +34,8 @@ namespace Archive.Controllers
         public async Task<IActionResult> ItemPage(int Id)
         {
             var items = await _manager.GetItemById(Id);
-
-            var data = items;
             
-            return View(data);
+            return View(items);
         }
 
         [HttpGet]
@@ -77,6 +75,7 @@ namespace Archive.Controllers
                 {
                     var Item_1 = await _manager.FindItemByName(item.Name);
                     if (Item_1) ModelState.AddModelError("", "Item is already existing");
+                    else ModelState.AddModelError("CountryId", "This CountryId not exists! Please enter a new CountryId from 1 to 10!");
                 }
             }
             return View();
@@ -100,6 +99,7 @@ namespace Archive.Controllers
             {
                 var Item_1 = await _manager.FindItemByName(item.Name);
                 if (Item_1) ModelState.AddModelError("", "Item is already existing");
+
             }
             return View();
         }
@@ -125,6 +125,12 @@ namespace Archive.Controllers
             }
         }
 
+
+        public async Task<IActionResult> ReyurntoItemPage(int id)
+        {
+            var items = await _manager.GetItemsByAuthorId(id);
+            return RedirectToAction("ItemPage", new { Id = items[0].Id });
+        }
 
 
 
