@@ -105,9 +105,9 @@ namespace Archive.Controllers
 
 
 
-        //[HttpGet]
-        //[Route("users")]
-        //public async Task<IList<User>> GetAllUsers() => await _manager.GetAllUsers();
+        [HttpGet]
+        [Route("users")]
+        public async Task<IList<User>> GetAllUsers() => await _manager.GetAllUsers();
 
         //[HttpDelete]
         //[Route("users/{id:int}")]

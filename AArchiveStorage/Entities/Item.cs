@@ -51,10 +51,10 @@ namespace ArchiveStorage.Entities
         [Required(ErrorMessage = "Genre is required.")]
         public Genres Genre { get; set; } //= { (int)Genre.no_info };
 
-        [Display(Name = "CountryId")]
+        [Display(Name = "Country_Name")]
         [Required]
-        public int CountryId { get; set; }
-        [ForeignKey(nameof(CountryId))]
+        public String CountryName { get; set; }
+        [ForeignKey(nameof(CountryName))]
         public virtual Country Country { get; set; }
         
 

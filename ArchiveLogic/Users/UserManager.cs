@@ -8,8 +8,8 @@ namespace ArchiveLogic.Users
 {
     public class UserManager : IUserManager
     {
-        private readonly ArchiveContext _context;
-        public UserManager(ArchiveContext context)
+        private readonly MyArchiveContext _context;
+        public UserManager(MyArchiveContext context)
 
         {
             _context = context;

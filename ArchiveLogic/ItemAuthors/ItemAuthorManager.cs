@@ -2,8 +2,8 @@
 {
     public class ItemAuthorManager:IItemAuthorManager
     {
-        private readonly ArchiveContext _context;
-        public ItemAuthorManager(ArchiveContext context)
+        private readonly MyArchiveContext _context;
+        public ItemAuthorManager(MyArchiveContext context)
         {
             _context = context;
         }

@@ -64,18 +64,18 @@ namespace Archive.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("Name,Description ,Year ,Field, Genre, CountryId")] CreateItemRequest item)
+        public async Task<IActionResult> Create([Bind("Name,Description ,Year ,Field, Genre, CountryName")] CreateItemRequest item)
         {
             if (ModelState.IsValid)
             {
-                var Item = await _manager.AddItem(item.Name, item.Description, item.Year, item.Field, item.Genre, item.CountryId);
+                var Item = await _manager.AddItem(item.Name, item.Description, item.Year, item.Field, item.Genre, item.CountryName);
                 if (Item)
                     return RedirectToAction("Index");
                 else
                 {
                     var Item_1 = await _manager.FindItemByName(item.Name);
                     if (Item_1) ModelState.AddModelError("", "Item is already existing");
-                    else ModelState.AddModelError("CountryId", "This CountryId not exists! Please enter a new CountryId from 1 to 10!");
+                    else ModelState.AddModelError("CountryName", "This Country name not exists! Please enter a new Country Name");
                 }
             }
             return View();
@@ -90,9 +90,9 @@ namespace Archive.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description ,Year ,Field, Genre, CountryId")] Item item)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description ,Year ,Field, Genre, CountryName")] Item item)
         {
-            var Item = await _manager.EditItem(id, item.Name, item.Description, item.Year, item.Field, item.Genre, item.CountryId);
+            var Item = await _manager.EditItem(id, item.Name, item.Description, item.Year, item.Field, item.Genre, item.CountryName);
             if (Item)
                 return RedirectToAction("ItemPage", new { Id = id });
             else
@@ -132,7 +132,9 @@ namespace Archive.Controllers
             return RedirectToAction("ItemPage", new { Id = items[0].Id });
         }
 
-
+        [HttpGet]
+        [Route("Items")]
+        public async Task<IList<Item>> GetAllAuthors() => await _manager.GetAllItems();
 
 
     }

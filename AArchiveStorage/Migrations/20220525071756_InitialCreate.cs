@@ -14,7 +14,7 @@ namespace ArchiveStorage.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Born = table.Column<int>(type: "int", nullable: false),
                     Death = table.Column<int>(type: "int", nullable: true),
                     About = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -28,13 +28,12 @@ namespace ArchiveStorage.Migrations
                 name: "Countries",
                 columns: table => new
                 {
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Countries", x => x.Id);
+                    table.PrimaryKey("PK_Countries", x => x.Name);
                 });
 
             migrationBuilder.CreateTable(
@@ -56,7 +55,7 @@ namespace ArchiveStorage.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Role = table.Column<int>(type: "int", nullable: false)
@@ -72,21 +71,21 @@ namespace ArchiveStorage.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Year = table.Column<int>(type: "int", nullable: false),
                     Field = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Genre = table.Column<int>(type: "int", nullable: false),
-                    CountryId = table.Column<int>(type: "int", nullable: false)
+                    CountryName = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Items", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Items_Countries_CountryId",
-                        column: x => x.CountryId,
+                        name: "FK_Items_Countries_CountryName",
+                        column: x => x.CountryName,
                         principalTable: "Countries",
-                        principalColumn: "Id",
+                        principalColumn: "Name",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -181,8 +180,8 @@ namespace ArchiveStorage.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ItemId = table.Column<int>(type: "int", nullable: true),
-                    LanguageId = table.Column<int>(type: "int", nullable: true)
+                    LanguageId = table.Column<int>(type: "int", nullable: true),
+                    ItemId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -418,9 +417,9 @@ namespace ArchiveStorage.Migrations
                 column: "LanguageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Items_CountryId",
+                name: "IX_Items_CountryName",
                 table: "Items",
-                column: "CountryId");
+                column: "CountryName");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Likes_ItemId",

@@ -8,8 +8,8 @@ namespace ArchiveLogic.Responses
 {
     public class ResponseManager:IResponseManager
     {
-        private readonly ArchiveContext _context;
-        public ResponseManager(ArchiveContext context)
+        private readonly MyArchiveContext _context;
+        public ResponseManager(MyArchiveContext context)
         {
             _context = context;
         }

@@ -8,8 +8,8 @@ namespace ArchiveLogic.Qestions
 {
     public class QestionManager : IQestionManager
     {
-        private readonly ArchiveContext _context;
-        public QestionManager(ArchiveContext context)
+        private readonly MyArchiveContext _context;
+        public QestionManager(MyArchiveContext context)
         {
             _context = context;
         }
