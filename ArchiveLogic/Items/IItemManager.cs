@@ -9,11 +9,11 @@ namespace ArchiveLogic.Authors
 {
     public interface IItemManager
     {
-        Task<bool> AddItem(string name, string? description, int year, string? field, Genres genre, int countryId);
+        Task<bool> AddItem(string name, string? description, int year, string? field, Genres genre, string country_name);
 
         Task<bool> FindItemByName(string name);
 
-        Task<bool> EditItem(int id, string name, string? description, int year, string? field, Genres genre, int countryId);
+        Task<bool> EditItem(int id, string name, string? description, int year, string? field, Genres genre, string country_name);
 
         Task<Item> GetItemById(int id);
 

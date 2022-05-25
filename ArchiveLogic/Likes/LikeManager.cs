@@ -8,8 +8,8 @@ namespace ArchiveLogic.Likes
 {
     public class LikeManager: ILikeManager
     {
-        private readonly ArchiveContext _context;
-        public LikeManager(ArchiveContext context)
+        private readonly MyArchiveContext _context;
+        public LikeManager(MyArchiveContext context)
         {
             _context = context;
         }

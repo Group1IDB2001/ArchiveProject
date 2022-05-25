@@ -8,8 +8,8 @@ namespace ArchiveLogic.Tag
 {
     public class TtagManager : ITtagManager
     {
-        private readonly ArchiveContext _context;
-        public TtagManager(ArchiveContext context)
+        private readonly MyArchiveContext _context;
+        public TtagManager(MyArchiveContext context)
 
         {
             _context = context;

@@ -8,8 +8,8 @@ namespace ArchiveLogic.LLanguage
 {
     public class LanguageManager: ILanguageManager
     {
-        private readonly ArchiveContext _context;
-        public LanguageManager(ArchiveContext context)
+        private readonly MyArchiveContext _context;
+        public LanguageManager(MyArchiveContext context)
         {
             _context = context;
         }
