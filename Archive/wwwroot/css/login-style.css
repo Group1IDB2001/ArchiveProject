@@ -7,7 +7,7 @@
 
 
 .container-fluid {
-    width: 400px;
+    width: 650px;
     padding: 40px;
     text-decoration-color: rgba(250, 250, 250, 1);
     position: absolute;
@@ -20,13 +20,12 @@
     outline: 1px solid lightgray;
 }
 
+
 .form-group {
     border: 0;
-    background: white; /*цвет кнопки*/
     display: block;
     margin: 20px auto;
     text-align: center;
-    border: 1px solid white; /*обводка кнокоп*/
     padding: 10px 5px; /*ширина и высота кнопки*/
     width: 300px;
     outline: none;

@@ -6,20 +6,11 @@
     height: 100%;
     background-position: center;
     background-size: cover;
+}
 
-}
-select {
-    background: #f7f7f7;
-    text-align: center;
-    padding: 10px 5px;
-    width: 125px;
-    height: 35px;
-    color: black;
-    text-decoration-color: white;
-}
 
 .container-fluid {
-    width: 400px;
+    width: 600px;
     padding: 40px;
     text-decoration-color: rgba(250, 250, 250, 1);
     position: absolute;
@@ -32,25 +23,22 @@ select {
     outline: 1px solid lightgray;
 }
 
+
 .form-group {
     margin: 20px auto;
     border: 0;
     display: block;
-}
-.form-group {
-    background: #f7f7f7;
     text-align: center;
-    border: 2px solid white;
     padding: 10px 5px;
-    width: 250px;
+    width: 300px;
     outline: none;
-    color: black;
+    color: white;
     border-radius: 0px;
     transition: 0.25s;
     text-decoration-color: white;
 }
 
-input,a {
+input, a {
     border: 0;
     background: #3d9bff;
     display: block;
@@ -67,8 +55,8 @@ input,a {
 }
 
 
-input[type="submit"]:hover {
-            background: #3d9bff;
-            color: white;
-            text-decoration-color: white;
-}
+    input[type="submit"]:hover {
+        background: #3d9bff;
+        color: white;
+        text-decoration-color: white;
+    }
