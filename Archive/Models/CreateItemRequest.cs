@@ -27,8 +27,8 @@ namespace Archive.Models
         [Required(ErrorMessage = "Genre is required.")]
         public Genres Genre { get; set; }
 
-        [Display(Name = "CountryName")]
-        [Required(ErrorMessage = "Country Name is required.")]
-        public String CountryName { get; set; }
+        [Display(Name = "CountryId")]
+        [Required(ErrorMessage = "CountryId is required.")]
+        public int CountryId { get; set; }
     }
 }

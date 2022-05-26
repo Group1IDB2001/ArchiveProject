@@ -23,7 +23,7 @@ var services  = builder.Services;
 // Add services to the container.
 services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("DbConnection"); // Add DbContext
-services.AddDbContext<MyArchiveContext>(param => param.UseSqlServer(connectionString));
+services.AddDbContext<ArchiveContext>(param => param.UseSqlServer(connectionString));
 
 services.AddScoped<IAuthorManager, AuthorManager>();
 services.AddScoped<ICountryManager, CountryManager>();
@@ -63,6 +63,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Users}/{action=Login}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

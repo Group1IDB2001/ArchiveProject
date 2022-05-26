@@ -5,21 +5,21 @@ namespace ArchiveLogic.Items
     public class ItemManager : IItemManager
     {
 
-        private readonly MyArchiveContext _context;
-        public ItemManager(MyArchiveContext context)
+        private readonly ArchiveContext _context;
+        public ItemManager(ArchiveContext context)
         {
             _context = context;
         }
 
-        public async Task<bool> AddItem(string name, string? description, int year, string? field, Genres genre, string country_name)
+        public async Task<bool> AddItem(string name, string? description, int year, string? field, Genres genre, int country_Id)
         {
-            var country = _context.Countries.FirstOrDefault(C => C.Name == country_name);
+            var country = _context.Countries.FirstOrDefault(C => C.Id == country_Id);
             if (country == null) return false;
 
             var item_1 = _context.Items.FirstOrDefault(n => n.Name == name);
             if (item_1 == null)
             {
-                var item = new Item { Name = name, Description = description, Year = year, Field = field, Genre = (Genres)genre, CountryName = country_name };
+                var item = new Item { Name = name, Description = description, Year = year, Field = field, Genre = (Genres)genre, CountryId = country_Id };
 
                 _context.Items.Add(item);
                 await _context.SaveChangesAsync();
@@ -37,7 +37,7 @@ namespace ArchiveLogic.Items
         }
 
 
-        public async Task<bool> EditItem(int id, string name, string? description, int year, string? field, Genres genre, string country_name)
+        public async Task<bool> EditItem(int id, string name, string? description, int year, string? field, Genres genre, int country_Id)
         {
             var item = _context.Items.FirstOrDefault(g => g.Id == id);
             if (item == null) return false;
@@ -46,7 +46,7 @@ namespace ArchiveLogic.Items
             item.Year = year;
             item.Field = field;
             item.Genre = genre;
-            item.CountryName = country_name;
+            item.CountryId = country_Id;
             await _context.SaveChangesAsync();
             return true;
         }

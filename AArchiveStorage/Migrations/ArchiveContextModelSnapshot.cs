@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ArchiveStorage.Migrations
 {
-    [DbContext(typeof(MyArchiveContext))]
+    [DbContext(typeof(ArchiveContext))]
     partial class ArchiveContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -100,13 +100,17 @@ namespace ArchiveStorage.Migrations
 
             modelBuilder.Entity("ArchiveStorage.Entities.Country", b =>
                 {
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.HasKey("Name");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Countries");
                 });
@@ -119,9 +123,8 @@ namespace ArchiveStorage.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("CountryName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -142,7 +145,7 @@ namespace ArchiveStorage.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CountryName");
+                    b.HasIndex("CountryId");
 
                     b.ToTable("Items");
                 });
@@ -475,7 +478,7 @@ namespace ArchiveStorage.Migrations
                 {
                     b.HasOne("ArchiveStorage.Entities.Country", "Country")
                         .WithMany()
-                        .HasForeignKey("CountryName")
+                        .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

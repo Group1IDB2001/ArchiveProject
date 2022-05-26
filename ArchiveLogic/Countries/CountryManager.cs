@@ -8,8 +8,8 @@ namespace ArchiveLogic.Countries
 {
     public class CountryManager:ICountryManager
     {
-        private readonly MyArchiveContext _context;
-        public CountryManager(MyArchiveContext context)
+        private readonly ArchiveContext _context;
+        public CountryManager(ArchiveContext context)
         {
             _context = context;
         }

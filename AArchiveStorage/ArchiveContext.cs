@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace ArchiveStorage
 {
-    public class MyArchiveContext : DbContext
+    public class ArchiveContext : DbContext
     {
-        public MyArchiveContext (DbContextOptions<MyArchiveContext> options) : base(options)
+        public ArchiveContext (DbContextOptions<ArchiveContext> options) : base(options)
         {
             
         }

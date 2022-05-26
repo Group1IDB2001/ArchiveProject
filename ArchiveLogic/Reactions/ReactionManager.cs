@@ -8,8 +8,8 @@ namespace ArchiveLogic.Reactions
 {
     public class ReactionManager:IReactionManager
     {
-        private readonly MyArchiveContext _context;
-        public ReactionManager(MyArchiveContext context)
+        private readonly ArchiveContext _context;
+        public ReactionManager(ArchiveContext context)
         {
             _context = context;
         }

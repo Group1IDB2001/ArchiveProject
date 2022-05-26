@@ -8,8 +8,8 @@ namespace ArchiveLogic.IItemLanguage
 {
     public class ItemLanguageManager: IItemLanguageManager
     {
-        private readonly MyArchiveContext _context;
-        public ItemLanguageManager(MyArchiveContext context)
+        private readonly ArchiveContext _context;
+        public ItemLanguageManager(ArchiveContext context)
         {
             _context = context;
         }

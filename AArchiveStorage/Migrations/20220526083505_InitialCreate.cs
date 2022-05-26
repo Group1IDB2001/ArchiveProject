@@ -28,12 +28,13 @@ namespace ArchiveStorage.Migrations
                 name: "Countries",
                 columns: table => new
                 {
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Countries", x => x.Name);
+                    table.PrimaryKey("PK_Countries", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -76,16 +77,16 @@ namespace ArchiveStorage.Migrations
                     Year = table.Column<int>(type: "int", nullable: false),
                     Field = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Genre = table.Column<int>(type: "int", nullable: false),
-                    CountryName = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    CountryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Items", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Items_Countries_CountryName",
-                        column: x => x.CountryName,
+                        name: "FK_Items_Countries_CountryId",
+                        column: x => x.CountryId,
                         principalTable: "Countries",
-                        principalColumn: "Name",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -417,9 +418,9 @@ namespace ArchiveStorage.Migrations
                 column: "LanguageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Items_CountryName",
+                name: "IX_Items_CountryId",
                 table: "Items",
-                column: "CountryName");
+                column: "CountryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Likes_ItemId",

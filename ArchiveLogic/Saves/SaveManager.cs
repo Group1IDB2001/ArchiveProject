@@ -8,8 +8,8 @@ namespace ArchiveLogic.Saves
 {
     public class SaveManager:ISaveManager
     {
-        private readonly MyArchiveContext _context;
-        public SaveManager(MyArchiveContext context)
+        private readonly ArchiveContext _context;
+        public SaveManager(ArchiveContext context)
         {
             _context = context;
         }

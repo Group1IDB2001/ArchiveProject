@@ -64,11 +64,11 @@ namespace Archive.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("Name,Description ,Year ,Field, Genre, CountryName")] CreateItemRequest item)
+        public async Task<IActionResult> Create([Bind("Name,Description ,Year ,Field, Genre, CountryId")] CreateItemRequest item)
         {
             if (ModelState.IsValid)
             {
-                var Item = await _manager.AddItem(item.Name, item.Description, item.Year, item.Field, item.Genre, item.CountryName);
+                var Item = await _manager.AddItem(item.Name, item.Description, item.Year, item.Field, item.Genre, item.CountryId);
                 if (Item)
                     return RedirectToAction("Index");
                 else
@@ -90,9 +90,9 @@ namespace Archive.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description ,Year ,Field, Genre, CountryName")] Item item)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description ,Year ,Field, Genre, CountryId")] Item item)
         {
-            var Item = await _manager.EditItem(id, item.Name, item.Description, item.Year, item.Field, item.Genre, item.CountryName);
+            var Item = await _manager.EditItem(id, item.Name, item.Description, item.Year, item.Field, item.Genre, item.CountryId);
             if (Item)
                 return RedirectToAction("ItemPage", new { Id = id });
             else

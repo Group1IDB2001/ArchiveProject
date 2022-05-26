@@ -6,8 +6,8 @@ namespace ArchiveLogic.Authors
 {
     public class AuthorManager:IAuthorManager
     {
-        private readonly MyArchiveContext _context;
-        public AuthorManager(MyArchiveContext context)
+        private readonly ArchiveContext _context;
+        public AuthorManager(ArchiveContext context)
         {
             _context=context;
         }

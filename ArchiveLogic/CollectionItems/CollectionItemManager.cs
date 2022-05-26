@@ -8,8 +8,8 @@ namespace ArchiveLogic.CollectionItems
 {
     public class CollectionItemManager : ICollectionItemManager
     {
-        private readonly MyArchiveContext _context;
-        public CollectionItemManager(MyArchiveContext context)
+        private readonly ArchiveContext _context;
+        public CollectionItemManager(ArchiveContext context)
         {
             _context = context;
         }
