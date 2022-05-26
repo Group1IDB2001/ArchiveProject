@@ -51,14 +51,43 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Genre, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Genre, new { htmlAttributes = new { @class = "form-control" } })
+                <select class = "form-control" style="text-align: center;" name="Genre" >
+                                <option value="no_info">no_info</option>
+                                <option value="literary_fiction">literary_fiction</option>
+                                <option value="mystery">mystery</option>
+                                <option value="thriller">thriller</option>
+                                <option value="horror">horror</option>
+                                <option value="historical">historical</option>
+                                <option value="romance">romance</option>
+                                <option value="western">western</option>
+                                <option value="bildungsroman">bildungsroman</option>
+                                <option value="speculative_fiction">speculative_fiction</option>
+                                <option value="science_fiction">science_fiction</option>
+                                <option value="fantasy">fantasy</option>
+                                <option value="dystopyan">dystopyan</option>
+                                <option value="magical_realism">magical_realism</option>
+                                <option value="realist_literature">realist_literature</option>
+                                <option value="subject_literature">subject_literature</option>
+                </select>
                 @Html.ValidationMessageFor(model => model.Genre, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CountryId, new { htmlAttributes = new { @class = "form-control" } })
+                            <select class = "form-control" style="text-align: center;" name="CountryId" id="id" >
+                                <option value="1">Russia</option>
+                                <option value="2">UK</option>
+                                <option value="3">USA</option>
+                                <option value="4">France</option>
+                                <option value="5">Germany</option>
+                                <option value="6">Japan</option>
+                                <option value="7">China</option>
+                                <option value="8">Columbia</option>
+                                <option value="9">Canada</option>
+                                <option value="10">Spain</option>
+                                <option value="11">Italy</option>
+                            </select>
                 @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
             </div>
         </div>

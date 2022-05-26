@@ -132,9 +132,9 @@ namespace Archive.Controllers
             return RedirectToAction("ItemPage", new { Id = items[0].Id });
         }
 
-        [HttpGet]
-        [Route("Items")]
-        public async Task<IList<Item>> GetAllAuthors() => await _manager.GetAllItems();
+        //[HttpGet]
+        //[Route("Items")]
+        //public async Task<IList<Item>> GetAllAuthors() => await _manager.GetAllItems();
 
 
     }
