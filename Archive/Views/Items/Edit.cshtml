@@ -50,22 +50,22 @@
             @Html.LabelFor(model => model.Genre, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <select class = "form-control" name="Genre" >
-                                <option value="no_info">no_info</option>
-                                <option value="literary_fiction">literary_fiction</option>
-                                <option value="mystery">mystery</option>
-                                <option value="thriller">thriller</option>
-                                <option value="horror">horror</option>
-                                <option value="historical">historical</option>
-                                <option value="romance">romance</option>
-                                <option value="western">western</option>
-                                <option value="bildungsroman">bildungsroman</option>
-                                <option value="speculative_fiction">speculative_fiction</option>
-                                <option value="science_fiction">science_fiction</option>
-                                <option value="fantasy">fantasy</option>
-                                <option value="dystopyan">dystopyan</option>
-                                <option value="magical_realism">magical_realism</option>
-                                <option value="realist_literature">realist_literature</option>
-                                <option value="subject_literature">subject_literature</option>
+                                <option value="no_info">Нет информации</option>
+                                <option value="drama">Драма</option>
+                                <option value="fantasy">Фэнтези</option>
+                                <option value="literary_fiction">Художественная проза</option>
+                                <option value="novel">Роман</option>
+                                <option value="poetry">Поэзия</option>
+                                <option value="folklore">Роман</option>
+                                <option value="historical">Фольклор</option>
+                                <option value="horror">Хоррор</option>
+                                <option value="thriller">Триллер</option>
+                                <option value="realism">Реализм</option>
+                                <option value="science_fiction">Научная фантастика</option>
+                                <option value="humor">Юмор</option>
+                                <option value="biography">Биография</option>
+                                <option value="essay">Эссе</option>
+                                <option value="documentary_literature">Документальная литература</option>
                 </select>
                 @Html.ValidationMessageFor(model => model.Genre, "", new { @class = "text-danger" })
             </div>
@@ -75,17 +75,17 @@
             @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <select class = "form-control"  name="CountryId" id="id" >
-                                <option value="1">Russia</option>
-                                <option value="2">UK</option>
-                                <option value="3">USA</option>
-                                <option value="4">France</option>
-                                <option value="5">Germany</option>
-                                <option value="6">Japan</option>
-                                <option value="7">China</option>
-                                <option value="8">Columbia</option>
-                                <option value="9">Canada</option>
-                                <option value="10">Spain</option>
-                                <option value="11">Italy</option>
+                                <option value="1">Россия</option>
+                                <option value="2">Великобритания</option>
+                                <option value="3">США</option>
+                                <option value="4">Франция</option>
+                                <option value="5">Германия</option>
+                                <option value="6">Япония</option>
+                                <option value="7">Китай</option>
+                                <option value="8">Колумбия</option>
+                                <option value="9">Канада</option>
+                                <option value="10">Испания</option>
+                                <option value="11">Италия</option>
                 </select>
                 @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
             </div>
@@ -95,7 +95,7 @@
 
         <div class="form-group">
                  <input type="submit" value="Редактировать" class="btn btn-outline-success float-right"/>
-                 <a class="btn btn-outline-secondary" asp-action="ItemPage" asp-route-id=@Model.Id>вернуться к предмету</a>
+                 <a class="btn btn-outline-secondary" asp-action="ItemPage" asp-route-id=@Model.Id>Вернуться к каталогу</a>
         </div>
     </div>
 }

@@ -8,21 +8,21 @@ namespace ArchiveStorage.Entities
     public enum Genres
     {
         no_info = 0,
-        literary_fiction = 1,
-        mystery = 2,
-        thriller = 3,
-        horror = 4,
-        historical = 5,
-        romance = 6,
-        western = 7,
-        bildungsroman = 8,
-        speculative_fiction = 9,
-        science_fiction = 10,
-        fantasy = 11,
-        dystopyan = 12,
-        magical_realism = 13,
-        realist_literature = 14,
-        subject_literature = 15
+        drama = 1,
+        fantasy = 2,
+        literary_fiction = 3,
+        novel = 4,
+        poetry = 5,
+        folklore = 6,
+        historical = 7,
+        horror = 8,
+        thriller = 9,
+        realism = 10,
+        science_fiction = 11,
+        humor = 12,
+        biography = 13,
+        essay = 14,
+        documentary_literature = 15
     }
 
     public class Item
