@@ -31,8 +31,4 @@
     <ProjectReference Include="..\ArchiveLogic\ArchiveLogic.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Likes\" />
-  </ItemGroup>
-
 </Project>

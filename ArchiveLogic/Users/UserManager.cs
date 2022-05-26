@@ -15,15 +15,13 @@ namespace ArchiveLogic.Users
             _context = context;
         }
 
+
+
         public async Task<bool> AddUser(string name, string email, string password, usersituation role)
         {
             var user_1 = _context.Users.FirstOrDefault(u => u.Email == email);
             if (user_1 == null)
             {
-                if (role == 0)
-                {
-                    return false;
-                }
                 var user = new User { Name = name, Email = email, Password = password, Role = (usersituation)role };
                 _context.Users.Add(user);
                 await _context.SaveChangesAsync();

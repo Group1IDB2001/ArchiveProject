@@ -31,11 +31,13 @@ namespace Archive.Controllers
 
         [HttpGet]
         
-        public async Task<IActionResult> ItemPage(int Id)
+        public async Task<IActionResult> ItemPage(int id)
         {
-            var items = await _manager.GetItemById(Id);
+            var items = await _manager.GetItemById(id);
+
+            var data = items;
             
-            return View(items);
+            return View(data);
         }
 
         [HttpGet]
@@ -75,70 +77,156 @@ namespace Archive.Controllers
                 {
                     var Item_1 = await _manager.FindItemByName(item.Name);
                     if (Item_1) ModelState.AddModelError("", "Item is already existing");
-                    else ModelState.AddModelError("CountryName", "This Country name not exists! Please enter a new Country Name");
                 }
             }
             return View();
         }
 
+        //[HttpPut]
+        //[Route("items")]
+        //public async Task AddItem([FromBody] CreateItemRequest request) => await _manager.AddItem
+        //    (request.Name, request.Description, request.Year, request.Field, request.Genre, request.CountryId);
+
+        //[HttpGet]
+        //[Route("items")]
+        //public async Task<IList<Item>> GetAllItems() => await _manager.GetAllItems();
+        //public IActionResult Index()
+        //{
+        //    return View();
+        //}
+
+        //[HttpGet]
+        //[Route("items/{id:int}")]
+        //public async Task<Item> GetItemById(int id) => await _manager.GetItemById(id);
+
+        //[HttpGet]
+        //[Route("items/{name}")]
+        //public async Task<Item> GetItemByName(string name) => await _manager.GetItemByName(name);
+
+        //[HttpGet]
+        //[Route("items/year/{year:int}")]
+        //public async Task<IList<Item>> GetItemsByYear(int year) => await _manager.GetItemsByYear(year);
+
+        //[HttpGet]
+        //[Route("items/genre/{genre:int}")]
+        //public async Task<IList<Item>> GetItemsByGenre(Genres genre) => await _manager.GetItemsByGenre(genre);
+
+        //[HttpGet]
+        //[Route("items/field/{field}")]
+        //public async Task<IList<Item>> GetItemsByField(string field) => await _manager.GetItemsByField(field);
+
+        //[HttpDelete]
+        //[Route("items/{id:int}")]
+        //public async Task DeleteItem(int id) => await _manager.DeleteItem(id);
 
 
-        public async Task<IActionResult> Edit(int id)
-        {
-            var item = await _manager.GetItemById(id);
-            return View(item);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description ,Year ,Field, Genre, CountryId")] Item item)
-        {
-            var Item = await _manager.EditItem(id, item.Name, item.Description, item.Year, item.Field, item.Genre, item.CountryId);
-            if (Item)
-                return RedirectToAction("ItemPage", new { Id = id });
-            else
-            {
-                var Item_1 = await _manager.FindItemByName(item.Name);
-                if (Item_1) ModelState.AddModelError("", "Item is already existing");
-
-            }
-            return View();
-        }
 
 
 
-        public async Task<IActionResult> Delete(int id)
-        {
-            var item = await _manager.GetItemById(id);
-            return View(item);
-        }
 
 
-        [HttpPost, ActionName("Delete")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var item = await _manager.DeleteItem(id);
-            if (item) return RedirectToAction("Index");
-            else
-            {
-                ModelState.AddModelError("", "item is already not existing");
-                return RedirectToAction("Index");
-            }
-        }
 
 
-        public async Task<IActionResult> ReyurntoItemPage(int id)
-        {
-            var items = await _manager.GetItemsByAuthorId(id);
-            return RedirectToAction("ItemPage", new { Id = items[0].Id });
-        }
 
-        [HttpGet]
-        [Route("Items")]
-        public async Task<IList<Item>> GetAllAuthors() => await _manager.GetAllItems();
+
+        //[HttpPut]
+        //[Route("items/name/{id:int}")]
+        //public async Task EditItemName(int id, [FromBody] CreateItemRequest request) => await _manager.EditItemName(id, request.Name);
+
+        //[HttpPut]
+        //[Route("items/year/{id:int}")]
+        //public async Task EditItemYear(int id, [FromBody] CreateItemRequest request) =>await _manager.EditItemYear(id, request.Year);
+
+        //[HttpPut]
+        //[Route("items/genre/{id:int}")]
+        //public async Task EditItemGenre(int id, [FromBody] CreateItemRequest request) => await _manager.EditItemGenre(id, request.Genre);
+
+        //[HttpPut]
+        //[Route("items/field/{id:int}")]
+        //public async Task EditItemField(int id, [FromBody] CreateItemRequest request) => await _manager.EditItemField(id, request.Field);
+
+        //[HttpPut]
+        //[Route("items/description/{id:int}")]
+        //public async Task EditItemDescription(int id,[FromBody] CreateItemRequest request) => await _manager.EditItemDescription(id, request.Description);
+
+
+
+
+
+
+
+
+
+
+
+        //[HttpGet]
+        //[Route("items/authorid/{authorid:int}")]
+        //public async Task<IList<Item>> GetItemsByAuthorId(int authorId) => await _manager.GetItemsByAuthorId(authorId);
+
+        //[HttpGet]
+        //[Route("items/authorname/{authorname}")]
+        //public async Task<IList<Item>> GetItemsByAuthorName(string authorname) => await _manager.GetItemsByAuthorName(authorname);
+
+        //[HttpPut]
+        //[Route("items/{itemid:int}/authorid/{authorid:int}")]
+        //public async Task AddAuthorToItem(int itemid, int authorid) => await _manager.AddAuthorToItem(itemid, authorid);
+
+        //[HttpDelete]
+        //[Route("items/itemid/{itemid:int}/authorid/{authorid:int}")]
+        //public async Task DeleteAuthorFromItem(int itemid, int authorid) => await _manager.DeleteAuthorFromItem(itemid, authorid);
+
+        //[HttpPut]
+        //[Route("items/itemid/{itemid:int}/newauthorid/{newauthorid:int}")]
+        //public async Task ReplaceAllAuthorsInItem(int itemid, int newauthorid) => await _manager.ReplaceAllAuthorsInItem(itemid, newauthorid);
+
+
+
+
+
+
+
+
+
+
+        //[HttpGet]
+        //[Route("items/languageId/{languageId:int}")]
+        //public async Task<IList<Item>> GetItemsByLanguage(int languageId) => await _manager.GetItemsByLanguage(languageId);
+
+        //[HttpPut]
+        //[Route("items/{itemid:int}/languageId/{languageId:int}")]
+        //public async Task AddLanguageToItem(int itemid, int languageId) => await _manager.AddLanguageToItem(itemid, languageId);
+
+        //[HttpDelete]
+        //[Route("items/itemid/{itemid:int}/languageId/{languageId:int}")]
+        //public async Task DeleteLanguageFromItem(int itemid, int languageId) => await _manager.DeleteLanguageFromItem(itemid, languageId);
+
+        //[HttpPut]
+        //[Route("items/itemid/{itemid:int}/newlanguageId/{newlanguageId:int}")]
+        //public async Task ReplaceAllLanguagesInItem(int itemid, int newlanguageId) => await _manager.ReplaceAllLanguagesInItem(itemid, newlanguageId);
+
+
+
+
+
+
+
+        //[HttpPut]
+        //[Route("items/{itemid:int}/ttagId/{ttagId:int}")]
+        //public async Task AddTTagToItem(int itemid, int ttagId) => await _manager.AddTTagToItem(itemid , ttagId);
+
+        //[HttpDelete]
+        //[Route("items/itemid/{itemid:int}/ttagId/{ttagId:int}")]
+        //public async Task DeleteTTagFromItem(int itemid, int ttagId) => await _manager.DeleteTTagFromItem(itemid, ttagId);
+
+        //[HttpPut]
+        //[Route("items/itemid/{itemid:int}/newttagId/{newttagId:int}")]
+        //public async Task ReplaceAllTTagsInItem(int itemid, int newttagId) => await _manager.ReplaceAllTTagsInItem(itemid, newttagId);
+
+
+
+
+
 
 
     }
 }
-
-
-// return RedirectToRoute(new { controller = "Home", action = "Index" });

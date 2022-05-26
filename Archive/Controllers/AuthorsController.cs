@@ -110,6 +110,7 @@ namespace Archive.Controllers
         public async Task<IActionResult> AuthorPage(int id)
         {
             var author = await _manager.GetAuthorsByItemId(id);
+            
             return View(author);
         }
 
@@ -121,9 +122,9 @@ namespace Archive.Controllers
         //[Route("authors")]
         //public async Task AddAuthor([FromBody] CreateAuthorRequest request) => await _manager.AddAuthor(request.Name, request.Born, request.Death, request.About);
 
-        [HttpGet]
-        [Route("Authors")]
-        public async Task<IList<Author>> GetAllAuthors() => await _manager.GetAllAuthors();
+        //[HttpGet]
+        //[Route("authors")]
+        //public async Task<IList<Author>> GetAllAuthors() => await _manager.GetAllAuthors();
 
 
         //[HttpDelete]

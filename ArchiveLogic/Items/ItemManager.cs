@@ -11,15 +11,15 @@ namespace ArchiveLogic.Items
             _context = context;
         }
 
-        public async Task<bool> AddItem(string name, string? description, int year, string? field, Genres genre, int country_Id)
+        public async Task<bool> AddItem(string name, string? description, int year, string? field, Genres genre, int countryId)
         {
-            var country = _context.Countries.FirstOrDefault(C => C.Id == country_Id);
+            var country = _context.Countries.FirstOrDefault(C => C.Id == countryId);
             if (country == null) return false;
 
             var item_1 = _context.Items.FirstOrDefault(n => n.Name == name);
             if (item_1 == null)
             {
-                var item = new Item { Name = name, Description = description, Year = year, Field = field, Genre = (Genres)genre, CountryId = country_Id };
+                var item = new Item { Name = name, Description = description, Year = year, Field = field, Genre = (Genres)genre, CountryId = countryId };
 
                 _context.Items.Add(item);
                 await _context.SaveChangesAsync();
@@ -35,22 +35,10 @@ namespace ArchiveLogic.Items
             if (item != null) return true;
             else return false;
         }
-
-
-        public async Task<bool> EditItem(int id, string name, string? description, int year, string? field, Genres genre, int country_Id)
+        public async Task<IList<Item>> GetAllItems()
         {
-            var item = _context.Items.FirstOrDefault(g => g.Id == id);
-            if (item == null) return false;
-            item.Name = name;
-            item.Description = description;
-            item.Year = year;
-            item.Field = field;
-            item.Genre = genre;
-            item.CountryId = country_Id;
-            await _context.SaveChangesAsync();
-            return true;
+            return await _context.Items.ToListAsync();
         }
-
 
         public async Task<Item> GetItemById(int id)
         {
@@ -61,40 +49,6 @@ namespace ArchiveLogic.Items
             }
             return item;
         }
-
-        public async Task<bool> DeleteItem(int id)
-        {
-            var item = _context.Items.FirstOrDefault(g => g.Id == id);
-            if (item == null) return false;
-            _context.Items.Remove(item);
-            await _context.SaveChangesAsync();
-            return true;
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public async Task<IList<Item>> GetAllItems()
-        {
-            return await _context.Items.ToListAsync();
-        }
-
-        
         
         public async Task<Item> GetItemByName(string name)
         {
@@ -152,14 +106,76 @@ namespace ArchiveLogic.Items
             return items;
         }
 
+        public async Task DeleteItem(int id)
+        {
+            var item = await _context.Items.FirstOrDefaultAsync(g => g.Id == id);
+            if (item == null)
+            {
+                throw new Exception("Error,I can't Found,There is not item");
+            }
+            _context.Items.Remove(item);
+            _context.SaveChanges();
+        }
 
 
 
 
-
+        public async Task EditItemName(int id, string name)
+        {
+            var item = _context.Items.FirstOrDefault(g => g.Id == id);
+            if (item == null)
+            {
+                throw new Exception("Error,I can't Found,There is not item");
+            }
+            item.Name = name;
+            await _context.SaveChangesAsync();
+        }
         
+        public async Task EditItemYear(int id, int year)
+        {
+            var item = _context.Items.FirstOrDefault(g => g.Id == id);
+            if (item == null)
+            {
+                throw new Exception("Error,I can't Found,There is not item");
+            }
+            item.Year=year;
+            await _context.SaveChangesAsync();
 
-      
+        }
+        
+        public async Task EditItemGenre(int id, Genres genre)
+        {
+            var item = _context.Items.FirstOrDefault(g => g.Id == id);
+            if (item == null)
+            {
+                throw new Exception("Error,I can't Found,There is not item");
+            }
+            item.Genre = (Genres)genre;
+            await _context.SaveChangesAsync();
+        }
+        
+        public async Task EditItemField(int id, string field)
+        {
+            var item = _context.Items.FirstOrDefault(g => g.Id == id);
+            if (item == null)
+            {
+                throw new Exception("Error,I can't Found,There is not item");
+            }
+            item.Field = field;
+            await _context.SaveChangesAsync();
+        }
+        
+        public async Task EditItemDescription(int id, string description)
+        {
+            var item = _context.Items.FirstOrDefault(g => g.Id == id);
+            if (item == null)
+            {
+                throw new Exception("Error,I can't Found,There is not item");
+            }
+            item.Description= description;
+            await _context.SaveChangesAsync();
+
+        }
 
         
         

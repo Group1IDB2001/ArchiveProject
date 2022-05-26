@@ -1,5 +1,5 @@
 ﻿@{
-
+    ViewData["Title"] = "List of Authors";
     Pager pager = new Pager();
     int pageNo = 0;
     if(ViewBag.Pager != null)
@@ -12,20 +12,13 @@
     <meta charset="utf-8">
     <title>Авторы</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
-    <link rel="stylesheet" href="~/css/autor-style.css"/> 
+     <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
+     <link rel="stylesheet" href="~/css/autor-style.css"/> 
 </head>
 
-<style>
-
-
-</style>
-
-<body>
-    <h1>Наши Авторы</h1>
+<h1>Наши Авторы</h1>
 <table class="table">
     <tr>
-        
         <th>
             Полное имя
         </th>
@@ -38,15 +31,11 @@
         <th class="text-center">
             Немного о авторе
         </th>
-        <th>
-            
-        </th>
 
     </tr>
     @foreach(var author in Model)
     {
         <tr>
-            
             <td>@author.Name</td>
             <td>@author.Born</td>
             <td>@author.Death</td>
@@ -88,10 +77,8 @@
         </ul>
     }
    
-     <a asp-controller="Authors" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить нового автора</a>  
+     <a asp-controller="Authors" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить нового автора</a>
+   
 
 </div>
-
-</body>
-
 

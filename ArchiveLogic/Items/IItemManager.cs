@@ -9,23 +9,16 @@ namespace ArchiveLogic.Authors
 {
     public interface IItemManager
     {
-        Task<bool> AddItem(string name, string? description, int year, string? field, Genres genre, int country_Id);
+        Task<bool> AddItem(string name, string? description, int year, string? field, Genres genre, int countryId);
 
         Task<bool> FindItemByName(string name);
-
-        Task<bool> EditItem(int id, string name, string? description, int year, string? field, Genres genre, int country_Id);
-
-        Task<Item> GetItemById(int id);
-
-        Task<bool> DeleteItem(int id);
-
 
 
 
 
         Task<IList<Item>> GetAllItems();
 
-        
+        Task<Item> GetItemById(int id);
         Task<Item> GetItemByName(string name);
 
         Task<IList<Item>> GetItemsByYear(int year);
@@ -33,10 +26,14 @@ namespace ArchiveLogic.Authors
         Task<IList<Item>> GetItemsByGenre(Genres genre);
 
         Task<IList<Item>> GetItemsByField(string field);
+        Task DeleteItem(int id);
 
 
-
-
+        Task EditItemName(int id, string name);
+        Task EditItemYear(int id, int year);
+        Task EditItemGenre(int id, Genres genre);
+        Task EditItemField(int id, string field);
+        Task EditItemDescription(int id, string description);
         Task<IList<Item>> GetItemsByAuthorId (int authorId);
         Task<IList<Item>> GetItemsByAuthorName (string authorname);
         Task<IList<Item>> GetItemsByLanguage (int languageId);

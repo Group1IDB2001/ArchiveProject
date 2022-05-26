@@ -12,130 +12,45 @@
         <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 </head>
-
-<body>
-    <h1>Авторы предмета</h1>
-       <table class="table">
-        <tr>
-           <th>
-              Полное имя
-           </th>
-           <th>
-               Дата рождения
-           </th>
-           <th>
-              Дата смерти
-           </th>
-           <th class="text-center">
-               Немного о авторе
-           </th>
-
-       </tr>
-    @foreach(var author in Model)
-    {
-        <tr>
-            <td>@author.Name</td>
-            <td>@author.Born</td>
-            <td>@author.Death</td>
-            <td>@author.About</td>
-        </tr>
-    }
-</table>
-<div class="form-group">
-      <div class="col-md-offset-2 col-md-10">
-          @foreach(var author in Model)
-             {
-                <a class="btn btn-outline-secondary" asp-controller="Items" asp-action="ReyurntoItemPage" asp-route-id=@author.Id>Вернуться к предметам</a>
-                break;
-             }
-          
-      </div>
-</div>
+@*<div class="tm-main-content no-pad-b">
+    
+                
+<header>
+    <h2 class="tm-main-title">Авторы</h2>
+</header>
+<div class="tm-gallery">
+    <div class="row">
+           @foreach(var author in Model)
+           {
+               <figure class="col-lg-2 col-md-2 col-sm-3 col-3 tm-gallery-item">
+                   <a asp-area="" asp-controller="Author" asp-action="Details" asp-route-id=@author.Id>
+                      <p class="tm-figcaption">@author.Name</p>
+                      <bi></bi>
+                   </a>
+               </figure>
+           }
+    </div>
+                            
+</div>*@
 
 
-</body>
+<h1>Авторы предмета</h1>
+<table class="table">
+    <tr>
+        <th>
+            Полное имя
+        </th>
+        <th>
+            Дата рождения
+        </th>
+        <th>
+            Дата смерти
+        </th>
+        <th class="text-center">
+            Немного о авторе
+        </th>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@*@{
-    ViewData["Title"] = "AuthorPage";
-}
-<html lang="ru" dir="ltr">
-<head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Genres</title>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  
-        <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">               
-        <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-</head>
-
-<body>
-    <h1>Авторы предмета</h1>
-       <table class="table">
-        <tr>
-           <th>
-              Полное имя
-           </th>
-           <th>
-               Дата рождения
-           </th>
-           <th>
-              Дата смерти
-           </th>
-           <th class="text-center">
-               Немного о авторе
-           </th>
-
-       </tr>
+    </tr>
     @foreach(var author in Model)
     {
         <tr>
@@ -152,6 +67,4 @@
       </div>
 </div>
 
-
-</body>
-*@
+            

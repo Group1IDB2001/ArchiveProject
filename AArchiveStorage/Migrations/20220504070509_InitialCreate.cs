@@ -14,7 +14,7 @@ namespace ArchiveStorage.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Born = table.Column<int>(type: "int", nullable: false),
                     Death = table.Column<int>(type: "int", nullable: true),
                     About = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -56,7 +56,7 @@ namespace ArchiveStorage.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Role = table.Column<int>(type: "int", nullable: false)
@@ -72,7 +72,7 @@ namespace ArchiveStorage.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Year = table.Column<int>(type: "int", nullable: false),
                     Field = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -181,8 +181,8 @@ namespace ArchiveStorage.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LanguageId = table.Column<int>(type: "int", nullable: true),
-                    ItemId = table.Column<int>(type: "int", nullable: true)
+                    ItemId = table.Column<int>(type: "int", nullable: true),
+                    LanguageId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
