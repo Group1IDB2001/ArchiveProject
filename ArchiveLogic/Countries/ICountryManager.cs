@@ -13,6 +13,8 @@ namespace ArchiveLogic.Authors
         Task<Country> GetCountryById (int id);
         Task<Country> GetCountryByName (string name);
         Task DeleteCountry (int id);
-        
+
+        Task EditCountryName(int id, string name);
+
     }
 }

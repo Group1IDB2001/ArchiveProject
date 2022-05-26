@@ -63,5 +63,15 @@ namespace ArchiveLogic.Countries
             _context.Countries.Remove(country);
             await _context.SaveChangesAsync();
         }
+        public async Task EditCountryName(int id, string name)
+        {
+            var country = _context.Countries.FirstOrDefault(g => g.Id == id);
+            if (country == null)
+            {
+                throw new Exception("Error,I can't found,There is not country");
+            }
+            country.Name = name;
+            await _context.SaveChangesAsync();
+        }
     }
 }
