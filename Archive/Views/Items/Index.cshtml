@@ -55,13 +55,13 @@
             @if(pager.CurrentPage < pager.TotalPages)
             {
                 <li class="page-item">
-                    <a class ="page-link" asp-controller="Items" asp-action="Index" asp-route-pg="@(pager.CurrentPage+1)"> Next </a>
+                    <a class ="page-link" asp-controller="Items" asp-action="Index" asp-route-pg="@(pager.CurrentPage+1)">Следующий</a>
                 </li>
                 <li>
-                     <a class ="page-link" asp-controller="Items" asp-action="Index" asp-route-pg=@(pager.CurrentPage -1)>Previous</a>
+                     <a class ="page-link" asp-controller="Items" asp-action="Index" asp-route-pg=@(pager.CurrentPage -1)>Предыдущий</a>
                 </li>
             }
         </ul>
     }
-       <a asp-controller="Items" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить нового Item</a>
+       <a asp-controller="Items" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить нового придмета</a>
 </div>

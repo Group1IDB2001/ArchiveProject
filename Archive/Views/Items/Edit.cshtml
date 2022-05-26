@@ -1,21 +1,19 @@
-﻿@model CreateItemRequest
-@using Archive.Models 
-<head>
-    <meta charset="utf-8">
-    <title>Добавить Item</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-     <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
-     <link rel="stylesheet" href="~/css/autor-style.css"/> 
-</head>
+﻿@model Item
+@{
+    ViewData["Title"] = "Edit Item";
+}
 
-<h1>Добавить Item</h1>
-@using (Html.BeginForm()) 
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        
+        <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -55,6 +53,7 @@
                 @Html.ValidationMessageFor(model => model.Genre, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -63,11 +62,12 @@
             </div>
         </div>
 
+
+
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                 <input type="submit" value="Create" class="btn btn-outline-success float-right" />
-                 <a class="btn btn-outline-secondary" asp-action="Index">вернуться к предметам</a>
-            </div>
+                 <input type="submit" value="Редактировать" class="btn btn-outline-success float-right"/>
+                 <a class="btn btn-outline-secondary" asp-action="ItemPage" asp-route-id=@Model.Id>вернуться к предмету</a>
         </div>
-    </div>          
+    </div>
 }
+

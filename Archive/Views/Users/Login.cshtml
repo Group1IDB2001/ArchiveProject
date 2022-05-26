@@ -1,4 +1,5 @@
-﻿@model CreateUserRequest
+﻿
+@model CreateUserRequest
 @{
     ViewBag.Title = "User";
     Layout = null;
@@ -8,29 +9,30 @@
     <meta charset="utf-8">
     <title>Вход</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
+    <link rel="stylesheet" href="~/css/tooplate-style.css"/>
    <link rel="stylesheet" href="~/css/login-style.css"/>
     
 </head>
 
-<div id="Пользователь">
-    <div class="container-fluid">
-        <div id="User-row" class="row justify-content-center aling-items-crnter">
-            <div id="User-column" class="col-md-6">
-                <div id="User-box" class="col-md-12 User-box-login">
+<body>
+
+<div class="container-fluid">
                     @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken()
+                        <div class="form-group">
                         <h3 class="text-center text-info">Авторизоваться</h3>
+                        </div>
                         <div class="form-group">
                             @Html.LabelFor(m=>m.Email ,new{@class = "text-info"})
                             @Html.TextBoxFor(m=>m.Email ,new{@class = "form-control"})
                             @Html.ValidationMessageFor(m=>m.Email,"",new{@class = "text-danger"})
                         </div>
                         <div class="form-group">
-                            @Html.LabelFor(m=>m.Password ,new{@class = "text-info"})
-                            @Html.TextBoxFor(m=>m.Password ,new{@class = "form-control"})
+                            @Html.LabelFor(m=>m.Password,"Пароль" ,new{@class = "text-info"})
+                            @Html.PasswordFor(m=>m.Password ,new{@class = "form-control"})
                             @Html.ValidationMessageFor(m=>m.Password,"",new{@class = "text-danger"})
+
                         </div>
                         <div class="form-group">
                             <input type="submit" name="submit" class="btn btn-info btn-md" value="Login" />
@@ -39,13 +41,10 @@
                             <a class="Register" href="/Users/Register">У вас нет аккаунта? Зарегестрируйтесь<br></a>
                         </div>
                     }
-                </div>
-            </div>
-        </div>
-    </div>
+               
 </div>
 
-
+</body>
 
 
 
