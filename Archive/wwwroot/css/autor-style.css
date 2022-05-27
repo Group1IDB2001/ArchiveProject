@@ -3,12 +3,17 @@ body {
     margin: 20px auto; /* Убираем отступы */
     height: 100%;
 }
+.form-group1{
+    height:200px;
+}
 
 .form-horizontal {
     width: 100%;
     padding: 40px;
     text-align: center;
 }
+
+
 
 .col-md-10 {
     margin: 20px auto;

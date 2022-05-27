@@ -154,6 +154,21 @@ namespace Archive.Controllers
             return RedirectToAction("ItemPage", new { Id = items[0].Id });
         }
 
+
+        public async Task<IActionResult> Searching (string searching)
+        {
+            var items = await _manager.GetItemByName(searching);
+            if(items.Count() == 0)
+            {
+                items = await _manager.GetItemsByAuthorName(searching);
+            }
+            return View(items);
+
+        }
+
+
+
+
         //[HttpGet]
         //[Route("Items")]
         //public async Task<IList<Item>> GetAllAuthors() => await _manager.GetAllItems();
