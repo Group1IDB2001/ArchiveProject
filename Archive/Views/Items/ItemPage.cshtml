@@ -29,7 +29,7 @@
                <p class="tm-margin-b-p"> <a asp-area="" asp-controller="Authors" asp-action="AuthorPage" asp-route-id=@Model.Id class="tm-blue-text">Авторы</a></p>
                <p class="tm-margin-b-p"> <a asp-area="" asp-controller="Tags" asp-action="TagPage" asp-route-id=@Model.Id class="tm-blue-text">Теги</a></p>
                <p class="tm-blue-text tm-margin-b">Рейтинг: <a href="#" class="tm-blue-text">#avgrating</a></p>
-               <a href="#" class="tm-btn tm-btn-gray tm-margin-r-20 tm-margin-b-s">Нравится</a><a href="#" class="tm-btn tm-btn-blue">Комментарии</a>
+               <a asp-area="" asp-controller="Like" asp-action="AddLikes" asp-route-id=@Model.Id class="tm-btn tm-btn-gray tm-margin-r-20 tm-margin-b-s">Нравится</a><a href="#" class="tm-btn tm-btn-blue">Комментарии</a>
        </div>
     </section>
 </div>

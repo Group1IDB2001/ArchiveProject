@@ -12,35 +12,55 @@ namespace Archive.Controllers
             _manager = manager;
         }
         [HttpGet]
-        
-        public async Task<IActionResult> CollectionsPage(int id)
+        [Route("collection")]
+        public async Task<IActionResult> Index(int pg = 1)
         {
+            var items = await _manager.GetAllCollection();
+            int counter = items.Count();
+            const int pagesize = 12;
+            if (pg < 1) pg = 1;
 
-            var col = _manager.GetCollectionsByUsreId(id);
-            var data = col;
+            var pager = new Pager(counter, pg, pagesize);
+
+            int recSkip = (pg - 1) * pagesize;
+
+            var data = items.Skip(recSkip).Take(pager.PageSize).ToList();
+
+            this.ViewBag.Pager = pager;
+
             return View(data);
         }
 
+        [HttpGet]
+        //
+        public async Task<IActionResult> CollectionsPage(int id)
+        {
+
+            var col = await _manager.GetCollectionsByUsreId(id);
+            return View(col);
+        }
+
+        
 
         [HttpPut]
-        [Route("collections")]
+        
         public async Task AddCollection([FromBody] CreateCollectionRequest request) => await _manager.AddCollection(request.Name, request.Description, request.UserId);
 
 
         [HttpGet]
-        [Route("collections")]
+        //[Route("collections")]
         public async Task<IList<Collection>> GetAllCollection() => await _manager.GetAllCollection();
 
         [HttpGet]
-        [Route("collections/{id:int}")]
+        //[Route("collections/{id:int}")]
         public async Task<Collection> GetCollectionById(int id) => await _manager.GetCollectionById(id);
 
         [HttpGet]
-        [Route("collections/{name}")]
+        //[Route("collections/{name}")]
         public async Task<Collection> GetCollectionByName(string name) => await _manager.GetCollectionByName(name);
 
         [HttpGet]
-        [Route("collections/userid/{usreid:int}")]
+        //[Route("collections/userid/{usreid:int}")]
         public async Task<IList<Collection>> GetCollectionsByUsreId(int usreid) => await _manager.GetCollectionsByUsreId(usreid);
 
 
@@ -49,26 +69,22 @@ namespace Archive.Controllers
 
 
         [HttpPut]
-        [Route("collections/name/{id}")]
+        //[Route("collections/name/{id}")]
         public async Task EditCollectionName(int id, [FromBody] CreateCollectionRequest request) => await _manager.EditCollectionName(id, request.Name);
 
         [HttpPut]
-        [Route("collections/description/{id}")]
+        //[Route("collections/description/{id}")]
         public async Task EditCollectionDescription(int id, [FromBody] CreateCollectionRequest request) => await _manager.EditCollectionDescription(id, request.Description);
 
         [HttpPut]
-        [Route("collections/userid/{id}")]
+        //[Route("collections/userid/{id}")]
         public async Task EditCollectionUserId(int id, [FromBody] CreateCollectionRequest request) => await _manager.EditCollectionUserId(id, request.UserId);
 
         [HttpDelete]
-        [Route("collections/{id:int}")]
+        //[Route("collections/{id:int}")]
         public async Task DeleteCollection(int id) => await _manager.DeleteCollection(id);
 
 
 
-        public IActionResult Index()
-        {
-            return View();
-        }
     }
 }

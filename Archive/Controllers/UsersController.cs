@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-
 namespace Archive.Controllers
+
 {
     [AllowAnonymous]
     public class UsersController : Controller
@@ -30,6 +30,7 @@ namespace Archive.Controllers
         {
 
             var user = await _manager.GetUserByEmail(_email);
+            GlobalData.uid = user.Id;
             return View(user);
         }
 

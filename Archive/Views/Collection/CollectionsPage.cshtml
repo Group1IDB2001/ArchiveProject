@@ -23,13 +23,11 @@
                         @foreach(var collection in Model)
                             {
                                     <figure class="col-lg-2 col-md-2 col-sm-3 col-3 tm-gallery-item">
-                                        <a asp-area="" asp-controller="Collections" asp-action="Collection" asp-route-id=@collection.Id>
+                                        <a asp-area="" asp-controller="CollectionItem" asp-action="ShowItems" asp-route-id=@collection.Id>
                             
                                             <p class="tm-figcaption">@collection.Name</p>
                                         </a>
                                     </figure>
-                            
-        
 
                             }
     </div>
