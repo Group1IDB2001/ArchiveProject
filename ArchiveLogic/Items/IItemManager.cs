@@ -25,8 +25,8 @@ namespace ArchiveLogic.Authors
 
         Task<IList<Item>> GetAllItems();
 
-        
-        Task<Item> GetItemByName(string name);
+
+        Task<IList<Item>> GetItemByName(string name);
 
         Task<IList<Item>> GetItemsByYear(int year);
 
