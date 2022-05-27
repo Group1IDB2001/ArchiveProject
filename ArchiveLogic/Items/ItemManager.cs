@@ -72,7 +72,54 @@ namespace ArchiveLogic.Items
 
         }
 
+        public async Task<IList<Item>> GetItemByName(string name)
+        {
+            var items = await _context.Items.Where(g => g.Name.StartsWith(name) || name == null).ToListAsync();
+            return items;
+        }
+        public async Task<IList<Item>> GetItemsByAuthorName(string authorname)
+        {
+            List<Item> items = new List<Item>();
+            //var author = await _context.Authors.FirstOrDefaultAsync(g => g.Name == authorname);
+            var authors = await _context.Authors.Where(g => g.Name.StartsWith(authorname) || authorname == null).ToListAsync();
+            if (authors.Count() == 0)
+            {
+                items = null;
+                return items;
+                //throw new Exception("Error,I can't Found,There is not author with this name");
+            }
+            List<ItemAuthor> itemauthors = new List<ItemAuthor>();
+            foreach (var itemauthor in _context.ItemAuthors)
+            {
+                foreach(var author in authors)
+                {
+                    if (itemauthor.AuthorId == author.Id) 
+                    {
+                        itemauthors.Add(itemauthor);
+                        goto tx;
+                    }
+                    
+                }
+                
+            }
+            tx:
+            if (itemauthors.Count == 0)
+            {
+                items = null;
+                return items;
+                //throw new Exception("Error,I can't found,No authors belongs to this item");
+            }
 
+            foreach (var item in _context.Items)
+            {
+                for (int i = 0; i < itemauthors.Count; i++)
+                {
+                    if (itemauthors[i].ItemId == item.Id) items.Add(item);
+                }
+            }
+            return items;
+
+        }
 
 
 
@@ -96,16 +143,7 @@ namespace ArchiveLogic.Items
 
         
         
-        public async Task<Item> GetItemByName(string name)
-        {
-            var item = await _context.Items.FirstOrDefaultAsync(g => g.Name == name);
-            if (item == null)
-            {
-                throw new Exception("Error,I can't Found,There is not item");
-            }
-            return item;
-
-        }
+        
         
         public async Task<IList<Item>> GetItemsByYear(int year)
         {
@@ -192,33 +230,7 @@ namespace ArchiveLogic.Items
             return items;
         }
         
-        public async Task<IList<Item>> GetItemsByAuthorName(string authorname)
-        {
-            var author = await _context.Authors.FirstOrDefaultAsync(g => g.Name == authorname);
-            if (author == null)
-            {
-                throw new Exception("Error,I can't Found,There is not author with this name");
-            }
-            List<ItemAuthor> itemauthors = new List<ItemAuthor>();
-            foreach (var itemauthor in _context.ItemAuthors)
-            {
-                if (itemauthor.AuthorId == author.Id) itemauthors.Add(itemauthor);
-            }
-            if (itemauthors.Count == 0)
-            {
-                throw new Exception("Error,I can't found,No authors belongs to this item");
-            }
-            List<Item> items = new List<Item>();
-            foreach (var item in _context.Items)
-            {
-                for (int i = 0; i < itemauthors.Count; i++)
-                {
-                    if (itemauthors[i].ItemId == item.Id) items.Add(item);
-                }
-            }
-            return items;
-
-        }
+       
         
         public async Task AddAuthorToItem (int itemid, int authorid)
         {
