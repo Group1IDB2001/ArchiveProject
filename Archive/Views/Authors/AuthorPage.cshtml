@@ -1,20 +1,16 @@
-﻿@{
-    ViewData["Title"] = "AuthorPage";
-}
-<html lang="ru" dir="ltr">
+﻿<html lang="ru" dir="ltr">
 <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Genres</title>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  
-        <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">               
-        <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
+        <title>AuthorPage</title>
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+     <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
+     <link rel="stylesheet" href="~/css/autor-style.css"/> 
 </head>
 
 <body>
-    <h1>Авторы предмета</h1>
+    <h1>Авторы книги</h1>
        <table class="table">
         <tr>
            <th>
@@ -45,7 +41,7 @@
       <div class="col-md-offset-2 col-md-10">
           @foreach(var author in Model)
              {
-                <a class="btn btn-outline-secondary" asp-controller="Items" asp-action="ReyurntoItemPage" asp-route-id=@author.Id>Вернуться к предметам</a>
+                <a class="btn btn-outline-secondary" asp-controller="Items" asp-action="ReyurntoItemPage" asp-route-id=@author.Id>Вернуться к каталогу</a>
                 break;
              }
           

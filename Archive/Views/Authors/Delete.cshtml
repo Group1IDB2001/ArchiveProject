@@ -1,45 +1,63 @@
 ﻿@model Author
-@{
-    ViewBag.Title = "Delete Author";
-}
+
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Delete Author</title>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+     <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
+     <link rel="stylesheet" href="~/css/autor-style.css"/> 
+</head>
+
 <div class="row text">
-	<div class="col-md-8 offset-2">
+	
 		<p>
-			<h1>Details confirmation for author </h1>
+			<h1>Подтверждение удаления автора</h1>
 		</p>
-		<div class="row">
-			<div class="col-md-8 offset-2">
+		
+			<div class="form-horizontal">
+
 				<div class="form-group">
 					<label asp-for="@Model.Name" class="control-lable"></label>
+					<div class="col-md-10">
 					<input asp-for="Name" class="form-control" readonly />
 					<span asp-validation-for="Name" class="text-danger"></span>
+					</div>
 				</div>
 				<div class="form-group">
 					<label asp-for="Born" class="control-lable"></label>
+					<div class="col-md-10">
 					<input asp-for="Born" class="form-control" readonly />
 					<span asp-validation-for="Born" class="text-danger"></span>
+					</div>
 				</div>
 				<div class="form-group">
 					<label asp-for="Death" class="control-lable"></label>
+					<div class="col-md-10">
 					<input asp-for="Death" class="form-control" readonly />
 					<span asp-validation-for="Death" class="text-danger"></span>
+					</div>
 				</div>
 				<div class="form-group">
 					<label asp-for="About" class="control-lable"></label>
+					<div class="col-md-10">
 					<input asp-for="About" class="form-control" readonly />
 					<span asp-validation-for="About" class="text-danger"></span>
+					</div>
 				</div>
 
 				<div class="form-group">
 					<form asp-action="Delete">
 						<input type="hidden" asp-for="Id"/>
-						<input type="submit" value="Confirm" class="btn btn-danger float-right"  />
+						<input type="submit" value="Подтвердить" class="btn btn-danger float-right"  />
+						<a class="btn btn-outline-secondary" asp-action="Index">Вернуться к каталогу</a>
 					</form>
-					<a class="btn btn-outline-secondary" asp-action="Index">Show All</a>
+					
 
 				</div>
 
 			</div>
-		</div>
-	</div>
+		
+	
 </div>
