@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "List of Items";
+    ViewData["Title"] = "Каталог";
     Pager pager = new Pager();
     int pageNo = 0;
     if(ViewBag.Pager != null)
@@ -13,7 +13,7 @@
 <html lang="ru" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <title>Авторы</title>
+    <title>Каталог</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
@@ -23,7 +23,7 @@
     <h2 class="tm-main-title">Каталог</h2>
     @using (Html.BeginForm("Searching","Items",FormMethod.Get))
      {
-	   @Html.TextBox("searching")<input type="submit" value="Search" />
+	   @Html.TextBox("searching")<input type="submit" value="Поиск" />
      }
 
 </header>
@@ -37,7 +37,7 @@
             <figure class="col-lg-2 col-md-2 col-sm-3 col-6 tm-gallery-item">
                   <a asp-area="" asp-controller="Items" asp-action="ItemPage" asp-route-id=@item.Id>
                         <div class="tm-gallery-item-overlay">
-                            <img src="img/cover.jpg" alt="Image" class="img-fluid tm-img-center">
+                            <img src="~/img/cover.jpg" alt="Image" class="img-fluid tm-img-center">
                         </div>
 
                         <p class="tm-figcaption">@item.Name</p>
