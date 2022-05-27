@@ -20,7 +20,17 @@
         <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
        
     </head>
-<header>
+    <style>
+        a{
+         margin-left:20px;
+       }
+       .header_small{
+            margin-left:20px;
+             margin-top:20px;
+       }
+    </style>
+    
+<header class="header_small">
     <h2 class="tm-main-title">Каталог</h2>
 </header>
 <div class="tm-gallery">
@@ -29,7 +39,7 @@
     {
         
         
-            <figure class="col-lg-2 col-md-2 col-sm-3 col-6 tm-gallery-item">
+            <figure class="col-lg-1,5 col-md-1,5 col-sm-3 col-5 tm-gallery-item">
                   <a asp-area="" asp-controller="Items" asp-action="ItemPage" asp-route-id=@item.Id>
                         <div class="tm-gallery-item-overlay">
                             <img src="~/img/cover.jpg" alt="Image" class="img-fluid tm-img-center">
@@ -77,8 +87,8 @@
     </div>*@
 
     }
-                <li>
-                     <a asp-controller="Items" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Add New Item</a>
-                </li>
+                
+                     <a asp-controller="Items" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить книгу</a>
+               
 
 </div>
