@@ -17,6 +17,9 @@ using ArchiveLogic.Users;
 using ArchiveStorage;
 using Microsoft.EntityFrameworkCore;
 
+
+
+
 var builder = WebApplication.CreateBuilder(args);
 var services  = builder.Services;
 
@@ -41,7 +44,6 @@ services.AddScoped<IQestionManager, QestionManager>();
 services.AddScoped<IReactionManager, ReactionManager>();
 services.AddScoped<IResponseManager, ResponseManager>();
 services.AddScoped<ISaveManager, SaveManager>();
-
 
 
 var app = builder.Build();
