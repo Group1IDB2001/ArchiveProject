@@ -16,9 +16,14 @@ namespace Archive.Controllers
         {
             var lis = await _manager.GetItemCollectionByCollection(id);
             GlobalData.ids.Clear();
+            int ii;
             foreach(var col in lis)
             {
-                GlobalData.ids.Add(col.Id);
+                if (col.ItemId != null)
+                {
+                        ii = ((int)col.ItemId);
+                        GlobalData.ids.Add(ii); 
+                }
             }
             return Redirect("/Items/ItemsIn");
         }

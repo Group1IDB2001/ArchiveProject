@@ -32,8 +32,9 @@ namespace Archive.Controllers
         }
 
 
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
+            GlobalData.qid = id;
             return View();
         }
 

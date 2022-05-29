@@ -30,6 +30,7 @@
                   <a asp-area="" asp-controller="Response" asp-action="Index" asp-route-id=@qestion.Id>
                         <p class="tm-figcaption">@qestion.Text</p>
                   </a>
+                  <a asp-controller="Response" asp-action="Create" asp-route-id=@qestion.Id class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить ответ</a>
             </figure>
         
 
@@ -59,5 +60,5 @@
             }
         </ul>
     }
-       <a asp-controller="Qestion" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить коллекцию</a>
+       <a asp-controller="Qestion" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить</a>
 </div>

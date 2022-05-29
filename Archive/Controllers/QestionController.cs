@@ -32,7 +32,10 @@ namespace Archive.Controllers
 
             return View(data);
         }
-
+        public IActionResult Create()
+        {
+            return View();
+        }
 
         [HttpPut]
         [Route("questions")]
@@ -54,5 +57,13 @@ namespace Archive.Controllers
         [Route("questions/qestionid/{qestionid:int}")]
         public async Task EditQestion(int qestionid, [FromBody] CreateQestionRequest request) => await _manager.EditQestion(qestionid,request.Text);
 
+        [HttpPost]
+        public async Task<IActionResult> Create(Qestion qestion)
+        {
+            qestion.UserId = GlobalData.uid;
+            await _manager.AddQestion(qestion.UserId, qestion.Text);
+            
+            return RedirectToRoute(new { controller = "Qestion", action = "Index" });
+        }
     }
 }
