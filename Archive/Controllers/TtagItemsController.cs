@@ -12,6 +12,18 @@ namespace Archive.Controllers
             _manager = manager;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> ItemsByTag(int id)
+        {
+            var lis = await _manager.GetByTtag(id);
+            GlobalData.ids = new List<int>();
+            foreach (var col in lis)
+            {
+                GlobalData.ids.Add(col.Id);
+            }
+            return Redirect("/Items/ItemsIn");
+        }
+
         [HttpPut]
         [Route("Ttagitems")]
         public async Task AddTtagToItem([FromBody] CreateTtagItemRequest request) => await _manager.AddTtagToItem(request.ItemId, request.TtagId);

@@ -1,6 +1,5 @@
 ﻿@{
     ViewData["Title"] = "TagPage";
-    Layout = null;
 }
 
 <html lang="ru" dir="ltr">
@@ -25,7 +24,7 @@
                         @foreach(var tag in Model)
                             {
                                 <figure class="col-lg-2 col-md-2 col-sm-3 col-3 tm-gallery-item">
-                                    <a asp-area="" asp-controller="Tag" asp-action="Details" asp-route-id=@tag.Id>
+                                    <a asp-area="" asp-controller="TtagItems" asp-action="ItemsByTag" asp-route-id=@tag.Id>
                             
                                         <p class="tm-figcaption">@tag.Name</p>
                                     </a>

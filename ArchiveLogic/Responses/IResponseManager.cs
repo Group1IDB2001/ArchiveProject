@@ -9,7 +9,7 @@ namespace ArchiveLogic.Responses
     public interface IResponseManager
     {
         Task<bool> AddResponse(int? userid, int? qestionid, string text, int? itemid, int? collectionid);
-        Task<bool> FindResponse(string name, int born);
+        Task<bool> FindResponse(int? userid, int? qestionid);
 
 
 
