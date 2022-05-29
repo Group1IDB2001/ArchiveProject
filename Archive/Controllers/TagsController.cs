@@ -24,7 +24,6 @@ namespace Archive.Controllers
         public async Task<IActionResult> PickTag(int id)
         {
             var tags = await _manager.GetAllTtags();
-
             return View(tags);
         }
 

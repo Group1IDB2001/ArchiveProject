@@ -39,7 +39,7 @@ namespace Archive.Controllers
             var authors = await _manager.GetAllAuthors();
             return View(authors);
         }
-            public IActionResult Create()
+        public IActionResult Create()
         {
             return View();
         }

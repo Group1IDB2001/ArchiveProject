@@ -21,15 +21,14 @@
 </header>
 <div class="tm-gallery">
     <div class="row">
-                        @foreach(var tag in Model)
-                            {
-                                <figure class="col-lg-2 col-md-2 col-sm-3 col-3 tm-gallery-item">
-                                    <a asp-area="" asp-controller="TtagItems" asp-action="AddTagToItem" asp-route-id=@tag.Id>
-                            
-                                        <p class="tm-figcaption">@tag.Name</p>
-                                    </a>
-                                </figure>
-                            }
+         @foreach(var tag in Model)
+            {
+                <figure class="col-lg-2 col-md-2 col-sm-3 col-3 tm-gallery-item">
+                       <a asp-area="" asp-controller="TtagItems" asp-action="AddTagToItem" asp-route-id=@tag.Id>
+                             <p class="tm-figcaption">@tag.Name</p>
+                       </a>
+                </figure>
+            }
     </div>
                             
 </div>
