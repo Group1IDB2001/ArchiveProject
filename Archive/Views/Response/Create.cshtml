@@ -15,7 +15,13 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        
+                @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = @GlobalData.uid } })
+                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = @GlobalData.uid })
+
+                 @Html.EditorFor(model => model.QestionId, new { htmlAttributes = new { @class = @GlobalData.qid } })
+                @Html.ValidationMessageFor(model => model.QestionId, "", new { @class = @GlobalData.qid })
+
+
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Text, "Текст", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -28,11 +34,7 @@
         
 
         
-                @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = @GlobalData.uid } })
-                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = @GlobalData.uid })
-
-                 @Html.EditorFor(model => model.QestionId, new { htmlAttributes = new { @class = @GlobalData.qid } })
-                @Html.ValidationMessageFor(model => model.QestionId, "", new { @class = @GlobalData.qid })
+                
            
         <div class="form-group">
             @Html.LabelFor(model => model.ItemId, "Номер книги",htmlAttributes: new { @class = "control-label col-md-2" })
