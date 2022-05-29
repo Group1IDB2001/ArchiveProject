@@ -24,20 +24,11 @@
     
     @foreach(var response in Model)
     {
-        
-        
-            
-                  
-                  <td class="tm-figcaption">@response.Text</td>
-                  
-                  <td class="aling-middle">
-                        
-                        <a asp-area="" asp-controller="Items" asp-action="ItemPage" asp-route-id=@response.ItemId class="btn btn-outline-info"><i class="bi bi-eye"></i>Книга</a>
-                        <a asp-area="" asp-controller="Collection" asp-action="CollectionDetail" asp-route-id=@response.CollectionId class="btn btn-outline-info"><i class="bi bi-trash"></i>Коллекция</a>
-                  </td>
-            
-        
-
+        <td class="tm-figcaption">@response.Text</td>          
+        <td class="aling-middle">
+             <a asp-area="" asp-controller="Items" asp-action="ItemPage" asp-route-id=@response.ItemId class="btn btn-outline-info"><i class="bi bi-eye"></i>Книга</a>
+             <a asp-area="" asp-controller="Collection" asp-action="CollectionDetail" asp-route-id=@response.CollectionId class="btn btn-outline-info"><i class="bi bi-trash"></i>Коллекция</a>
+        </td>
     }
     
 

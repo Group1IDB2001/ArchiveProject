@@ -1,15 +1,14 @@
-﻿@model CreateResponseRequest
-@using Archive.Models 
+﻿@model CreateReactionRequest
 <head>
     <meta charset="utf-8">
-    <title>Add response</title>
+    <title>новуая Комментария</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
      <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
      <link rel="stylesheet" href="~/css/autor-style.css"/> 
 </head>
 
 
-<h1>Add response</h1>
+<h1>Добавить новую Комментарию</h1>
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
@@ -26,24 +25,22 @@
         </div>
  
         <div class="form-group">
-            @Html.LabelFor(model => model.ItemId, "Номер книги",htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Rating, "Рейтинг",htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ItemId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ItemId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CollectionId, "Номер коллекции",htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CollectionId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CollectionId, "", new { @class = "text-danger" })
+                <select class = "form-control" style="text-align: center;" name="Rating" id="id" >
+                    <option value="1">Один</option>
+                    <option value="2">Два</option>
+                    <option value="3">Три</option>
+                    <option value="4">Четыре</option>
+                    <option value="5">Пять</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                 <input type="submit" value="Создать" class="btn btn-outline-success float-right" />
+                 <input type="submit" value="Добавить" class="btn btn-outline-success float-right" />
                  <a class="btn btn-outline-secondary" asp-action="Index">Вернуться к каталогу</a>
             </div>
         </div>

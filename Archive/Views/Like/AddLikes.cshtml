@@ -12,9 +12,10 @@
         <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 </head>
-<div class="tm-main-content no-pad-b">
-    
-                
+<div class="tm-main-content no-pad-b">            
                 <header>
     <h2 class="tm-main-title">Элемент сохранен в Избранном</h2>
 </header>
+<td class="aling-middle">
+     <a class="btn btn-outline-secondary" asp-controller="Items" asp-action="ItemPage" asp-route-Id="@Model">Вернуться к каталогу</a>
+</td>

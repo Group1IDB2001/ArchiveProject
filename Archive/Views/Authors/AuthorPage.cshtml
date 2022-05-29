@@ -9,7 +9,30 @@
      <link rel="stylesheet" href="~/css/autor-style.css"/> 
 </head>
 
-<body>
+<style>
+    .header_small {
+    margin-left: 20px;
+    margin-top: 20px;
+    }
+    a{
+        margin-left:20px;
+    }
+    h3{
+        color:red;
+        text-align:center;
+    }
+</style>
+
+@if(Model == null)
+{
+    <h3>По Вашему запросу ничего не найдено</h3>
+    <td class="aling-middle">
+         <a class="btn btn-outline-secondary" asp-controller="Items" asp-action="Index">Вернуться к каталогу</a>
+     </td> 
+}
+else
+{
+  <body>
     <h2>Авторы книги</h2>
        <table class="table">
         <tr>
@@ -50,6 +73,8 @@
 
 
 </body>
+}
+  
 
 
 
