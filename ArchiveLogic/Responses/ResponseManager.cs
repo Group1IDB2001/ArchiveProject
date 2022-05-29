@@ -31,9 +31,6 @@ namespace ArchiveLogic.Responses
                 if (collection == null) return false;
             }
 
-            var collectionitem = _context.CollectionItems.FirstOrDefault(c => c.CollectionId == collectionid && c.ItemId == itemid);
-            if (collectionitem == null) return false;
-
             var response_1 = _context.Responses.FirstOrDefault(n => n.UserId == userid && n.QestionId == qestionid);
             if (response_1 == null)
             {
