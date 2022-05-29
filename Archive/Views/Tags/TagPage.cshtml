@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IList<Ttag>
+@{
     ViewData["Title"] = "TagPage";
 }
 
@@ -13,6 +14,21 @@
         <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 </head>
+
+<style>
+    .header_small {
+    margin-left: 20px;
+    margin-top: 20px;
+    }
+    a{
+        margin-left:20px;
+    }
+    h3{
+        color:red;
+        text-align:center;
+    }
+</style>
+
 <div class="tm-main-content no-pad-b">
     
                 
@@ -21,17 +37,26 @@
 </header>
 <div class="tm-gallery">
     <div class="row">
-                        @foreach(var tag in Model)
-                            {
-                                <figure class="col-lg-2 col-md-2 col-sm-3 col-3 tm-gallery-item">
-                                    <a asp-area="" asp-controller="TtagItems" asp-action="ItemsByTag" asp-route-id=@tag.Id>
-                            
-                                        <p class="tm-figcaption">@tag.Name</p>
-                                    </a>
-                                </figure>
-                            }
+       @if(Model == null)
+       {
+                <h3>По Вашему запросу ничего не найдено</h3>
+       }
+            else
+            {
+                @foreach(var tag in Model)
+                    {
+                         <figure class="col-lg-2 col-md-2 col-sm-3 col-3 tm-gallery-item">
+                         <a asp-area="" asp-controller="TtagItems" asp-action="ItemsByTag" asp-route-id=@tag.Id>
+                           <p class="tm-figcaption">@tag.Name</p>
+                        </a>
+                    </figure>
+                    }
+            }
+            
     </div>
                             
 </div>
 
-            
+<td class="aling-middle">
+     <a class="btn btn-outline-secondary" asp-controller="Items" asp-action="Index">Вернуться к каталогу</a>
+</td>          
