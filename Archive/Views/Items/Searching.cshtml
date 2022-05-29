@@ -17,61 +17,42 @@
      <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
 </head>
 
-@*<table class="table table-striped" >
-	<thead>
-		<tr>
-			<th>Name</th>
-            <th>Description</th>
-            <th>Year</th>
-            <th>Genre</th>
-            <th>Field</th>
-		</tr>
-	</thead>
-    <tbody>
-        @if(Model == null)
-        {
-            <tr>
-                <td colspan="3" style="color:red">
-                    Не Соответствует Ни Одному Документу
-                </td>
-            </tr>
-        }
-        else
-        {
-            @foreach(var item in Model)
-            {
-                <tr>
-                    <td>@item.Name</td>
-                    <td>@item.Description</td>
-                    <td>@item.Year</td>
-                    <td>@item.Genre</td>
-                    <td>@item.Field</td>
-               </tr>
-            }
-            
-        }
-    </tbody>
-</table>*@
+<style>
+    .header_small {
+    margin-left: 20px;
+    margin-top: 20px;
+    }
+    a{
+        margin-left:20px;
+    }
+    h3{
+        color:red;
+        text-align:center;
+    }
+</style>
+
+<header class="header_small">
+    <h2 class="tm-main-title">Результаты поиска</h2>
+</header>
+
 
 
 <div class="tm-gallery">
     <div class="row">
         @if(Model == null)
         {
-            <tr>
-                <td colspan="3" style="color:red">
-                    Не Соответствует Ни Одному Документу
-                </td>
-            </tr>
+            
+                    <h3>По Вашему запросу ничего не найдено</h3>
+            
         }
         else
         {
             @foreach(var item in Model)
               {
-                   <figure class="col-lg-2 col-md-2 col-sm-3 col-6 tm-gallery-item">
+                   <figure class="col-lg-1,5 col-md-1,5 col-sm-3 col-6 tm-gallery-item">
                           <a asp-area="" asp-controller="Items" asp-action="ItemPage" asp-route-id=@item.Id>
                                 <div class="tm-gallery-item-overlay">
-                                    <img src="img/cover.jpg" alt="Image" class="img-fluid tm-img-center">
+                                    <img src="~/img/cover.jpg" alt="Image" class="img-fluid tm-img-center">
                                 </div>
                                 <p class="tm-figcaption">@item.Name</p>
                            </a>
@@ -108,20 +89,8 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 <td class="aling-middle">
-     <a class="btn btn-outline-secondary" asp-controller="Items" asp-action="Index">вернуться к предметам</a>
+     <a class="btn btn-outline-secondary" asp-controller="Items" asp-action="Index">Вернуться к каталогу</a>
 </td>
 
 
