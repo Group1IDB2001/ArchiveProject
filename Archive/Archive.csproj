@@ -70,4 +70,8 @@
     <ProjectReference Include="..\ArchiveLogic\ArchiveLogic.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Qestion\" />
+  </ItemGroup>
+
 </Project>
