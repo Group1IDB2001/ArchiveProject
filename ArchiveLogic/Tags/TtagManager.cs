@@ -91,7 +91,8 @@ namespace ArchiveLogic.Tag
             }
             if (TtagItems.Count == 0)
             {
-                throw new Exception("Error,I can't found,No tags belongs to this item");
+                Ttags = null;
+                return Ttags;
             }
             else
             {

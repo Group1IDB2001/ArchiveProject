@@ -14,13 +14,13 @@ namespace ArchiveLogic.Likes
             _context = context;
         }
 
-        public async Task AddLike(int? userid, int? itemid)
+        public async Task<bool> AddLike(int? userid, int? itemid)
         {
             var item = _context.Items.FirstOrDefault(C => C.Id == itemid);
-            if (item == null) throw new Exception("There is not Item with the same Id");
+            if (item == null) return false;
 
             var user = _context.Users.FirstOrDefault(u => u.Id == userid);
-            if(user == null) throw new Exception("There is not User with the same Id");
+            if(user == null) return false;
 
             var like_1 =  _context.Likes.FirstOrDefault(n => n.UserId == userid && n.ItemId == itemid);
             if (like_1 == null)
@@ -29,10 +29,11 @@ namespace ArchiveLogic.Likes
 
                 _context.Likes.Add(like);
                 await _context.SaveChangesAsync();
+                return true;
             }
             else
             {
-                throw new Exception("There is Like with the same Id");
+                return false;
             }
         }
 

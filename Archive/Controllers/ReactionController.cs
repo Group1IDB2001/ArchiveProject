@@ -13,41 +13,64 @@ namespace Archive.Controllers
             _manager = manager;
         }
 
-        [HttpPut]
-        [Route("reactions")]
-        public async Task AddReaction([FromBody] CreateReactionRequest request) => await _manager.AddReaction(request.UserId, request.ItemId, request.Rating, request.Text);
 
-
-        [HttpGet]
-        [Route("reactions")]
-        public async Task<IList<Reaction>> GetAllReactions() => await _manager.GetAllReactions();
-
-        [HttpGet]
-        [Route("reactions/itemid/{itemid}")]
-        public async Task<IList<Reaction>> GetByItem(int itemid) => await _manager.GetByItem(itemid);
-
-
-        [HttpGet]
-        [Route("reactions/userid/{userid}")]
-        public async Task<IList<Reaction>> GetByUser(int userid) => await _manager.GetByUser(userid);
-
-
-        [HttpDelete]
-        [Route("reactions/{reactionid}")]
-        public async Task DeleteReaction(int reactionid) => await _manager.DeleteReaction(reactionid);
-
-
-        [HttpPut]
-        [Route("reactions/text/{reactionid}")]
-        public async Task EditReactionText(int reactionid, [FromBody] CreateReactionRequest request) => await _manager.EditReactionText(reactionid, request.Text);
-
-        [HttpPut]
-        [Route("reactions/rating/{reactionid}")]
-        public async Task EditReactionRating(int reactionid, [FromBody] CreateReactionRequest request) =>  await _manager.EditReactionRating(reactionid, request.Rating);
-
-        public IActionResult Index()
+        public async Task<IActionResult> Index(int id, int pg = 1)
         {
+            var reactions = await _manager.GetByItem(id);
+
+            if (reactions == null)
+            {
+                GlobalData.iid = id;
+                return View(reactions);
+            }
+            else
+            {
+                GlobalData.iid = id;
+
+                int counter = reactions.Count();
+
+                const int pagesize = 12;
+
+                if (pg < 1) pg = 1;
+
+                var pager = new Pager(counter, pg, pagesize);
+
+                int recSkip = (pg - 1) * pagesize;
+
+                var data = reactions.Skip(recSkip).Take(pager.PageSize).ToList();
+
+                this.ViewBag.Pager = pager;
+
+                return View(data);
+            }
+
+        }
+
+        public IActionResult Create(int id)
+        {
+            GlobalData.iid = id;
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Reaction reaction)
+        {
+
+            reaction.UserId = GlobalData.uid;
+            reaction.ItemId = GlobalData.iid;
+            var reac = await _manager.AddReaction(reaction.UserId, reaction.ItemId, reaction.Rating, reaction.Text);
+            if (reac)
+                return RedirectToAction("Index", new { Id = reaction.ItemId });
+            else
+            {
+                var reac_1 = await _manager.FindReaction(reaction.UserId, reaction.ItemId);
+                if (reac_1) ModelState.AddModelError("", "Reaction is already existing,No more than one can be added");
+            }
+            return View();
+        }
+
+
+
+
     }
 }

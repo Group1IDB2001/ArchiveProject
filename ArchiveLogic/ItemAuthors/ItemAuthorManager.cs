@@ -12,13 +12,13 @@
             return await _context.ItemAuthors.ToListAsync();
         }
         
-        public async Task AddItemAuthor(int? authorId, int? itemId)
+        public async Task<bool> AddItemAuthor(int? authorId, int? itemId)
         {
             var item = _context.Items.FirstOrDefault(i => i.Id == itemId);
-            if (item == null) throw new Exception("There is not Item with the same Id");
+            if (item == null) return false;
 
             var author = _context.Items.FirstOrDefault(a => a.Id == authorId);
-            if (author == null) throw new Exception("There is not Author with the same Id");
+            if (author == null) return false;
 
             var itemAuthor_1 = _context.ItemAuthors.FirstOrDefault(x => x.AuthorId == authorId && x.ItemId == itemId);
             if(itemAuthor_1 == null)
@@ -26,10 +26,11 @@
                 var itemAuthor = new ItemAuthor { AuthorId = authorId, ItemId = itemId };
                 _context.ItemAuthors.Add(itemAuthor);
                 await _context.SaveChangesAsync();
+                return true;
             }
             else
             {
-                throw new Exception("There is Item_Author with the same Id");
+                return false;
             }
         }
 

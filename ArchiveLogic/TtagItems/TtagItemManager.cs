@@ -15,13 +15,13 @@ namespace ArchiveLogic.TtagItems
             _context = context;
         }
 
-        public async Task AddTtagToItem(int? itemId, int? ttagId)
+        public async Task<bool> AddTtagToItem(int? itemId, int? ttagId)
         {
             var item = _context.Items.FirstOrDefault(i => i.Id == itemId);
-            if (item == null) throw new Exception("There is not Item with the same Id");
+            if (item == null) return false;
 
             var tag = _context.Ttags.FirstOrDefault(i => i.Id == ttagId);
-            if (tag == null) throw new Exception("There is not Tag with the same Id");
+            if (tag == null) return false;
 
             var ttagitem_1 = _context.TtagsItems.FirstOrDefault(t => t.TtagId == ttagId &&  t.ItemId == itemId);
             if(ttagitem_1 == null)
@@ -29,10 +29,11 @@ namespace ArchiveLogic.TtagItems
                 var ttagitem = new TtagItem { ItemId = itemId, TtagId = ttagId };
                 _context.TtagsItems.Add(ttagitem);
                 await _context.SaveChangesAsync();
+                return true;
             }
             else
             {
-                throw new Exception("There is Ttagitem with the same Id");
+                return false;
             }
         }
 

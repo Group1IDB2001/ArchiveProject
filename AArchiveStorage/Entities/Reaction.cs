@@ -13,7 +13,6 @@ namespace ArchiveStorage.Entities
         public string? Text { get; set; }
         public int Rating { get; set; }
 
-        
         public int? ItemId { get; set; }
         //[ForeignKey(nameof(ItemId))]
         public virtual Item Item { get; set; }

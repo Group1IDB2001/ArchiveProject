@@ -7,22 +7,22 @@ namespace ArchiveStorage.Entities
 {
     public enum Genres
     {
-        no_info = 0,
-        drama = 1,
-        fantasy = 2,
-        literary_fiction = 3,
-        novel = 4,
-        poetry = 5,
-        folklore = 6,
-        historical = 7,
-        horror = 8,
-        thriller = 9,
-        realism = 10,
-        science_fiction = 11,
-        humor = 12,
-        biography = 13,
-        essay = 14,
-        documentary_literature = 15
+        нет_информации = 0,
+        Драма = 1,
+        Фэнтези = 2,
+        Проза = 3,
+        Роман = 4,
+        Поэзия = 5,
+        Фольклор = 6,
+        Историческая_проза = 7,
+        Ужасы = 8,
+        Триллер = 9,
+        Реализм = 10,
+        Научная_фантастика = 11,
+        Юмор = 12,
+        Биография = 13,
+        Эссе = 14,
+        Предметная_литература = 15
     }
 
     public class Item

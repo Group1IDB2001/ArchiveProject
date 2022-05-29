@@ -75,7 +75,8 @@ namespace ArchiveLogic.Authors
             }
             if (itemauthors.Count == 0)
             {
-                throw new Exception("Error,I can't found,No authors belongs to this item");
+                authors = null;
+                return authors;
             }
             else
             {
