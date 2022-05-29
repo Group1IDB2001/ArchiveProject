@@ -12,8 +12,6 @@ namespace Archive.Controllers
             _manager = manager;
         }
 
-        [HttpGet]
-        [Route("Response")]
         public async Task<IActionResult> Index(int id,int pg = 1)
         {
             var items = await _manager.GetResponseByQestion(id);
@@ -42,19 +40,17 @@ namespace Archive.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Response response)
         {
-            if (ModelState.IsValid)
-            {
+
                 response.UserId = GlobalData.uid;
                 response.QestionId = GlobalData.qid;
                 var respo = await _manager.AddResponse(response.UserId, response.QestionId, response.Text, response.ItemId,response.CollectionId);
                 if (respo)
-                    return Redirect("Index");
-                else
+                    return RedirectToRoute(new { controller = "Qestion", action = "Index" });
+            else
                 {
                     var respo_1 = await _manager.FindResponse(response.UserId, response.QestionId);
                     if (respo_1) ModelState.AddModelError("", "Response is already existing");
                 }
-            }
             return View();
         }
 
@@ -91,9 +87,9 @@ namespace Archive.Controllers
 
 
 
-        [HttpDelete]
-        [Route("responses/{responseId}")]
-        public async Task DeleteResponse(int responseId) => await _manager.DeleteResponse(responseId);
+        //[HttpDelete]
+        //[Route("responses/{responseId}")]
+        //public async Task DeleteResponse(int responseId) => await _manager.DeleteResponse(responseId);
 
 
 
@@ -106,21 +102,21 @@ namespace Archive.Controllers
 
 
 
-        [HttpPut]
-        [Route("responses/edit/{responseId}")]
-        public async Task EditResponse(int responseId, [FromBody] CreateResponseRequest request) =>await _manager.EditResponse(responseId, request.Text, request.ItemId, request.CollectionId);
+        //[HttpPut]
+        //[Route("responses/edit/{responseId}")]
+        //public async Task EditResponse(int responseId, [FromBody] CreateResponseRequest request) =>await _manager.EditResponse(responseId, request.Text, request.ItemId, request.CollectionId);
 
-        [HttpPut]
-        [Route("responses/text/{responseId}")]
-        public async Task EditResponseText(int responseId, [FromBody] CreateResponseRequest request) => await _manager.EditResponseText(responseId, request.Text);
+        //[HttpPut]
+        //[Route("responses/text/{responseId}")]
+        //public async Task EditResponseText(int responseId, [FromBody] CreateResponseRequest request) => await _manager.EditResponseText(responseId, request.Text);
 
-        [HttpPut]
-        [Route("responses/item/{responseId}")]
-        public async Task EditResponseItem(int responseId, [FromBody] CreateResponseRequest request) => await _manager.EditResponseItem(responseId, request.ItemId);
+        //[HttpPut]
+        //[Route("responses/item/{responseId}")]
+        //public async Task EditResponseItem(int responseId, [FromBody] CreateResponseRequest request) => await _manager.EditResponseItem(responseId, request.ItemId);
 
-        [HttpPut]
-        [Route("responses/collection/{responseId}")]
-        public async Task EditResponseCollection(int responseId, [FromBody] CreateResponseRequest request) => await _manager.EditResponseCollection(responseId, request.CollectionId);
+        //[HttpPut]
+        //[Route("responses/collection/{responseId}")]
+        //public async Task EditResponseCollection(int responseId, [FromBody] CreateResponseRequest request) => await _manager.EditResponseCollection(responseId, request.CollectionId);
 
 
 
