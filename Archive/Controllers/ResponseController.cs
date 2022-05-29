@@ -12,6 +12,26 @@ namespace Archive.Controllers
             _manager = manager;
         }
 
+        [HttpGet]
+        [Route("Response")]
+        public async Task<IActionResult> Index(int id,int pg = 1)
+        {
+            var items = await _manager.GetResponseByQestion(id);
+            int counter = items.Count();
+            const int pagesize = 12;
+            if (pg < 1) pg = 1;
+
+            var pager = new Pager(counter, pg, pagesize);
+
+            int recSkip = (pg - 1) * pagesize;
+
+            var data = items.Skip(recSkip).Take(pager.PageSize).ToList();
+
+            this.ViewBag.Pager = pager;
+
+            return View(data);
+        }
+
         [HttpPut]
         [Route("responses")]
         public async Task AddResponse([FromBody] CreateResponseRequest request) => await _manager.AddResponse(request.UserId, request.QestionId, request.Text, request.ItemId, request.CollectionId);
@@ -80,9 +100,6 @@ namespace Archive.Controllers
 
 
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        
     }
 }

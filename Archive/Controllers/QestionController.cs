@@ -14,7 +14,7 @@ namespace Archive.Controllers
         }
 
         [HttpGet]
-        [Route("qestions")]
+        [Route("Qestion")]
         public async Task<IActionResult> Index(int pg = 1)
         {
             var items = await _manager.GetAllQestion();
@@ -54,9 +54,5 @@ namespace Archive.Controllers
         [Route("questions/qestionid/{qestionid:int}")]
         public async Task EditQestion(int qestionid, [FromBody] CreateQestionRequest request) => await _manager.EditQestion(qestionid,request.Text);
 
-        public IActionResult Index()
-        {
-            return View();
-        }
     }
 }

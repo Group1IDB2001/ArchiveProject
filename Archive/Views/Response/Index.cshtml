@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "List of Qestions";
+    ViewData["Title"] = "List of Responses";
     Pager pager = new Pager();
     int pageNo = 0;
     if(ViewBag.Pager != null)
@@ -20,22 +20,22 @@
     <h2 class="tm-main-title">Вопросы</h2>
 </header>
 
-<div class="tm-gallery">
-    <div class="row">
-    @foreach(var qestion in Model)
+
+    
+    @foreach(var response in Model)
     {
         
         
-            <figure class="col-lg-10 col-md-2 col-sm-3 col-6 tm-gallery-item">
-                  <a asp-area="" asp-controller="Response" asp-action="Index" asp-route-id=@qestion.Id>
-                        <p class="tm-figcaption">@qestion.Text</p>
+            <figure class="col-lg-20 col-md-2 col-sm-3 col-6 tm-gallery-item">
+                  <a asp-area="" asp-controller="response" asp-action="CollectionDetails" asp-route-id=@response.Id>
+                        <p class="tm-figcaption">@response.Text</p>
                   </a>
             </figure>
         
 
     }
-    </div>
-</div>
+    
+
 
 <div class ="container">
     @if(pager.TotalPages > 0)
