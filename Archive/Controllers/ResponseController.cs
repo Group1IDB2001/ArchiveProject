@@ -12,30 +12,76 @@ namespace Archive.Controllers
             _manager = manager;
         }
 
-        [HttpPut]
-        [Route("responses")]
-        public async Task AddResponse([FromBody] CreateResponseRequest request) => await _manager.AddResponse(request.UserId, request.QestionId, request.Text, request.ItemId, request.CollectionId);
-        
-
-
-
-
-
-
-
         [HttpGet]
-        [Route("responses")]
-        public async Task<IList<Response>> GetAllResponse() => await _manager.GetAllResponse();
+        [Route("Response")]
+        public async Task<IActionResult> Index(int id,int pg = 1)
+        {
+            var items = await _manager.GetResponseByQestion(id);
+            GlobalData.qid = id;
+            int counter = items.Count();
+            const int pagesize = 12;
+            if (pg < 1) pg = 1;
+
+            var pager = new Pager(counter, pg, pagesize);
+
+            int recSkip = (pg - 1) * pagesize;
+
+            var data = items.Skip(recSkip).Take(pager.PageSize).ToList();
+
+            this.ViewBag.Pager = pager;
+
+            return View(data);
+        }
 
 
-        [HttpGet]
-        [Route("responses/userid/{userid}")]
-        public async Task<IList<Response>> GetResponseByUser(int userid) => await _manager.GetResponseByUser(userid);
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Response response)
+        {
+            if (ModelState.IsValid)
+            {
+                response.UserId = GlobalData.uid;
+                response.QestionId = GlobalData.qid;
+                var respo = await _manager.AddResponse(response.UserId, response.QestionId, response.Text, response.ItemId,response.CollectionId);
+                if (respo)
+                    return Redirect("Index");
+                else
+                {
+                    var respo_1 = await _manager.FindResponse(response.UserId, response.QestionId);
+                    if (respo_1) ModelState.AddModelError("", "Response is already existing");
+                }
+            }
+            return View();
+        }
+
+        //[HttpPut]
+        //[Route("responses")]
+        //public async Task AddResponse([FromBody] CreateResponseRequest request) => await _manager.AddResponse(request.UserId, request.QestionId, request.Text, request.ItemId, request.CollectionId);
 
 
-        [HttpGet]
-        [Route("responses/qestionid/{qestionid}")]
-        public async Task<IList<Response>> GetResponseByQestion(int qestionid) => await _manager.GetResponseByQestion(qestionid);
+
+
+
+
+
+
+        //[HttpGet]
+        //[Route("responses")]
+        //public async Task<IList<Response>> GetAllResponse() => await _manager.GetAllResponse();
+
+
+        //[HttpGet]
+        //[Route("responses/userid/{userid}")]
+        //public async Task<IList<Response>> GetResponseByUser(int userid) => await _manager.GetResponseByUser(userid);
+
+
+        //[HttpGet]
+        //[Route("responses/qestionid/{qestionid}")]
+        //public async Task<IList<Response>> GetResponseByQestion(int qestionid) => await _manager.GetResponseByQestion(qestionid);
 
 
 
@@ -80,9 +126,6 @@ namespace Archive.Controllers
 
 
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        
     }
 }

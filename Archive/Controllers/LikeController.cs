@@ -16,6 +16,9 @@ namespace Archive.Controllers
         public async Task<IActionResult> AddLikes(int id)
         {
             await _manager.AddLike(GlobalData.uid, id);
+            {
+
+            }
             return View(id);
         }
 

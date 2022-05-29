@@ -13,6 +13,26 @@ namespace Archive.Controllers
             _manager = manager;
         }
 
+        [HttpGet]
+        [Route("Qestion")]
+        public async Task<IActionResult> Index(int pg = 1)
+        {
+            var items = await _manager.GetAllQestion();
+            int counter = items.Count();
+            const int pagesize = 12;
+            if (pg < 1) pg = 1;
+
+            var pager = new Pager(counter, pg, pagesize);
+
+            int recSkip = (pg - 1) * pagesize;
+
+            var data = items.Skip(recSkip).Take(pager.PageSize).ToList();
+
+            this.ViewBag.Pager = pager;
+
+            return View(data);
+        }
+
 
         [HttpPut]
         [Route("questions")]
@@ -34,9 +54,5 @@ namespace Archive.Controllers
         [Route("questions/qestionid/{qestionid:int}")]
         public async Task EditQestion(int qestionid, [FromBody] CreateQestionRequest request) => await _manager.EditQestion(qestionid,request.Text);
 
-        public IActionResult Index()
-        {
-            return View();
-        }
     }
 }

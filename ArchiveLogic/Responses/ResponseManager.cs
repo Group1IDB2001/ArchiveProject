@@ -14,24 +14,25 @@ namespace ArchiveLogic.Responses
             _context = context;
         }
 
-        public async Task AddResponse(int? userid, int? qestionid, string text, int? itemid, int? collectionid)
+        public async Task<bool> AddResponse(int? userid, int? qestionid, string text, int? itemid, int? collectionid)
         {
-            var user = _context.Users.FirstOrDefault(C => C.Id == userid);
-            if (user == null) throw new Exception("There is not User with the same Id");
 
-            var qestion = _context.Qestiones.FirstOrDefault(q => q.Id == qestionid);
-            if (qestion == null) throw new Exception("There is not Question with the same Id");
 
-            if(qestion.UserId == userid) throw new Exception("Can not respond to yourself");
+            //if(qestion.UserId == userid) throw new Exception("Can not respond to yourself");
 
-            var item = _context.Items.FirstOrDefault(C => C.Id == itemid);
-            if (item == null) throw new Exception("There is not Item with the same Id");
-
-            var collection = await _context.Collections.FirstOrDefaultAsync(g => g.Id == collectionid);
-            if (collection == null) throw new Exception("There is not collection with the same Id");
+            if( itemid != null)
+            {
+                var item = _context.Items.FirstOrDefault(C => C.Id == itemid);
+                if (item == null) return false;
+            }
+            if (collectionid != null)
+            {
+                var collection = await _context.Collections.FirstOrDefaultAsync(g => g.Id == collectionid);
+                if (collection == null) return false;
+            }
 
             var collectionitem = _context.CollectionItems.FirstOrDefault(c => c.CollectionId == collectionid && c.ItemId == itemid);
-            if (collectionitem == null) throw new Exception("There is not Item_Collection with the same information");
+            if (collectionitem == null) return false;
 
             var response_1 = _context.Responses.FirstOrDefault(n => n.UserId == userid && n.QestionId == qestionid);
             if (response_1 == null)
@@ -39,17 +40,34 @@ namespace ArchiveLogic.Responses
                 var response = new Response { UserId = userid , QestionId = qestionid , Text = text , ItemId = itemid , CollectionId = collectionid };
                 _context.Responses.Add(response);
                 await _context.SaveChangesAsync();
+                return true;
             }
             else
             {
-                throw new Exception("There is Response with the same information");
+                return false;
             }
 
            
         }
-        
-        
-        
+
+
+        public async Task<bool> FindResponse(int? userid, int? qestionid)
+        {
+            var respo = await _context.Responses.FirstOrDefaultAsync(g => g.UserId == userid && g.QestionId == qestionid);
+            if (respo != null) return true;
+            else return false;
+        }
+
+
+
+
+
+
+
+
+
+
+
         public async Task<IList<Response>> GetAllResponse()
         {
             return await _context.Responses.ToListAsync();

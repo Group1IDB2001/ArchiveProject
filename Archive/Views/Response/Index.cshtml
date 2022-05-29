@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "List of Collections";
+    ViewData["Title"] = "List of Responses";
     Pager pager = new Pager();
     int pageNo = 0;
     if(ViewBag.Pager != null)
@@ -17,29 +17,30 @@
 </head>
 
 <header>
-    <h2 class="tm-main-title">Каталог</h2>
+    <h2 class="tm-main-title">Ответы</h2>
 </header>
 
-<div class="tm-gallery">
-    <div class="row">
-    @foreach(var col in Model)
+
+    
+    @foreach(var response in Model)
     {
         
         
-            <figure class="col-lg-2 col-md-2 col-sm-3 col-6 tm-gallery-item">
-                  <a asp-area="" asp-controller="Collections" asp-action="CollectionDetails" asp-route-id=@col.Id>
-                        <div class="tm-gallery-item-overlay">
-                            <img src="img/cover.jpg" alt="Image" class="img-fluid tm-img-center">
-                        </div>
-
-                        <p class="tm-figcaption">@col.Name</p>
-                  </a>
-            </figure>
+            
+                  
+                  <td class="tm-figcaption">@response.Text</td>
+                  
+                  <td class="aling-middle">
+                        
+                        <a asp-area="" asp-controller="Items" asp-action="ItemPage" asp-route-id=@response.ItemId class="btn btn-outline-info"><i class="bi bi-eye"></i>Книга</a>
+                        <a asp-area="" asp-controller="Collection" asp-action="CollectionDetail" asp-route-id=@response.CollectionId class="btn btn-outline-info"><i class="bi bi-trash"></i>Коллекция</a>
+                  </td>
+            
         
 
     }
-    </div>
-</div>
+    
+
 
 <div class ="container">
     @if(pager.TotalPages > 0)
@@ -63,5 +64,5 @@
             }
         </ul>
     }
-       <a asp-controller="Collection" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить коллекцию</a>
+       <a asp-controller="Response" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить ответ</a>
 </div>
