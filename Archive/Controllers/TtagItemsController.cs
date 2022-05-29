@@ -16,7 +16,7 @@ namespace Archive.Controllers
         public async Task<IActionResult> ItemsByTag(int id)
         {
             var lis = await _manager.GetByTtag(id);
-            GlobalData.ids = new List<int>();
+            GlobalData.ids.Clear();
             foreach (var col in lis)
             {
                 GlobalData.ids.Add(col.Id);

@@ -19,9 +19,9 @@ namespace Archive.Controllers
         {
             var tags = await _manager.GetTtagsByItem(id);
 
-            var data = tags;
+           
 
-            return View(data);
+            return View(tags);
         }
 
         [HttpGet]

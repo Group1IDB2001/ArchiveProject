@@ -15,7 +15,7 @@ namespace Archive.Controllers
         public async Task<IActionResult> ShowItems(int id)
         {
             var lis = await _manager.GetItemCollectionByCollection(id);
-            GlobalData.ids = new List<int>();
+            GlobalData.ids.Clear();
             foreach(var col in lis)
             {
                 GlobalData.ids.Add(col.Id);
