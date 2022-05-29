@@ -33,7 +33,13 @@ namespace Archive.Controllers
 
             return View(data);
         }
-        public IActionResult Create()
+
+        public async Task<IActionResult> PickAuthor()
+        {
+            var authors = await _manager.GetAllAuthors();
+            return View(authors);
+        }
+            public IActionResult Create()
         {
             return View();
         }

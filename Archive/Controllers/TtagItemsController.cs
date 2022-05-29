@@ -29,6 +29,20 @@ namespace Archive.Controllers
             return Redirect("/Items/ItemsIn");
         }
 
+        public async Task<IActionResult> PickTag(int id)
+        {
+            GlobalData.iid = id;
+
+            return Redirect("/Tags/PickTag");
+        }
+
+        public async Task<IActionResult> AddTagToItem(int id)
+        {
+            await _manager.AddTtagToItem(GlobalData.iid, id);
+
+            return Redirect("/Items/Index");
+        }
+
         [HttpPut]
         [Route("Ttagitems")]
         public async Task AddTtagToItem([FromBody] CreateTtagItemRequest request) => await _manager.AddTtagToItem(request.ItemId, request.TtagId);
