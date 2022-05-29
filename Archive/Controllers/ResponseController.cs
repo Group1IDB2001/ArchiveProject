@@ -17,6 +17,7 @@ namespace Archive.Controllers
         public async Task<IActionResult> Index(int id,int pg = 1)
         {
             var items = await _manager.GetResponseByQestion(id);
+            GlobalData.qid = id;
             int counter = items.Count();
             const int pagesize = 12;
             if (pg < 1) pg = 1;

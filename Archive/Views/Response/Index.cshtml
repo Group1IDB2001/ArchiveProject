@@ -17,7 +17,7 @@
 </head>
 
 <header>
-    <h2 class="tm-main-title">Вопросы</h2>
+    <h2 class="tm-main-title">Ответы</h2>
 </header>
 
 
@@ -26,11 +26,16 @@
     {
         
         
-            <figure class="col-lg-20 col-md-2 col-sm-3 col-6 tm-gallery-item">
-                  <a asp-area="" asp-controller="response" asp-action="CollectionDetails" asp-route-id=@response.Id>
-                        <p class="tm-figcaption">@response.Text</p>
-                  </a>
-            </figure>
+            
+                  
+                  <td class="tm-figcaption">@response.Text</td>
+                  
+                  <td class="aling-middle">
+                        
+                        <a asp-area="" asp-controller="Items" asp-action="ItemPage" asp-route-id=@response.ItemId class="btn btn-outline-info"><i class="bi bi-eye"></i>Книга</a>
+                        <a asp-area="" asp-controller="Collection" asp-action="CollectionDetail" asp-route-id=@response.CollectionId class="btn btn-outline-info"><i class="bi bi-trash"></i>Коллекция</a>
+                  </td>
+            
         
 
     }
@@ -59,5 +64,5 @@
             }
         </ul>
     }
-       <a asp-controller="Items" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить коллекцию</a>
+       <a asp-controller="Response" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить ответ</a>
 </div>
