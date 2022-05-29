@@ -7,5 +7,7 @@
         public static string cn;
         public static string qn;
         public static int qid = 0;
+        public static int cid = 0;
+        public static int iid = 0;
     }
 }

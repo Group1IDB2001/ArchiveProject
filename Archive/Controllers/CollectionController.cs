@@ -33,14 +33,18 @@ namespace Archive.Controllers
 
         [HttpGet]
         //
-        public async Task<IActionResult> CollectionsPage(int id)
+        public async Task<IActionResult> CollectionsPage()
         {
 
-            var col = await _manager.GetCollectionsByUsreId(id);
+            var col = await _manager.GetCollectionsByUsreId(GlobalData.uid);
             return View(col);
         }
 
-        
+        public IActionResult Create()
+        {
+            return View();
+        }
+
 
         [HttpPut]
         
@@ -83,6 +87,15 @@ namespace Archive.Controllers
         [HttpDelete]
         //[Route("collections/{id:int}")]
         public async Task DeleteCollection(int id) => await _manager.DeleteCollection(id);
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Collection col)
+        {
+            col.UserId = GlobalData.uid;
+            await _manager.AddCollection(col.Name, col.Description, col.UserId);
+
+            return RedirectToRoute(new { controller = "Collection", action = "CollectionsPage" });
+        }
 
 
 

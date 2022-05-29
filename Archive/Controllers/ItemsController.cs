@@ -29,6 +29,24 @@ namespace Archive.Controllers
             return View(data);
         }
 
+        public async Task<IActionResult> PickItem(int pg = 1)
+        {
+            var items = await _manager.GetAllItems();
+            int counter = items.Count();
+            const int pagesize = 12;
+            if (pg < 1) pg = 1;
+
+            var pager = new Pager(counter, pg, pagesize);
+
+            int recSkip = (pg - 1) * pagesize;
+
+            var data = items.Skip(recSkip).Take(pager.PageSize).ToList();
+
+            this.ViewBag.Pager = pager;
+
+            return View(data);
+        }
+
         [HttpGet]
         
         public async Task<IActionResult> ItemPage(int Id)

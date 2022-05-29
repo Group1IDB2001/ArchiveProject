@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Каталог";
+    Pager pager = new Pager();
+    int pageNo = 0;
+    if(ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
+}
+
+
+<html lang="ru" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Каталог</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
+    <link rel="stylesheet" href="~/css/katalog-styie.css"/> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+</head>
+
+
+<header class="header_small">
+    <h2 class="tm-main-title">Каталог</h2>
+
+    <form method="get" action="~/Items/Searching">
+    
+        <input class="searching" type="text" placeholder="Искать здесь..." name="searching">
+
+        <input class="search" type="submit" value="Поиск"/>
+    
+    </form>
+
+
+</header>
+
+<div class="tm-gallery">
+    <div class="row">
+    @foreach(var item in Model)
+    {   
+        
+            <figure class="col-lg-1,5 col-md-1,5 col-sm-3 col-6 tm-gallery-item">
+                  <a asp-area="" asp-controller="CollectionItem" asp-action="AddItem" asp-route-id=@item.Id>
+                        <div class="tm-gallery-item-overlay">
+                            <img src="~/img/cover.jpg" alt="Image" class="img-fluid tm-img-center">
+                        </div>
+
+                        <p class="tm-figcaption">@item.Name</p>
+                  </a>
+            </figure>  
+
+    }
+    </div>
+</div>
+
+<div class ="container">
+
+    @if(pager.TotalPages > 0)
+    {
+        <ul class ="pagination justify-content-end">
+      
+            @for (var pag = pager.StartPage; pag <= pager.EndPage; pag++)
+            {
+                <li class ="page-item @(pag == pager.CurrentPage ? "active":"")">
+                    <a class ="page-link" asp-controller="Items" asp-action="PickItem" asp-route-pg="@pag"> @pag </a>
+                </li>
+            }
+            @if(pager.CurrentPage < pager.TotalPages)
+            {
+                <li class="page-item">
+                    <a class ="page-link" asp-controller="Items" asp-action="PickItem" asp-route-pg="@(pager.CurrentPage+1)">Следующий</a>
+                </li>
+                <li>
+                     <a class ="page-link" asp-controller="Items" asp-action="PickItem" asp-route-pg=@(pager.CurrentPage -1)>Предыдущий</a>
+                </li>
+            }
+        </ul>
+    }
+       <a asp-controller="Items" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить книгу</a>
+</div>

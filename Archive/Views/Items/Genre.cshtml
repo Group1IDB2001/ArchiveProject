@@ -62,16 +62,16 @@
             @for (var pag = pager.StartPage; pag <= pager.EndPage; pag++)
             {
                 <li class ="page-item @(pag == pager.CurrentPage ? "active":"")">
-                    <a class ="page-link" asp-controller="Items" asp-action="Index" asp-route-pg="@pag"> @pag </a>
+                    <a class ="page-link" asp-controller="Items" asp-action="Genre" asp-route-pg="@pag"> @pag </a>
                 </li>
             }
             @if(pager.CurrentPage < pager.TotalPages)
             {
                 <li class="page-item">
-                    <a class ="page-link" asp-controller="Items" asp-action="Index" asp-route-pg="@(pager.CurrentPage+1)"> Next </a>
+                    <a class ="page-link" asp-controller="Items" asp-action="Genre" asp-route-pg="@(pager.CurrentPage+1)"> Next </a>
                 </li>
                 <li>
-                     <a class ="page-link" asp-controller="Items" asp-action="Index" asp-route-pg=@(pager.CurrentPage -1)>Previous</a>
+                     <a class ="page-link" asp-controller="Items" asp-action="Genre" asp-route-pg=@(pager.CurrentPage -1)>Previous</a>
                 </li>
             }
 

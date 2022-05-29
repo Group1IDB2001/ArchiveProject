@@ -28,6 +28,20 @@ namespace Archive.Controllers
             return Redirect("/Items/ItemsIn");
         }
 
+        public async Task<IActionResult> PickItem(int id)
+        {
+            GlobalData.cid = id;
+            
+            return Redirect("/Items/PickItem");
+        }
+
+        public async Task<IActionResult> AddItem(int id)
+        {
+            await _manager.AddCollectionItem(GlobalData.cid, id);
+
+            return Redirect("/Collection/CollectionsPage");
+        }
+
         [HttpPut]
         //[Route("collectionitems")]
         public async Task AddCollectionItem([FromBody] CreateCollectionItemRequest request) => await _manager.AddCollectionItem(request.CollectionId ,request.ItemId);
