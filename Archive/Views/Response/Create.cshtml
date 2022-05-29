@@ -15,12 +15,10 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-                @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = @GlobalData.uid } })
-                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = @GlobalData.uid })
+                @Model.UserId= @GlobalData.uid 
+                @Model.QestionId= @GlobalData.qid
 
-                 @Html.EditorFor(model => model.QestionId, new { htmlAttributes = new { @class = @GlobalData.qid } })
-                @Html.ValidationMessageFor(model => model.QestionId, "", new { @class = @GlobalData.qid })
-
+                 
 
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
