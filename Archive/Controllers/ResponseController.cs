@@ -33,10 +33,34 @@ namespace Archive.Controllers
             return View(data);
         }
 
-        [HttpPut]
-        [Route("responses")]
-        public async Task AddResponse([FromBody] CreateResponseRequest request) => await _manager.AddResponse(request.UserId, request.QestionId, request.Text, request.ItemId, request.CollectionId);
-        
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Response response)
+        {
+            if (ModelState.IsValid)
+            {
+                response.UserId = GlobalData.uid;
+                response.QestionId = GlobalData.qid;
+                var respo = await _manager.AddResponse(response.UserId, response.QestionId, response.Text, response.ItemId,response.CollectionId);
+                if (respo)
+                    return Redirect("Index");
+                else
+                {
+                    var respo_1 = await _manager.FindResponse(response.UserId, response.QestionId);
+                    if (respo_1) ModelState.AddModelError("", "Response is already existing");
+                }
+            }
+            return View();
+        }
+
+        //[HttpPut]
+        //[Route("responses")]
+        //public async Task AddResponse([FromBody] CreateResponseRequest request) => await _manager.AddResponse(request.UserId, request.QestionId, request.Text, request.ItemId, request.CollectionId);
 
 
 
@@ -44,19 +68,20 @@ namespace Archive.Controllers
 
 
 
-        [HttpGet]
-        [Route("responses")]
-        public async Task<IList<Response>> GetAllResponse() => await _manager.GetAllResponse();
+
+        //[HttpGet]
+        //[Route("responses")]
+        //public async Task<IList<Response>> GetAllResponse() => await _manager.GetAllResponse();
 
 
-        [HttpGet]
-        [Route("responses/userid/{userid}")]
-        public async Task<IList<Response>> GetResponseByUser(int userid) => await _manager.GetResponseByUser(userid);
+        //[HttpGet]
+        //[Route("responses/userid/{userid}")]
+        //public async Task<IList<Response>> GetResponseByUser(int userid) => await _manager.GetResponseByUser(userid);
 
 
-        [HttpGet]
-        [Route("responses/qestionid/{qestionid}")]
-        public async Task<IList<Response>> GetResponseByQestion(int qestionid) => await _manager.GetResponseByQestion(qestionid);
+        //[HttpGet]
+        //[Route("responses/qestionid/{qestionid}")]
+        //public async Task<IList<Response>> GetResponseByQestion(int qestionid) => await _manager.GetResponseByQestion(qestionid);
 
 
 
