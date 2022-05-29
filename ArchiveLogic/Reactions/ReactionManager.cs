@@ -14,13 +14,13 @@ namespace ArchiveLogic.Reactions
             _context = context;
         }
 
-        public async Task AddReaction(int? userid, int? itemid, int rating, string? text)
+        public async Task<bool> AddReaction(int? userid, int? itemid, int rating, string? text)
         {
             var user = _context.Users.FirstOrDefault(C => C.Id == userid);
-            if (user == null) throw new Exception("There is not User with the same Id");
+            if (user == null) return false;
 
             var item = _context.Items.FirstOrDefault(C => C.Id == itemid);
-            if (user == null) throw new Exception("There is not Item with the same Id");
+            if (user == null) return false;
 
             var reaction_1 = _context.Reactions.FirstOrDefault(n => n.UserId == userid && n.ItemId == itemid);
             if (reaction_1 == null)
@@ -29,10 +29,11 @@ namespace ArchiveLogic.Reactions
 
                 _context.Reactions.Add(reaction);
                 await _context.SaveChangesAsync();
+                return true;
             }
             else
             {
-                throw new Exception("There is Reaction with the same information");
+                return false;
             }
         }
 
@@ -40,6 +41,17 @@ namespace ArchiveLogic.Reactions
         {
             return await _context.Reactions.ToListAsync();
         }
+
+        public async Task<bool> FindReaction(int? userid, int? itemid)
+        {
+            var reaction = _context.Reactions.FirstOrDefault(n => n.UserId == userid && n.ItemId == itemid);
+            if (reaction == null) return false;
+            else return true;
+        }
+
+
+
+
 
         public async Task<IList<Reaction>> GetByItem(int itemid)
         {
@@ -49,8 +61,7 @@ namespace ArchiveLogic.Reactions
             {
                 if (reaction.ItemId == itemid) reactions.Add(reaction);
             }
-            if (reactions.Count == 0) throw new Exception("There is not Reaction with the same Item Id");
-
+            if (reactions.Count == 0) reactions = null;
             return reactions;
         }
 
