@@ -1,0 +1,57 @@
+﻿@{
+    
+}
+<head>
+    <meta charset="utf-8">
+    <title>Авторы</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
+    <link rel="stylesheet" href="~/css/autor-style.css"/> 
+</head>
+
+<body>
+    <h2>Наши Авторы</h2>
+<table class="table">
+    <tr>
+        
+        <th>
+            Полное имя
+        </th>
+        <th>
+            Дата рождения
+        </th>
+        <th>
+            Дата смерти
+        </th>
+        <th class="text-center">
+            Немного о авторе
+        </th>
+        <th>
+            
+        </th>
+
+    </tr>
+    @foreach(var author in Model)
+    {
+        <tr>
+            
+            <td>@author.Name</td>
+            <td>@author.Born</td>
+            <td>@author.Death</td>
+            <td>@author.About</td>
+
+            <td class="aling-middle">
+            <a asp-area="" asp-controller="ItemAuthors" asp-action="AddAuthorToItem" asp-route-id=@author.Id class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i>Выбрать</a>
+             </td>
+        </tr>
+        
+    }
+</table>
+
+
+
+
+
+</body>
+
+

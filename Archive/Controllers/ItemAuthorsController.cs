@@ -11,6 +11,21 @@ namespace Archive.Controllers
         {
             _manager = manager;
         }
+
+        public async Task<IActionResult> PickAuthor(int id)
+        {
+            GlobalData.iid = id;
+
+            return Redirect("/Authors/PickAuthor");
+        }
+
+        public async Task<IActionResult> AddAuthorToItem(int id)
+        {
+            await _manager.AddItemAuthor(id,GlobalData.iid);
+
+            return Redirect("/Items/Index");
+        }
+
         [HttpPut]
         [Route("itemauthors")]
         public async Task AddItemAuthor([FromBody] CreateItemAuthorRequest request)=> await _manager.AddItemAuthor(request.AuthorId ,request.ItemId);

@@ -12,34 +12,58 @@ namespace Archive.Controllers
             _manager = manager;
         }
 
-        [HttpPut]
-        [Route("TagPage")]
-        public async Task AddTtag([FromBody] CreateTagRequest request) => await _manager.AddTtag(request.Name, request.UserId, request.Description);
-        public async Task<IActionResult> TagPage(int id)
+        [HttpGet]
+        [Route ("Tags")]
+        public async Task<IActionResult> Index(int id)
         {
-            var tags = await _manager.GetTtagsByItem(id);
+            var tags = await _manager.GetAllTtags();
 
-           
+            return View(tags);
+        }
+
+        public async Task<IActionResult> PickTag(int id)
+        {
+            var tags = await _manager.GetAllTtags();
 
             return View(tags);
         }
 
         [HttpGet]
-        [Route("tags")]
+        public async Task<IActionResult> TagPage(int id)
+        {
+            var tags = await _manager.GetTtagsByItem(id);
+
+
+
+            return View(tags);
+        }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPut]
+        
+        public async Task AddTtag([FromBody] CreateTagRequest request) => await _manager.AddTtag(request.Name, request.UserId, request.Description);
+        
+
+        [HttpGet]
+        //[Route("tags")]
         public async Task<IList<Ttag>> GetAllTtags() => await _manager.GetAllTtags();
 
 
         [HttpGet]
-        [Route("tags/{id:int}")]
+        //[Route("tags/{id:int}")]
         public async Task<Ttag> GetTtagById(int id) => await _manager.GetTtagById(id);
 
 
         [HttpGet]
-        [Route("tags/{name}")]
+        //[Route("tags/{name}")]
         public async Task<Ttag> GetTtagByName(string name) => await _manager.GetTtagByName(name);
 
         [HttpDelete]
-        [Route("tags/{id:int}")]
+        //[Route("tags/{id:int}")]
         public async Task DeleteTtag(int id) => await _manager.DeleteTtag(id);
 
         [HttpGet]
@@ -49,10 +73,15 @@ namespace Archive.Controllers
         [HttpGet]
         [Route("tags/itemId/{itemId}")]
         public async Task<IList<Ttag>> GetTtagsByItem(int itemId) => await _manager.GetTtagsByItem(itemId);
-
-        public IActionResult Index()
+        [HttpPost]
+        public async Task<IActionResult> Create(Ttag col)
         {
-            return View();
+            col.UserId = GlobalData.uid;
+            await _manager.AddTtag(col.Name, col.UserId, col.Description);
+
+            return RedirectToRoute(new { controller = "Tags", action = "Index" });
         }
+
+        
     }
 }

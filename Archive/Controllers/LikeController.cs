@@ -22,6 +22,17 @@ namespace Archive.Controllers
             return View(id);
         }
 
+        public async Task<IActionResult> UserLike()
+        {
+            GlobalData.ids.Clear();
+            var It = await _manager.GetByUser(GlobalData.uid);
+                foreach(var item in It)
+                GlobalData.ids.Add((int)item.ItemId);
+
+
+            return Redirect("/Items/ItemsIn");
+        }
+
         [HttpPut]
         //[Route("likes")]
         public async Task AddLike([FromBody] CreateLikeRequest request) => await _manager.AddLike(request.UserId , request.ItemId);
