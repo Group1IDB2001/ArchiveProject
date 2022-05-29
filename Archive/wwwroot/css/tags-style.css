@@ -1,0 +1,57 @@
+﻿h2 {
+    text-align: center;
+}
+
+.avd_div {
+    margin: 30px auto;
+    padding: 0;
+    text-align: center;
+    display: block;
+}
+
+.bucn_3_4r {
+    color: #076599;
+    border: 1px solid #076599;
+    background-color: #fff;
+    font-size: 18px;
+    font-family: verdana;
+    overflow: hidden;
+    display: inline-block;
+    outline: medium none;
+    padding: 10px 70px;
+    position: relative;
+    text-decoration: none;
+    z-index: 1;
+    -webkit-box-shadow: 0 0 4px #999;
+    -moz-box-shadow: 0 0 4px #999;
+    -o-box-shadow: 0 0 4px #999;
+    box-shadow: 0 0 4px #999;
+}
+
+    .bucn_3_4r::after {
+        background-color: #008cf0;
+        left: 50%;
+        top: 50%;
+        height: 0;
+        width: 150%;
+        transform: translateX(-50%) translateY(-50%);
+        opacity: 0.5;
+        position: absolute;
+        content: "";
+        transition: all 0.75s ease 0s;
+        z-index: -1;
+    }
+
+    .bucn_3_4r:hover::after {
+        height: 140%;
+        opacity: 1;
+    }
+
+    .bucn_3_4r:hover, .bucn_3_4r:active {
+        color: #fff;
+        text-shadow: 0 1px 2px #333;
+    }
+
+*::before, *::after {
+    box-sizing: border-box;
+}

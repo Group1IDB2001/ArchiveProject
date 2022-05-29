@@ -72,10 +72,10 @@
             @if(pager.CurrentPage < pager.TotalPages)
             {
                 <li class="page-item">
-                    <a class ="page-link" asp-controller="Authors" asp-action="Index" asp-route-pg="@(pager.CurrentPage+1)"> Next </a>
+                    <a class ="page-link" asp-controller="Authors" asp-action="Index" asp-route-pg="@(pager.CurrentPage+1)"> Следующая </a>
                 </li>
                 <li>
-                     <a class ="page-link" asp-controller="Authors" asp-action="Index" asp-route-pg=@(pager.CurrentPage -1)>Previous</a>
+                     <a class ="page-link" asp-controller="Authors" asp-action="Index" asp-route-pg=@(pager.CurrentPage -1)>Предыдущая</a>
                 </li>
             }
             

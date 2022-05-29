@@ -7,9 +7,13 @@
      <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
      <link rel="stylesheet" href="~/css/autor-style.css"/> 
 </head>
+<style>
+    h2{
+        text-align:center;
+    }
+</style>
 
-
-<h1>Add response</h1>
+<h2>Добавить вопрос</h2>
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
@@ -21,7 +25,7 @@
 
             @Html.ValidationSummary(false, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Text, "Текст", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Text, "Текст вопроса", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Text, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
