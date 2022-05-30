@@ -61,7 +61,7 @@ namespace ArchiveLogic.TtagItems
             {
                 if (tagitem.TtagId == ttagId) Tagitems.Add(tagitem);
             }
-            if (Tagitems.Count == 0) throw new Exception("There is no tag associated with this item");
+            if (Tagitems.Count == 0) Tagitems = null;
             return Tagitems;
         }
 

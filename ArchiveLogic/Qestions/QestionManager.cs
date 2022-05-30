@@ -15,10 +15,10 @@ namespace ArchiveLogic.Qestions
         }
 
 
-        public async Task AddQestion(int? userid, string text)
+        public async Task<bool> AddQestion(int? userid, string text)
         {
             var user = _context.Users.FirstOrDefault(C => C.Id == userid);
-            if (user == null) throw new Exception("There is not User with the same Id");
+            if (user == null) return false;
 
             var qestion_1 = _context.Qestiones.FirstOrDefault(n => n.UserId == userid && n.Text == text);
             if (qestion_1 == null)
@@ -27,45 +27,22 @@ namespace ArchiveLogic.Qestions
 
                 _context.Qestiones.Add(qestion);
                 await _context.SaveChangesAsync();
+                return true;
             }
             else
             {
-                throw new Exception("There is Question with the same information");
+                return false;
             }
         }
-
+        public async Task<bool> FindQestion(int? userid, string text)
+        {
+            var qestion = _context.Qestiones.FirstOrDefault(n => n.UserId == userid && n.Text == text);
+            if (qestion == null) return false;
+            else return true;
+        }
         public async Task<IList<Qestion>> GetAllQestion()
         {
             return await _context.Qestiones.ToListAsync();
-        }
-
-        public async Task<IList<Qestion>> GetByUser(int userid)
-        {
-            List<Qestion> qestions = new List<Qestion>();
-            
-            foreach(var qestion in _context.Qestiones)
-            {
-                if (qestion.UserId == userid) qestions.Add(qestion);
-            }
-            if(qestions.Count == 0) throw new Exception("There is not Question with the same User Id");
-
-            return qestions;
-        }
-
-        public async Task DeleteQestion(int qestionid)
-        {
-            var qestion = _context.Qestiones.FirstOrDefault(q => q.Id == qestionid);
-            if(qestion == null) throw new Exception("There is not Question with the same Id");
-            _context.Qestiones.Remove(qestion);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task EditQestion(int qestionid, string newtext)
-        {
-            var qestion = _context.Qestiones.FirstOrDefault(q => q.Id == qestionid);
-            if (qestion == null) throw new Exception("There is not Question with the same Id");
-            qestion.Text = newtext;
-            await _context.SaveChangesAsync();
         }
 
     }

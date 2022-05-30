@@ -52,6 +52,9 @@ namespace Archive.Controllers
         //јтрибут [Bind] позволит нам указать точные свойства модели, которые следует включать или исключать при прив€зке
         public async Task<IActionResult> Create([Bind("Name,Born ,Death ,About")] CreateAuthorRequest author)
         {
+            //ModelState.IsValid свойство который проверил две вещи:
+            //1.ѕрив€заны ли значени€ формы к ћодели.
+            //2.¬се проверки, указанные внутри класса модели с использованием аннотаций данных, были переданы.
             if (ModelState.IsValid)
             {
                 var Author = await _manager.AddAuthor(author.Name,author.Born,author.Death,author.About);

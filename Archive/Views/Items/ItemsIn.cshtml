@@ -36,33 +36,31 @@
 
 
 
-@if(Model == null)
-{
-    <h3>Каталогов пока нет</h3>
-}
-else
-{
+
+
     <header>
         <h2 class="tm-main-title">Каталог</h2>
     </header>
     <div class="tm-gallery">
     <div class="row">
-    @foreach(var item in Model)
-    {
-        
-        
-            <figure class="col-lg-1,5 col-md-1,5 col-sm-3 col-6 tm-gallery-item">
-                  <a asp-area="" asp-controller="Items" asp-action="ItemPage" asp-route-id=@item.Id>
-                        <div class="tm-gallery-item-overlay">
-                            <img src="~/img/cover.jpg" alt="Image" class="img-fluid tm-img-center">
-                        </div>
-
+        @if(Model == null)
+            {
+            <h3>Каталогов пока нет</h3>
+        }
+        else
+        {
+            @foreach(var item in Model)
+            {
+                <figure class="col-lg-1,5 col-md-1,5 col-sm-3 col-6 tm-gallery-item">
+                    <a asp-area="" asp-controller="Items" asp-action="ItemPage" asp-route-id=@item.Id>
+                            <div class="tm-gallery-item-overlay">
+                                <img src="~/img/cover.jpg" alt="Image" class="img-fluid tm-img-center">
+                            </div>
                         <p class="tm-figcaption">@item.Name</p>
-                  </a>
-            </figure>
-        
-
-    }
+                    </a>
+                </figure>
+            }
+        }
     </div>
 </div>
 
@@ -89,10 +87,4 @@ else
         </ul>
     }
 </div>
-}
 
-<div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                 <a class="btn btn-outline-secondary" asp-controller="collection" asp-action="CollectionsPage">вернуться к коллекции</a>
-            </div>
-</div>

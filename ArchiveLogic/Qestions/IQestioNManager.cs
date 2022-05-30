@@ -8,11 +8,9 @@ namespace ArchiveLogic.Qestions
 {
     public interface IQestionManager
     {
-        Task AddQestion(int? userid, string text);
+        Task<bool> AddQestion(int? userid, string text);
+        Task<bool> FindQestion(int? userid, string text);
         Task<IList<Qestion>> GetAllQestion();
-        Task<IList<Qestion>> GetByUser(int userid);
-        Task DeleteQestion(int qestionid);
-        Task EditQestion (int qestionid,string newtext);
         
     }
 }

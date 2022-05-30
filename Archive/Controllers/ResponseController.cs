@@ -63,8 +63,5 @@ namespace Archive.Controllers
                 }
             return View();
         }
-
-       
-        
     }
 }

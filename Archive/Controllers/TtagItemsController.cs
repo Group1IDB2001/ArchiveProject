@@ -16,17 +16,26 @@ namespace Archive.Controllers
         public async Task<IActionResult> ItemsByTag(int id)
         {
             var lis = await _manager.GetByTtag(id);
-            GlobalData.ids.Clear();
-            int ii;
-            foreach (var col in lis)
+            if (lis == null)
             {
-                if (col.ItemId != null)
-                {
-                    ii = ((int)col.ItemId);
-                    GlobalData.ids.Add(ii);
-                }
+                GlobalData.ids.Clear();
+                return Redirect("/Items/ItemsIn");
             }
-            return Redirect("/Items/ItemsIn");
+            else
+            {
+                GlobalData.ids.Clear();
+                int ii;
+                foreach (var col in lis)
+                {
+                    if (col.ItemId != null)
+                    {
+                        ii = ((int)col.ItemId);
+                        GlobalData.ids.Add(ii);
+                    }
+                }
+                return Redirect("/Items/ItemsIn");
+            }
+            
         }
 
         public async Task<IActionResult> PickTag(int id)

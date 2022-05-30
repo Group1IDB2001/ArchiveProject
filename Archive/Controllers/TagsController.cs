@@ -11,9 +11,6 @@ namespace Archive.Controllers
         {
             _manager = manager;
         }
-
-        [HttpGet]
-        [Route ("Tags")]
         public async Task<IActionResult> Index(int id)
         {
             var tags = await _manager.GetAllTtags();
@@ -34,7 +31,6 @@ namespace Archive.Controllers
 
             return View(tags);
         }
-        [HttpGet]
         public IActionResult Create()
         {
             return View();
@@ -44,10 +40,15 @@ namespace Archive.Controllers
         public async Task<IActionResult> Create(Ttag col)
         {
             col.UserId = GlobalData.uid;
-            await _manager.AddTtag(col.Name, col.UserId, col.Description);
-            return RedirectToRoute(new { controller = "Tags", action = "Index" });
+            var tatego = await _manager.AddTtag(col.Name, col.UserId, col.Description);
+            if(tatego)
+                return RedirectToRoute(new { controller = "Tags", action = "Index" });
+            else
+            {
+                var tatego_1 = await _manager.FindTtag(col.Name);
+                if (tatego_1) ModelState.AddModelError("", "Tag is already existing");
+            }
+            return View();
         }
-
-        
     }
 }
