@@ -18,21 +18,32 @@
                 <header>
     <h2 class="tm-main-title">Мои Коллекции</h2>
 </header>
-<div class="tm-gallery">
-    <div class="row">
+<table class="table">
+    <tr>
+        
+        <th>
+            Название
+        </th>
+        <th>
+            
+        </th>
+        </tr>
                         @foreach(var collection in Model)
                             {
-                                    <figure class="col-lg-1,5 col-md-1,5 col-sm-3 col-3 tm-gallery-item">
-                                        <a asp-area="" asp-controller="CollectionItem" asp-action="ShowItems" asp-route-id=@collection.Id>
-                            
-                                            <p class="tm-figcaption">@collection.Name</p>
-                                        </a>
-                                        <a asp-controller="CollectionItem" asp-action="PickItem" asp-route-id=@collection.Id class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить книгу</a>
-                                    </figure>
+                                    <tr>
+            
+            <td>@collection.Name</td>
+            
+
+            <td class="aling-middle">
+            <a asp-controller="CollectionItem" asp-action="PickItem" asp-route-id=@collection.Id class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить книгу</a>
+            <a asp-controller="Save" asp-action="Save" asp-route-id=@collection.Id class="btn btn-success" ><i class="bi bi-plus-circle"></i>Сохранить</a>
+            <a asp-area="" asp-controller="CollectionItem" asp-action="ShowItems" asp-route-id=@collection.Id class="btn btn-outline-info"><i class="bi bi-eye"></i>Подробнее</a>
+            </td>
+        </tr>
 
                             }
-    </div>
-                            
-</div>
+                            </table>
+    
 <a asp-controller="Collection" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить коллекцию</a>
             
