@@ -52,7 +52,6 @@ namespace Archive.Controllers
         public async Task<IActionResult> ItemPage(int Id)
         {
             var items = await _manager.GetItemById(Id);
-            
             return View(items);
         }
         [HttpGet]

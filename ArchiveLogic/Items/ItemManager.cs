@@ -57,7 +57,7 @@ namespace ArchiveLogic.Items
             var item = await _context.Items.FirstOrDefaultAsync(g => g.Id == id);
             if (item == null)
             {
-                throw new Exception("Error,I can't Found,There is not item");
+                item = null;
             }
             return item;
         }

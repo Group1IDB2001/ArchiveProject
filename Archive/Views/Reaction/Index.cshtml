@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
     <link rel="stylesheet" href="~/css/autor-style.css"/> 
+    @*#*@<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <style>
@@ -26,6 +27,9 @@
     h3{
         color:red;
         text-align:center;
+    }
+    .checked{
+        color: orange;
     }
 </style>
 
@@ -41,12 +45,70 @@
                 <th>
                     Текст
                 </th>
+                <th>
+                    Рейтинг книги
+                </th>
             </tr>
     
             @foreach(var reaction in Model)
               {
                  <tr>
                      <td>@reaction.Text</td>
+                     @if(reaction.Rating == 1)
+                    {
+                        <td>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </td>
+                        
+                    }
+                    else if(reaction.Rating == 2)
+                    {
+                        <td>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </td>
+                        
+                    }
+                    else if(reaction.Rating == 3)
+                    {
+                        <td>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </td>
+                        
+                    }
+                    else if(reaction.Rating == 4)
+                    {
+                        <td>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                        </td>
+                        
+                    }
+                    else
+                    {
+                        <td>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                        </td>
+                        
+                    }
                 </tr>
               }
         

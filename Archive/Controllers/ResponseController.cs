@@ -15,20 +15,29 @@ namespace Archive.Controllers
         public async Task<IActionResult> Index(int id,int pg = 1)
         {
             var items = await _manager.GetResponseByQestion(id);
-            GlobalData.qid = id;
-            int counter = items.Count();
-            const int pagesize = 12;
-            if (pg < 1) pg = 1;
+            if (items == null)
+            {
+                GlobalData.qid = id;
+                return View(items);
+            }
+            else
+            {
+                GlobalData.qid = id;
+                int counter = items.Count();
+                const int pagesize = 12;
+                if (pg < 1) pg = 1;
 
-            var pager = new Pager(counter, pg, pagesize);
+                var pager = new Pager(counter, pg, pagesize);
 
-            int recSkip = (pg - 1) * pagesize;
+                int recSkip = (pg - 1) * pagesize;
 
-            var data = items.Skip(recSkip).Take(pager.PageSize).ToList();
+                var data = items.Skip(recSkip).Take(pager.PageSize).ToList();
 
-            this.ViewBag.Pager = pager;
+                this.ViewBag.Pager = pager;
 
-            return View(data);
+                return View(data);
+            }
+            
         }
 
 

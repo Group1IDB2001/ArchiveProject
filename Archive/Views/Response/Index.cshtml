@@ -17,6 +17,20 @@
 </head>
 
 <style>
+    .header_small {
+    margin-left: 20px;
+    margin-top: 20px;
+    }
+    a{
+        margin-left:20px;
+    }
+    h3{
+        color:red;
+        text-align:center;
+    }
+</style>
+
+<style>
     h2{
         text-align:center;
         margin:20px auto;
@@ -51,9 +65,14 @@ a {
     <h2 class="tm-main-title">Ответы</h2>
     
 </header>
-
-<table class="table">
-    <tr>
+@if(Model == null)
+    {
+    <h3>Ответов пока нет</h3>
+}
+else
+{
+   <table class="table">
+       <tr>
         
         <th class="text-center">
             Ответ
@@ -63,21 +82,20 @@ a {
         </th>
 
     </tr>
-    @foreach(var response in Model)
-    {
-         <tr>
+       @foreach(var response in Model)
+       {
+          <tr>
              <td class="tm-figcaption">@response.Text</td>
-                  
                   <td class="aling-middle">
-                        
                         <a asp-area="" asp-controller="Items" asp-action="ItemPage" asp-route-id=@response.ItemId class="btn btn-outline-info">Книга</a>
                         <a asp-area="" asp-controller="Collection" asp-action="CollectionDetail" asp-route-id=@response.CollectionId class="btn btn-outline-info">Коллекция</a>
                   </td>
-         </tr>         
+          </tr>         
             
-    }
-       
-</table>
+       }    
+</table> 
+}
+
     
 
 
@@ -103,5 +121,5 @@ a {
             }
         </ul>
     }
-       <a asp-controller="Response" asp-action="Create" asp-route-id=GlobalData.qid class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить ответ</a>
+       <a asp-controller="Response" asp-action="Create" asp-route-id="@GlobalData.qid" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить ответ</a>
 </div>

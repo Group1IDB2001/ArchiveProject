@@ -31,17 +31,51 @@
         </div>
  
         <div class="form-group">
-            @Html.LabelFor(model => model.ItemId, "Номер книги",htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ItemId, "Книга",htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ItemId, new { htmlAttributes = new { @class = "form-control" } })
+                @*Юрий должен изменить здесь*@
+                 <select class = "form-control" style="text-align: center;" name="ItemId" id="id" >
+                    <option value="1">Lord of the Rings</option>
+                    <option value="2">Гордость и предубеждение</option>
+                    <option value="3">Темные начала</option>
+                    <option value="4">Автостопом по галактике</option>
+                    <option value="5">Отверженные</option>
+                    <option value="6">Братья Карамазовы</option>
+                    <option value="7">Вы, конечно, шутите, мистер Фейнман!</option>
+                    <option value="8">Тайные виды на гору Фудзи</option>
+                    <option value="9">Мастер и Маргарита</option>
+                    <option value="10">Евгений Онегин</option>
+                    <option value="11">Моцарт И Сальери</option>
+                    <option value="12">Золушка</option>
+                    <option value="13">Дети капитана Гранта</option>
+                    <option value="14">Имя Розы</option>
+                    <option value="15">Хребты безумия</option>
+                    <option value="16">Сияние</option>
+                    <option value="17">Мизери</option>
+                    <option value="18">Долорес Клейборн</option>
+                    <option value="19">Записки мертвого дома</option>
+                    <option value="20">Петербургские повести</option>
+                    <option value="21">Гиперион</option>
+                    <option value="22">Двенадцать стульев</option>
+                    <option value="23">Золотой теленок</option>
+                    <option value="24">Детство. Отрочество. Юность</option>  
+                    <option value="25">Кондуит и Швамбрания</option>
+                    <option value="26">We should all be feminists</option>
+                    <option value="27">Письма о добром</option>
+                    <option value="28">Словарь Ожегова</option>
+                </select>
                 @Html.ValidationMessageFor(model => model.ItemId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CollectionId, "Номер коллекции",htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CollectionId, "Коллекция",htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CollectionId, new { htmlAttributes = new { @class = "form-control" } })
+                <select class = "form-control" style="text-align: center;" name="CollectionId" id="id" >
+                    <option value="1">Словари</option>
+                    <option value="2">Русская классика</option>
+                    <option value="3">Зарубежная литература</option>
+                </select>
                 @Html.ValidationMessageFor(model => model.CollectionId, "", new { @class = "text-danger" })
             </div>
         </div>

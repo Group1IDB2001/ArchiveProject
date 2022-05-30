@@ -56,7 +56,18 @@ namespace ArchiveLogic.Responses
         }
 
 
+        public async Task<IList<Response>> GetResponseByQestion(int qestionid)
+        {
+            List<Response> responses = new List<Response>();
 
+            foreach (var response in _context.Responses)
+            {
+                if (response.QestionId == qestionid) responses.Add(response);
+            }
+            if (responses.Count == 0) responses = null;
+
+            return responses;
+        }
 
 
 
@@ -83,18 +94,7 @@ namespace ArchiveLogic.Responses
             return responses;
         }
         
-        public async Task<IList<Response>> GetResponseByQestion(int qestionid)
-        {
-            List<Response> responses = new List<Response>();
-
-            foreach (var response in _context.Responses)
-            {
-                if (response.QestionId == qestionid) responses.Add(response);
-            }
-            if (responses.Count == 0) throw new Exception("There is not Response with the same User Id");
-
-            return responses;
-        }
+        
 
         public async Task DeleteResponse(int responseId)
         {

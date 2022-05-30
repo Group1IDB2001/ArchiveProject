@@ -10,6 +10,21 @@
 </head>
 
 <style>
+    .header_small {
+    margin-left: 20px;
+    margin-top: 20px;
+    }
+    a{
+        margin-left:20px;
+    }
+    h3{
+        color:red;
+        text-align:center;
+    }
+</style>
+
+
+<style>
     img{
         width:75%;
     }
@@ -18,7 +33,13 @@
     }
 </style>
 
-<div class="tm-main-content no-pad-b">
+@if(Model == null)
+    {
+    <h3>Нет никаких каталог, связанных с этим ответом</h3>
+}
+else
+{
+    <div class="tm-main-content no-pad-b">
     <section class="row tm-item-preview">
        <div class="col-md-6 col-sm-12 mb-md-0 mb-5">
          <img src="~/img/cover.jpg" alt="Image" class="img-fluid tm-img-center-sm">
@@ -30,7 +51,6 @@
                <p class="tm-margin-b-p">Жанр: @Model.Genre</p>
                <p class="tm-margin-b-p"> <a asp-area="" asp-controller="Authors" asp-action="AuthorPage" asp-route-id=@Model.Id class="tm-blue-text">Авторы</a>   <a asp-controller="ItemAuthors" asp-action="PickAuthor" asp-route-id=@Model.Id class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить</a></p>
                <p class="tm-margin-b-p"> <a asp-area="" asp-controller="Tags" asp-action="TagPage" asp-route-id=@Model.Id class="tm-blue-text">Теги</a>  <a asp-controller="TtagItems" asp-action="PickTag" asp-route-id=@Model.Id class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить</a></p>
-               <p class="tm-blue-text tm-margin-b">Рейтинг: <a href="#" class="tm-blue-text">#avgrating</a></p>
                <a asp-area="" asp-controller="Like" asp-action="AddLikes" asp-route-id=@Model.Id class="tm-btn tm-btn-gray tm-margin-r-20 tm-margin-b-s">Нравится</a><a asp-area="" asp-controller="Reaction" asp-action="Index" asp-route-id=@Model.Id class="tm-btn tm-btn-blue">Комментарии</a>
        </div>
     </section>
@@ -40,3 +60,5 @@
      <a asp-area="" asp-controller="Items" asp-action="Delete" asp-route-id=@Model.Id class="btn btn-danger"><i class="bi bi-trash"></i>Удалить</a>
      <a class="btn btn-outline-secondary" asp-action="Index">Вернуться к каталогу</a>
 </td>
+}
+
