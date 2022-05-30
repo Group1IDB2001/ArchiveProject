@@ -48,6 +48,13 @@ namespace ArchiveLogic.Collections
             if (collections.Count == 0) throw new Exception("Error,I can't Found,There is not collection");
             return collections;
         }
+
+        public async Task<Collection> GetCollectionsById(int id)
+        {
+            var collection = _context.Collections.FirstOrDefault(n => n.Id == id );
+            return collection;
+        }
+
         public async Task<IList<Collection>> GetAllCollection()
         {
             return await _context.Collections.ToListAsync();

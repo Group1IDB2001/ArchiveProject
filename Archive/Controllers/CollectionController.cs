@@ -36,6 +36,16 @@ namespace Archive.Controllers
             return View(col);
         }
 
+        public async Task<IActionResult> Saved()
+        {
+            List<Collection> col = new List<Collection>();
+            foreach(var i in GlobalData.ids)
+            {
+                col.Add(await _manager.GetCollectionsById(i).ConfigureAwait(false));
+            }
+            return View(col);
+        }
+
         public IActionResult Create()
         {
             return View();

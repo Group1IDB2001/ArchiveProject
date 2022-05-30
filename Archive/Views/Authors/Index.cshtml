@@ -24,10 +24,7 @@
             Полное имя
         </th>
         <th>
-            Дата рождения
-        </th>
-        <th>
-            Дата смерти
+            Годы жизни
         </th>
         <th class="text-center">
             Немного о авторе
@@ -42,9 +39,8 @@
         <tr>
             
             <td>@author.Name</td>
-            <td>@author.Born</td>
-            <td>@author.Death</td>
-            <td>@author.About</td>
+                <td>@author.Born @if (@author.Death==0) { <a>...</a> } else{ @author.Death }</td>
+                    <td>@author.About</td>
 
             <td class="aling-middle">
             <a asp-area="" asp-controller="Authors" asp-action="Edit" asp-route-id=@author.Id class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i>Редактировать</a>
