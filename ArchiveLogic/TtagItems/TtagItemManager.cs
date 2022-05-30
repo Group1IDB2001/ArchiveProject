@@ -36,24 +36,12 @@ namespace ArchiveLogic.TtagItems
                 return false;
             }
         }
-
-        public async Task<IList<TtagItem>> GetAllTtagItem()
+        public async Task<bool> FindTagItem(int? itemId, int? ttagId)
         {
-            return await _context.TtagsItems.ToListAsync();
+            var ttagitem = _context.TtagsItems.FirstOrDefault(t => t.TtagId == ttagId && t.ItemId == itemId);
+            if (ttagitem == null) return false;
+            else return true;
         }
-
-        public async Task<IList<TtagItem>> GetByItems(int itemId)
-        {
-            List<TtagItem> Tagitems = new List<TtagItem>();
-            foreach(var tagitem in _context.TtagsItems)
-            {
-               if (tagitem.ItemId == itemId) Tagitems.Add(tagitem);
-            }
-            if(Tagitems.Count == 0) throw new Exception("There is no tag associated with this item");
-            return Tagitems;
-
-        }
-        
         public async Task<IList<TtagItem>> GetByTtag(int ttagId)
         {
             List<TtagItem> Tagitems = new List<TtagItem>();
@@ -64,19 +52,6 @@ namespace ArchiveLogic.TtagItems
             if (Tagitems.Count == 0) Tagitems = null;
             return Tagitems;
         }
-
-        public async Task DeleteTtagFromItem(int itemId, int ttagId)
-        {
-            var ttagitem = _context.TtagsItems.FirstOrDefault(t => t.TtagId == ttagId && t.ItemId == itemId);
-            if (ttagitem == null) throw new Exception("There is not Ttagitem with the same Id");
-            else
-            {
-                ttagitem.TtagId = null;
-                await _context.SaveChangesAsync();
-            }
-        }
-
-
 
     }
 }

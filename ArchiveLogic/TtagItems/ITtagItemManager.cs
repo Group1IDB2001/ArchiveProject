@@ -9,10 +9,7 @@ namespace ArchiveLogic.TtagItems
     public interface ITtagItemManager
     {
         Task<bool> AddTtagToItem(int? itemId, int? ttagId);
-        Task<IList<TtagItem>> GetAllTtagItem();
-        Task<IList<TtagItem>> GetByItems(int itemId);
+        Task<bool> FindTagItem(int? itemId, int? ttagId);
         Task<IList<TtagItem>> GetByTtag(int ttagId);
-        Task DeleteTtagFromItem (int itemId,int ttagId);
-        
     }
 }

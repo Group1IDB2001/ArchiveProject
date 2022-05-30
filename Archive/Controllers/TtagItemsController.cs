@@ -44,10 +44,24 @@ namespace Archive.Controllers
             return Redirect("/Tags/PickTag");
         }
 
+
+        public IActionResult AddTagToItem()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public async Task<IActionResult> AddTagToItem(int id)
         {
             var newtag = await _manager.AddTtagToItem(GlobalData.iid, id);
-            return Redirect("/Items/Index");
+            if(newtag)
+                return Redirect("/Items/Index");
+            else
+            {
+                    var newtag_1 = await _manager.FindTagItem(GlobalData.iid, id);
+                    if (newtag_1) ModelState.AddModelError("", "Tag with the same Item is already existing");
+            }
+            return View();
         }
 
         public IActionResult Index()

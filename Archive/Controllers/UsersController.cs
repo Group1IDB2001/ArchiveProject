@@ -103,39 +103,5 @@ namespace Archive.Controllers
         {
             return RedirectToAction("Login");
         }
-
-
-
-        [HttpGet]
-        [Route("users")]
-        public async Task<IList<User>> GetAllUsers() => await _manager.GetAllUsers();
-
-        //[HttpDelete]
-        //[Route("users/{id:int}")]
-        //public async Task DeleteUser(int id) => await _manager.DeleteUser(id);
-
-
-        //[HttpPut]
-        //[Route("users/name/{id:int}")]
-        //public async Task EditUserName(int id, [FromBody] CreateUserRequest request) => await _manager.EditUserName(id, request.Name);
-
-        //[HttpPut]
-        //[Route("users/email/{id:int}")]
-        //public async Task EditUserMail(int id, [FromBody] CreateUserRequest request) => await _manager.EditUserMail(id, request.Email);
-
-        //[HttpPut]
-        //[Route("users/password/{id:int}")]
-        //public async Task EditUserPassword(int id, [FromBody] CreateUserRequest request) => await _manager.EditUserPassword(id, request.Password);
-
-        //[HttpPut]
-        //[Route("users/role/{id:int}")]
-        //public async Task EditUserRole(int id, [FromBody] CreateUserRequest request) => await _manager.EditUserRole(id, request.Role);
-
-        //[HttpPut]
-        //[Route("users/edit/{id:int}")]
-        //public async Task EditUser(int id, [FromBody] CreateUserRequest request) => await _manager.EditUser(id, request.Name, request.Email, request.Password, request.Role);
-
-
-        
     }
 }
