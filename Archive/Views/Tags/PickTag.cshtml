@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="~/css/autor-style.css"/> 
     <link rel="stylesheet" href="~/css/tags-style.css"/>
 </head>
-<div class="tm-main-content no-pad-b">
     
                 
 <header>
@@ -18,11 +17,14 @@
     <div class="row">
          @foreach(var tag in Model)
             {
-                <figure class="col-lg-2 col-md-2 col-sm-3 col-3 tm-gallery-item">
-                       <a asp-area="" asp-controller="TtagItems" asp-action="AddTagToItem" asp-route-id=@tag.Id>
-                             <p class="tm-figcaption">@tag.Name</p>
-                       </a>
-                </figure>
+                <figure class="col-lg-1,5 col-md-1,5 col-sm-3 col-3 tm-gallery-item">
+                                    <div class="avd_div">
+                                        <a asp-area="" asp-controller="TtagItems" asp-action="ItemsByTag" asp-route-id=@tag.Id>
+                                        <p class="bucn_3_4r">@tag.Name</p>
+                                        </a>
+                                    </div>
+                                    
+                                </figure>
             }
     </div>
                             

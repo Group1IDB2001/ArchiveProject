@@ -2,20 +2,16 @@
     ViewData["Title"] = "CollectionsPage";
 }
 <html lang="ru" dir="ltr">
+
 <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Genres</title>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">  
-        <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">               
-        <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <meta charset="utf-8">
+    <title>List of Responses</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+     <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
+      <link rel="stylesheet" href="~/css/autor-style.css"/> 
 </head>
-<div class="tm-main-content no-pad-b">
-    
-                
-                <header>
+          
+ <header>
     <h2 class="tm-main-title">Мои Коллекции</h2>
 </header>
 <div class="tm-gallery">
@@ -24,7 +20,7 @@
                             {
                                     <figure class="col-lg-1,5 col-md-1,5 col-sm-3 col-3 tm-gallery-item">
                                         <a asp-area="" asp-controller="CollectionItem" asp-action="ShowItems" asp-route-id=@collection.Id>
-                            
+                                            
                                             <p class="tm-figcaption">@collection.Name</p>
                                         </a>
                                         <a asp-controller="CollectionItem" asp-action="PickItem" asp-route-id=@collection.Id class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить книгу</a>

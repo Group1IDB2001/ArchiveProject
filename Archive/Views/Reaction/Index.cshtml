@@ -12,8 +12,8 @@
     <title>Комментарии</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
-    <link rel="stylesheet" href="~/css/autor-style.css"/> 
-    @*#*@<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+   
 </head>
 
 <style>
@@ -25,6 +25,7 @@
         margin-left:20px;
     }
     h3{
+        margin: 20px auto;
         color:red;
         text-align:center;
     }
@@ -141,7 +142,7 @@
             
         </ul>
     }  
-     <a asp-controller="Reaction" asp-action="Create" asp-route-id="@GlobalData.iid" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить новую Комментарию</a>
+     <a asp-controller="Reaction" asp-action="Create" asp-route-id="@GlobalData.iid" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить новый комментарий</a>
 </div>
 
 </body>

@@ -1,14 +1,21 @@
 ﻿@model CreateReactionRequest
 <head>
     <meta charset="utf-8">
-    <title>новуая Комментария</title>
+    <title>Новый Комментарий</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
      <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
      <link rel="stylesheet" href="~/css/autor-style.css"/> 
+     
 </head>
 
+<style>
+    h2{
+        text-align:center;
+        margin-top:20px;
+    }
+</style>
 
-<h1>Добавить новую Комментарию</h1>
+<h2>Добавить новый комментарий</h2>
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
