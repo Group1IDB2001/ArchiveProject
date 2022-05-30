@@ -12,6 +12,8 @@ namespace Archive.Controllers
             _manager = manager;
         }
         [HttpGet]
+
+
         public async Task<IActionResult> ShowItems(int id)
         {
             var lis = await _manager.GetItemCollectionByCollection(id);

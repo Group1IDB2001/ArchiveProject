@@ -88,7 +88,7 @@ else
              <td class="tm-figcaption">@response.Text</td>
                   <td class="aling-middle">
                         <a asp-area="" asp-controller="Items" asp-action="ItemPage" asp-route-id=@response.ItemId class="btn btn-outline-info">Книга</a>
-                        <a asp-area="" asp-controller="Collection" asp-action="CollectionDetail" asp-route-id=@response.CollectionId class="btn btn-outline-info">Коллекция</a>
+                        <a asp-area="" asp-controller="CollectionItem" asp-action="ShowItems" asp-route-id=@response.CollectionId class="btn btn-outline-info">Коллекция</a>
                   </td>
           </tr>         
             
