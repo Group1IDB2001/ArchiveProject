@@ -40,23 +40,18 @@ else
               Полное имя
            </th>
            <th>
-               Дата рождения
-           </th>
-           <th>
-              Дата смерти
-           </th>
-           <th class="text-center">
-               Немного о авторе
-           </th>
+           
 
        </tr>
     @foreach(var author in Model)
     {
         <tr>
             <td>@author.Name</td>
-            <td>@author.Born</td>
-            <td>@author.Death</td>
-            <td>@author.About</td>
+            
+        
+        <td>
+            <a asp-area="" asp-controller="Authors" asp-action="Details" asp-route-id=@author.Id class="btn btn-outline-info"><i class="bi bi-eye"></i>Подробнее</a>
+        </td>
         </tr>
     }
 </table>
