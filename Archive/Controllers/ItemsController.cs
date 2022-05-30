@@ -192,17 +192,5 @@ namespace Archive.Controllers
             return View(items);
 
         }
-
-
-
-
-        //[HttpGet]
-        //[Route("Items")]
-        //public async Task<IList<Item>> GetAllAuthors() => await _manager.GetAllItems();
-
-
     }
 }
-
-
-// return RedirectToRoute(new { controller = "Home", action = "Index" });

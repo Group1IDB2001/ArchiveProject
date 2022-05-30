@@ -36,12 +36,6 @@ namespace ArchiveLogic.Likes
                 return false;
             }
         }
-
-        public async Task<IList<Like>> GetAllLike()
-        {
-            return await _context.Likes.ToListAsync();
-        }
-
         public async Task<IList<Like>> GetByUser(int userid)
         {
             List<Like> likes = new List<Like>();
@@ -52,27 +46,5 @@ namespace ArchiveLogic.Likes
             if(likes.Count == 0) throw new Exception("There is not Likes with the same User Id");
             return likes;
         }
-
-        public async Task<IList<Like>> GetByItem(int itemid)
-        {
-            List<Like> likes = new List<Like>();
-            foreach (var like in _context.Likes)
-            {
-                if (like.ItemId == itemid) likes.Add(like);
-            }
-            if (likes.Count == 0) throw new Exception("There is not Likes with the same Item Id");
-            return likes;
-
-        }
-
-        public async Task DeleteLike(int userid, int itemid)
-        {
-            var like = _context.Likes.FirstOrDefault(L => L.UserId == userid && L.ItemId == itemid);
-            if(like == null) throw new Exception("There is not Like with the same Item Id and User Id");
-            _context.Likes.Remove(like);
-            await _context.SaveChangesAsync();
-        }
-        
-
     }
 }

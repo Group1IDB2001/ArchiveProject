@@ -17,6 +17,7 @@ namespace Archive.Controllers
             var lis = await _manager.GetItemCollectionByCollection(id);
             if(lis == null)
             {
+                GlobalData.ids.Clear();
                 return Redirect("/Items/ItemsIn");
             }
             else

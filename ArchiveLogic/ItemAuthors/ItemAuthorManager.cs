@@ -34,28 +34,6 @@
             }
         }
 
-        public async Task EditItemid(int id, int? itemid)
-        {
-            var itemauthor = _context.ItemAuthors.FirstOrDefault(x => x.Id == id);
-            if(itemauthor == null)
-            {
-                throw new Exception("Error,I can't Found,There is not Item_Author");
-            }
-            itemauthor.ItemId = itemid;
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task EditAuthorId(int id, int? authorid)
-        {
-            var itemauthor = _context.ItemAuthors.FirstOrDefault(x => x.Id == id);
-            if (itemauthor == null)
-            {
-                throw new Exception("Error,I can't Found,There is not Item_Author");
-            }
-            itemauthor.AuthorId= authorid;
-            await _context.SaveChangesAsync();
-        }
-
         
     }
 }
