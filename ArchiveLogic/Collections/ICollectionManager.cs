@@ -12,6 +12,7 @@ namespace ArchiveLogic.Collections
         Task<IList<Collection>> GetAllCollection();
         Task<bool>FindCollection(string name, int userid);
         Task<IList<Collection>> GetCollectionsByUsreId(int usreid);
+        Task<Collection> GetCollectionsById(int id);
 
     }
 }

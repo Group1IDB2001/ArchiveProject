@@ -37,7 +37,7 @@ namespace Archive.Controllers
             }
             
         }
-
+        [HttpGet]
         public async Task<IActionResult> PickTag(int id)
         {
             GlobalData.iid = id;
@@ -45,12 +45,9 @@ namespace Archive.Controllers
         }
 
 
-        public IActionResult AddTagToItem()
-        {
-            return View();
-        }
+        
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> AddTagToItem(int id)
         {
             var newtag = await _manager.AddTtagToItem(GlobalData.iid, id);

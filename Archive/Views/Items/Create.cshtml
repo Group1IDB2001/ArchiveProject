@@ -53,22 +53,22 @@
             @Html.LabelFor(model => model.Genre,"Жанр",htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <select class = "form-control" style="text-align: center;" name="Genre" >
-                                <option value="no_info">Нет информации</option>
-                                <option value="drama">Драма</option>
-                                <option value="fantasy">Фэнтези</option>
-                                <option value="literary_fiction">Художественная проза</option>
-                                <option value="novel">Роман</option>
-                                <option value="poetry">Поэзия</option>
-                                <option value="folklore">Роман</option>
-                                <option value="historical">Фольклор</option>
-                                <option value="horror">Хоррор</option>
-                                <option value="thriller">Триллер</option>
-                                <option value="realism">Реализм</option>
-                                <option value="science_fiction">Научная фантастика</option>
-                                <option value="humor">Юмор</option>
-                                <option value="biography">Биография</option>
-                                <option value="essay">Эссе</option>
-                                <option value="documentary_literature">Документальная литература</option>
+                                <option value="нет_информации">Нет информации</option>
+                                <option value="Драма">Драма</option>
+                                <option value="Фэнтези">Фэнтези</option>
+                                <option value="Проза">Проза</option>  
+                                <option value="Поэзия">Поэзия</option>
+                                <option value="Роман">Роман</option>
+                                <option value="Фольклор">Фольклор</option>
+                                <option value="Хоррор">Хоррор</option>
+                                <option value="Историческая_проза">Историческая проза</option>
+                                <option value="Триллер">Триллер</option>
+                                <option value="Реализм">Реализм</option>
+                                <option value="Научная_фантастика">Научная фантастика</option>
+                                <option value="Юмор">Юмор</option>
+                                <option value="Биография">Биография</option>
+                                <option value="Эссе">Эссе</option>
+                                <option value="Предметная_литература">Предметная литература</option>
                 </select>
                 @Html.ValidationMessageFor(model => model.Genre, "", new { @class = "text-danger" })
             </div>

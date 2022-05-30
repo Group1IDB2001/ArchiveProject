@@ -42,6 +42,7 @@
 
             <td class="aling-middle">
             <a asp-controller="CollectionItem" asp-action="PickItem" asp-route-id=@collection.Id class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить книгу</a>
+            <a asp-controller="Save" asp-action="Save" asp-route-id=@collection.Id class="btn btn-success" ><i class="bi bi-plus-circle"></i>Сохранить</a>
             <a asp-area="" asp-controller="CollectionItem" asp-action="ShowItems" asp-route-id=@collection.Id class="btn btn-outline-info"><i class="bi bi-eye"></i>Подробнее</a>
             </td>
         </tr>

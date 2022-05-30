@@ -15,5 +15,21 @@ namespace Archive.Controllers
         {
             return View();
         }
+        public async Task<IActionResult> Save(int id)
+        {
+            await _manager.AddSaved(GlobalData.uid, id);
+            return Redirect("/Save/SavedCollections");
+        }
+
+        public async Task<IActionResult> SavedCollections()
+        {
+            var col = await _manager.GetSavedByUser(GlobalData.uid);
+            GlobalData.ids.Clear();
+            foreach(var s in col)
+            {
+                GlobalData.ids.Add((int)s.CollectionId);
+            }
+            return Redirect("/Collection/Saved");
+        }
     }
 }

@@ -44,11 +44,8 @@ namespace Archive.Controllers
             GlobalData.cid = id;
             return Redirect("/Items/PickItem");
         }
-        public IActionResult AddItem()
-        {
-            return View();
-        }
-        [HttpPost]
+        
+        [HttpGet]
         public async Task<IActionResult> AddItem(int id)
         {
             var coolec = await _manager.AddCollectionItem(GlobalData.cid, id);
