@@ -15,6 +15,7 @@
         public Pager() { }
         public Pager(int totalitems ,int page , int pageSize = 12)
         {
+            //Ceiling Возвращает наименьшее целое число, которое больше или равно указанному числу. 7,03 => 8
             int totalpages = (int)Math.Ceiling((decimal)totalitems / (decimal)pageSize);
             int currentPage = page ;
 

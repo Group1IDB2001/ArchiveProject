@@ -32,7 +32,6 @@ namespace Archive.Controllers
         [HttpGet]
         public async Task<IActionResult> CollectionsPage()
         {
-
             var col = await _manager.GetCollectionsByUsreId(GlobalData.uid);
             return View(col);
         }
@@ -46,12 +45,15 @@ namespace Archive.Controllers
         public async Task<IActionResult> Create(Collection col)
         {
             col.UserId = GlobalData.uid;
-            await _manager.AddCollection(col.Name, col.Description, col.UserId);
-
-            return RedirectToRoute(new { controller = "Collection", action = "CollectionsPage" });
+            var coolect = await _manager.AddCollection(col.Name, col.Description, col.UserId);
+            if (coolect)
+                return Redirect("CollectionsPage");
+            else
+            {
+                var coolect_1 = await _manager.FindCollection(col.Name, col.UserId);
+                if (coolect_1) ModelState.AddModelError("", "Collection is already existing");
+            }
+            return View();
         }
-
-
-
     }
 }

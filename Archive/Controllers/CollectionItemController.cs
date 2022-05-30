@@ -15,68 +15,47 @@ namespace Archive.Controllers
         public async Task<IActionResult> ShowItems(int id)
         {
             var lis = await _manager.GetItemCollectionByCollection(id);
-            GlobalData.ids.Clear();
-            int ii;
-            foreach(var col in lis)
+            if(lis == null)
             {
-                if (col.ItemId != null)
-                {
-                        ii = ((int)col.ItemId);
-                        GlobalData.ids.Add(ii); 
-                }
+                return Redirect("/Items/ItemsIn");
             }
-            return Redirect("/Items/ItemsIn");
+            else
+            {
+                GlobalData.ids.Clear();
+                int ii;
+                foreach (var col in lis)
+                {
+                    if (col.ItemId != null)
+                    {
+                        ii = ((int)col.ItemId);
+                        GlobalData.ids.Add(ii);
+                    }
+                }
+                return Redirect("/Items/ItemsIn");
+            }
+            
         }
 
         public async Task<IActionResult> PickItem(int id)
         {
             GlobalData.cid = id;
-            
             return Redirect("/Items/PickItem");
         }
 
         public async Task<IActionResult> AddItem(int id)
         {
-            await _manager.AddCollectionItem(GlobalData.cid, id);
-
-            return Redirect("/Collection/CollectionsPage");
-        }
-
-        [HttpPut]
-        //[Route("collectionitems")]
-        public async Task AddCollectionItem([FromBody] CreateCollectionItemRequest request) => await _manager.AddCollectionItem(request.CollectionId ,request.ItemId);
-
-
-        [HttpGet]
-        //[Route("collectionitems")]
-        public async Task<IList<CollectionItem>> GetAllCollectionItem() => await _manager.GetAllCollectionItem();
-
-        [HttpDelete]
-        //[Route("collectionitems/{collectionId}/{itemId}")]
-        public async Task DeleteCollectionItem(int collectionId, int itemId) => await _manager.DeleteCollectionItem(collectionId, itemId);
-
-        [HttpGet]
-        //[Route("collectionitems/collectionId/{collectionId}")]
-        public async Task<IList<CollectionItem>> GetItemCollectionByCollection(int collectionId) => await _manager.GetItemCollectionByCollection(collectionId);
-
-        [HttpGet]
-        //[Route("collectionitems/itemId/{itemId}")]
-        public async Task<IList<CollectionItem>> GetItemCollectionByItem(int itemId) => await _manager.GetItemCollectionByItem(itemId);
-
-
-
-
-
-
-
-
-
-
-
-
-        public IActionResult Index()
-        {
+            var coolec = await _manager.AddCollectionItem(GlobalData.cid, id);
+            if (coolec)
+                return Redirect("/Collection/CollectionsPage");
+            else
+            {
+                var coolect_1 = await _manager.FindCollectionItem(GlobalData.cid, id);
+                if (coolect_1) ModelState.AddModelError("","Collection with this item is already existing");
+            }
             return View();
+
         }
+
+       
     }
 }

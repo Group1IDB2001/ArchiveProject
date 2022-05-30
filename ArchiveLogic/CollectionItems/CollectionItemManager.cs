@@ -14,13 +14,13 @@ namespace ArchiveLogic.CollectionItems
             _context = context;
         }
 
-        public async Task AddCollectionItem(int? collectionId, int? itemId)
+        public async Task<bool> AddCollectionItem(int? collectionId, int? itemId)
         {
             var item = _context.Items.FirstOrDefault(i => i.Id == itemId);
-            if (item == null) throw new Exception("There is not Item with the same Id");
+            if (item == null) return false;
 
             var collection = _context.Collections.FirstOrDefault(a => a.Id == collectionId);
-            if (collection == null) throw new Exception("There is not Collection with the same Id");
+            if (collection == null) return false;
 
             var collectionitem_1 = _context.CollectionItems.FirstOrDefault(x => x.CollectionId == collectionId && x.ItemId == itemId);
             if (collectionitem_1 == null)
@@ -28,29 +28,19 @@ namespace ArchiveLogic.CollectionItems
                 var collectionitem = new CollectionItem { CollectionId = collectionId, ItemId = itemId };
                 _context.CollectionItems.Add(collectionitem);
                 await _context.SaveChangesAsync();
+                return true;
             }
             else
             {
-                throw new Exception("There is Item_Language with the same Id");
+                return false;
             }
         }
-
-        public async Task<IList<CollectionItem>> GetAllCollectionItem()
+        public async Task<bool> FindCollectionItem(int? collectionId, int? itemId)
         {
-            return await _context.CollectionItems.ToListAsync();
+            var collectionitem = _context.CollectionItems.FirstOrDefault(x => x.CollectionId == collectionId && x.ItemId == itemId);
+            if (collectionitem == null) return false;
+            else return true;
         }
-        
-        public async Task DeleteCollectionItem(int collectionId, int itemId)
-        {
-            var collection =  _context.CollectionItems.FirstOrDefault(g => g.CollectionId == collectionId && g.ItemId == itemId);
-            if (collection == null)
-            {
-                throw new Exception("Error,I can't Found,There is not Collection_Item");
-            }
-            _context.CollectionItems.Remove(collection);
-            await _context.SaveChangesAsync();
-        }
-
         public async Task<IList<CollectionItem>> GetItemCollectionByCollection(int collectionId)
         {
             List<CollectionItem> CollectionItems = new List<CollectionItem>();
@@ -58,21 +48,12 @@ namespace ArchiveLogic.CollectionItems
             {
                 if (CollectionItem.CollectionId == collectionId) CollectionItems.Add(CollectionItem);
             }
-            if(CollectionItems.Count == 0) throw new Exception("Error,I can't Found,No Items belongs to this Collection");
+            if (CollectionItems.Count == 0) CollectionItems = null;
             return CollectionItems;
 
         }
        
-        public async Task<IList<CollectionItem>> GetItemCollectionByItem(int itemId)
-        {
-            List<CollectionItem> CollectionItems = new List<CollectionItem>();
-            foreach (var CollectionItem in _context.CollectionItems)
-            {
-                if (CollectionItem.ItemId == itemId) CollectionItems.Add(CollectionItem);
-            }
-            if (CollectionItems.Count == 0) throw new Exception("Error,I can't Found,No Items belongs to this Collection");
-            return CollectionItems;
-        }
+
 
     }
 }

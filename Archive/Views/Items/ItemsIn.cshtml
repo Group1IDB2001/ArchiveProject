@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IList<Item>
+@{
     ViewData["Title"] = "List of drama";
     Pager pager = new Pager();
     int pageNo = 0;
@@ -17,10 +18,34 @@
     <link rel="stylesheet" href="~/css/autor-style.css"/> 
     <link rel="stylesheet" href="~/css/tags-style.css"/>
 </head>
-<header>
-    <h2 class="tm-main-title">Каталог</h2>
-</header>
-<div class="tm-gallery">
+
+<style>
+    .header_small {
+    margin-left: 20px;
+    margin-top: 20px;
+    }
+    a{
+        margin-left:20px;
+    }
+    h3{
+        color:red;
+        text-align:center;
+    }
+</style>
+
+
+
+
+@if(Model == null)
+{
+    <h3>Каталогов пока нет</h3>
+}
+else
+{
+    <header>
+        <h2 class="tm-main-title">Каталог</h2>
+    </header>
+    <div class="tm-gallery">
     <div class="row">
     @foreach(var item in Model)
     {
@@ -61,19 +86,13 @@
                      <a class ="page-link" asp-controller="Items" asp-action="ItemsIn" asp-route-pg=@(pager.CurrentPage -1)>Previous</a>
                 </li>
             }
-
-           
-
-            
         </ul>
-
-
-        @* @*кнопка Create*@
-    @*<div style="position:fixed ;right:25px ;bottom: 25px" class="text-white">
-    <a asp-controller="Authors" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Add New Author</a>
-    </div>*@
-
     }
-                
+</div>
+}
 
+<div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                 <a class="btn btn-outline-secondary" asp-controller="collection" asp-action="CollectionsPage">вернуться к коллекции</a>
+            </div>
 </div>

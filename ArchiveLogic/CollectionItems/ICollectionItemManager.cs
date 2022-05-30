@@ -9,11 +9,11 @@ namespace ArchiveLogic.CollectionItems
 {
     public interface ICollectionItemManager
     {
-        Task AddCollectionItem(int? collectionId, int? itemId);
+        Task<bool> AddCollectionItem(int? collectionId, int? itemId);
+        Task<bool> FindCollectionItem(int? collectionId, int? itemId);
+        Task<IList<CollectionItem>> GetItemCollectionByCollection(int collectionId);
 
-        Task<IList<CollectionItem>> GetAllCollectionItem();
-        Task DeleteCollectionItem(int collectionId, int itemId);
-        Task<IList<CollectionItem>> GetItemCollectionByCollection (int collectionId);
-        Task<IList<CollectionItem>> GetItemCollectionByItem(int itemId);
+
+
     }
 }

@@ -12,6 +12,7 @@ namespace Archive.Controllers
             _manager = manager;
         }
 
+        //PickAuthor добавить автора к каталогу
         public async Task<IActionResult> PickAuthor(int id)
         {
             GlobalData.iid = id;
@@ -22,10 +23,6 @@ namespace Archive.Controllers
         {
             var newauthor =await _manager.AddItemAuthor(id,GlobalData.iid);
             return Redirect("/Items/Index");
-        }
-        public IActionResult Index()
-        {
-            return View();
         }
     }
 }

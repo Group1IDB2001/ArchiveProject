@@ -8,19 +8,10 @@ namespace ArchiveLogic.Collections
 {
     public interface ICollectionManager
     {
-        Task AddCollection(string name , string description , int userid);
+        Task<bool> AddCollection(string name , string description , int userid);
         Task<IList<Collection>> GetAllCollection();
-        Task<Collection> GetCollectionById(int id);
-        Task<Collection> GetCollectionByName(string name);
+        Task<bool>FindCollection(string name, int userid);
         Task<IList<Collection>> GetCollectionsByUsreId(int usreid);
 
-
-
-        Task EditCollectionName(int id, string name);
-        Task EditCollectionDescription(int id, string description);
-        Task EditCollectionUserId(int id, int userid);
-
-
-        Task DeleteCollection(int id);
     }
 }
