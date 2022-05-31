@@ -16,6 +16,7 @@ namespace Archive.Controllers
         public async Task<IActionResult> ItemsByTag(int id)
         {
             var lis = await _manager.GetByTtag(id);
+            GlobalData.taid = id;
             if (lis == null)
             {
                 GlobalData.ids.Clear();
@@ -44,8 +45,14 @@ namespace Archive.Controllers
             return Redirect("/Tags/PickTag");
         }
 
+        public async Task<IActionResult> PickItem()
+        {
+            //GlobalData.taid = id;
+            return Redirect("/Items/PickItemTag");
+        }
 
-        
+
+
 
         [HttpGet]
         public async Task<IActionResult> AddTagToItem(int id)
@@ -58,7 +65,20 @@ namespace Archive.Controllers
                     var newtag_1 = await _manager.FindTagItem(GlobalData.iid, id);
                     if (newtag_1) ModelState.AddModelError("", "Tag with the same Item is already existing");
             }
-            return View();
+            return Redirect("/Items/Index");
+        }
+        [HttpGet]
+        public async Task<IActionResult> AddItemToTag(int id)
+        {
+            var newtag = await _manager.AddTtagToItem(id ,GlobalData.taid);
+            if (newtag)
+                return Redirect("/Tags/Index");
+            else
+            {
+                var newtag_1 = await _manager.FindTagItem(id, GlobalData.taid);
+                if (newtag_1) ModelState.AddModelError("", "Tag with the same Item is already existing");
+            }
+            return Redirect("/Tags/Index");
         }
 
         public IActionResult Index()
