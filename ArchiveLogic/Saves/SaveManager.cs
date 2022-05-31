@@ -13,15 +13,13 @@ namespace ArchiveLogic.Saves
         {
             _context = context;
         }
-        public async Task AddSaved(int? userid, int? collectionid)
+        public async Task<bool> AddSaved(int? userid, int? collectionid)
         {
             var user = _context.Users.FirstOrDefault(C => C.Id == userid);
-            if (user == null) throw new Exception("There is not User with the same Id");
+            if (user == null) return false;
 
             var collection = await _context.Collections.FirstOrDefaultAsync(g => g.Id == collectionid);
-            if (collection == null) throw new Exception("There is not collection with the same Id");
-
-            if(collection.UserId == userid) throw new Exception("You already have this collection");
+            if (collection == null) return false;
 
             var save_1 = _context.Saves.FirstOrDefault(n => n.UserId == userid && n.CollectionId == collectionid);
             if (save_1 == null)
@@ -29,13 +27,19 @@ namespace ArchiveLogic.Saves
                 var save = new Saved { UserId = userid, CollectionId = collectionid };
                 _context.Saves.Add(save);
                 await _context.SaveChangesAsync();
+                return true;
             }
             else
             {
-                throw new Exception("There is Collection with the same information");
+                return false;
             }
         }
-
+        public async Task<bool> FindSaved(int? userid, int? collectionid)
+        {
+            var save = _context.Saves.FirstOrDefault(n => n.UserId == userid && n.CollectionId == collectionid);
+            if (save == null) return false;
+            else return true;
+        }
         public async Task<IList<Saved>> GetAllSaves()
         {
             return await _context.Saves.ToListAsync();
@@ -49,7 +53,7 @@ namespace ArchiveLogic.Saves
             {
                 if (Save.UserId == userid) Saves.Add(Save);
             }
-            if (Saves.Count == 0) throw new Exception("There is not Collection with the same User Id");
+            if (Saves.Count == 0) Saves = null;
 
             return Saves;
         }

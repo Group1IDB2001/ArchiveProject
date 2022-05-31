@@ -9,7 +9,8 @@ namespace ArchiveLogic.Saves
 {
     public interface ISaveManager
     {
-        Task AddSaved(int? userid, int? collectionid);
+        Task<bool> AddSaved(int? userid, int? collectionid);
+        Task<bool> FindSaved(int? userid, int? collectionid);
         Task<IList<Saved>> GetAllSaves();
         Task<IList<Saved>> GetSavedByUser(int userid);
         Task<IList<Saved>> GetSavedByCollection(int collectionid);

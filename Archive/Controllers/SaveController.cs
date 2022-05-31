@@ -17,19 +17,36 @@ namespace Archive.Controllers
         }
         public async Task<IActionResult> Save(int id)
         {
-            await _manager.AddSaved(GlobalData.uid, id);
-            return Redirect("/Save/SavedCollections");
+            var save=await _manager.AddSaved(GlobalData.uid, id);
+            if(save)
+                return Redirect("/Save/SavedCollections");
+            else
+            {
+                var save_1 = await _manager.FindSaved(GlobalData.uid, id);
+                if (save_1) ModelState.AddModelError("", "Collection is already existing");
+                return Redirect("/Save/SavedCollections");
+            }
+            
         }
 
         public async Task<IActionResult> SavedCollections()
         {
             var col = await _manager.GetSavedByUser(GlobalData.uid);
-            GlobalData.ids.Clear();
-            foreach(var s in col)
+            if(col == null)
             {
-                GlobalData.ids.Add((int)s.CollectionId);
+                GlobalData.ids.Clear();
+                return Redirect("/Collection/Saved");
             }
-            return Redirect("/Collection/Saved");
+            else
+            {
+                GlobalData.ids.Clear();
+                foreach (var s in col)
+                {
+                    GlobalData.ids.Add((int)s.CollectionId);
+                }
+                return Redirect("/Collection/Saved");
+            }
+           
         }
     }
 }

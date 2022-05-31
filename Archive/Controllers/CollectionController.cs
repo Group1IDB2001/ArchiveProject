@@ -39,11 +39,20 @@ namespace Archive.Controllers
         public async Task<IActionResult> Saved()
         {
             List<Collection> col = new List<Collection>();
-            foreach(var i in GlobalData.ids)
+            if (GlobalData.ids.Count() == 0)
             {
-                col.Add(await _manager.GetCollectionsById(i).ConfigureAwait(false));
+                col = null;
+                return View(col);
             }
-            return View(col);
+            else
+            {
+                foreach (var i in GlobalData.ids)
+                {
+                    col.Add(await _manager.GetCollectionsById(i).ConfigureAwait(false));
+                }
+                return View(col);
+            }
+            
         }
 
         public IActionResult Create()
