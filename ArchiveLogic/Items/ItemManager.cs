@@ -87,7 +87,7 @@ namespace ArchiveLogic.Items
                     items.Add(item);
                 }
             }
-            if (items.Count == 0) throw new Exception("Error,I can't Found,There is not item");
+            if (items.Count == 0) items = null;
             return items;
         }
         public async Task<IList<Item>> GetItemsByAuthorId(int authorId)

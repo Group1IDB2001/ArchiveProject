@@ -63,7 +63,7 @@ namespace Archive.Controllers
                 else
                 {
                     var Author_1 = await _manager.FindAuthor(author.Name,author.Born);
-                    if (Author_1) ModelState.AddModelError("", "Author is already existing");
+                    if (Author_1) ModelState.AddModelError("", "Автор уже существует");
                 }
             }
             return View();
@@ -95,7 +95,7 @@ namespace Archive.Controllers
                 else
                 {
                     var Author_1 = await _manager.FindAuthor(author.Name, author.Born);
-                    if (Author_1) ModelState.AddModelError("", "Author is already existing");
+                    if (Author_1) ModelState.AddModelError("", "Автор уже существует");
                     
                 }
             }
@@ -117,7 +117,7 @@ namespace Archive.Controllers
             if (author) return RedirectToAction("Index");
             else
             {
-                ModelState.AddModelError("", "Author is already not existing");
+                ModelState.AddModelError("", "Автор уже существует");
                 return RedirectToAction("Index");
             }
         }

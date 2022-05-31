@@ -43,7 +43,7 @@ namespace ArchiveLogic.Likes
             {
                 if (like.UserId == userid) likes.Add(like);
             }
-            if(likes.Count == 0) throw new Exception("There is not Likes with the same User Id");
+            if (likes.Count == 0) likes = null;
             return likes;
         }
     }

@@ -123,8 +123,8 @@ namespace Archive.Controllers
                 else
                 {
                     var Item_1 = await _manager.FindItemByName(item.Name);
-                    if (Item_1) ModelState.AddModelError("", "Item is already existing");
-                    else ModelState.AddModelError("CountryId", "This Country name not exists! Please enter a new Country Name");
+                    if (Item_1) ModelState.AddModelError("", "Каталог уже существует");
+                    else ModelState.AddModelError("CountryId", "Этого названия страны не существует! Пожалуйста, введите новое название страны");
                 }
             }
             return View();
@@ -147,7 +147,7 @@ namespace Archive.Controllers
             else
             {
                 var Item_1 = await _manager.FindItemByName(item.Name);
-                if (Item_1) ModelState.AddModelError("", "Item is already existing");
+                if (Item_1) ModelState.AddModelError("", "Каталог уже существует");
 
             }
             return View();
@@ -169,7 +169,7 @@ namespace Archive.Controllers
             if (item) return RedirectToAction("Index");
             else
             {
-                ModelState.AddModelError("", "item is already not existing");
+                ModelState.AddModelError("", "Каталог уже существует");
                 return RedirectToAction("Index");
             }
         }

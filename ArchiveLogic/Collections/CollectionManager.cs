@@ -45,7 +45,7 @@ namespace ArchiveLogic.Collections
             {
                 if (collection.UserId == usreid) collections.Add(collection);
             }
-            if (collections.Count == 0) throw new Exception("Error,I can't Found,There is not collection");
+            if (collections.Count == 0) collections = null;
             return collections;
         }
 

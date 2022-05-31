@@ -30,7 +30,8 @@
             <h3>По Вашему запросу ничего не найдено</h3>
                 <td class="aling-middle">
                     <a class="btn btn-outline-secondary" asp-controller="Items" asp-action="Index">Вернуться к каталогу</a>
-            </td>
+                    @*<a asp-controller="TtagItems" asp-action="PickTag" asp-route-id=@Model.Id class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить</a>
+            *@</td>
         }
         else
         {              

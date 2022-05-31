@@ -23,7 +23,7 @@ namespace Archive.Controllers
             else
             {
                 var save_1 = await _manager.FindSaved(GlobalData.uid, id);
-                if (save_1) ModelState.AddModelError("", "Collection is already existing");
+                if (save_1) ModelState.AddModelError("", "Коллекция уже существует");
                 return Redirect("/Save/SavedCollections");
             }
             

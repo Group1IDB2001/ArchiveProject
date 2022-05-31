@@ -3,22 +3,38 @@
 }
 <html lang="ru" dir="ltr">
 <head>
-    <meta charset="utf-8">
-    <title>List of Responses</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+     <meta charset="utf-8">
+     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
      <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
-      <link rel="stylesheet" href="~/css/autor-style.css"/> 
+     <link rel="stylesheet" href="~/css/autor-style.css"/> 
 </head>
 
-<div class="tm-main-content no-pad-b">
-    
-                
-                <header>
-    <h2 class="tm-main-title">Мои Коллекции</h2>
-</header>
+
+<style>
+    .header_small {
+    margin-left: 20px;
+    margin-top: 20px;
+    }
+    a{
+        margin-left:20px;
+    }
+    h3{
+        color:red;
+        text-align:center;
+    }
+</style>
+@if(Model == null)
+        {
+    <h3>По Вашему запросу ничего не найдено</h3>
+}
+else
+{
+    <div class="tm-main-content no-pad-b">    
+    <header>
+        <h2 class="tm-main-title">Мои Коллекции</h2>
+    </header>
 <table class="table">
     <tr>
-        
         <th>
             Название
         </th>
@@ -26,22 +42,23 @@
             
         </th>
         </tr>
-                        @foreach(var collection in Model)
-                            {
-                                    <tr>
-            
-            <td>@collection.Name</td>
-            
+              @foreach(var collection in Model)
+                {
+                      <tr>
+                          <td>@collection.Name</td>
+                          <td class="aling-middle">
+                          <a asp-controller="CollectionItem" asp-action="PickItem" asp-route-id=@collection.Id class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить книгу</a>
+                          @*<a asp-controller="Save" asp-action="Save" asp-route-id=@collection.Id class="btn btn-success" ><i class="bi bi-plus-circle"></i>Сохранить</a>*@
+                          <a asp-area="" asp-controller="CollectionItem" asp-action="ShowItems" asp-route-id=@collection.Id class="btn btn-outline-info"><i class="bi bi-eye"></i>Подробнее</a>
+                        </td>
+                     </tr>
+                }
+    </table>
+</div>
+}
 
-            <td class="aling-middle">
-            <a asp-controller="CollectionItem" asp-action="PickItem" asp-route-id=@collection.Id class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить книгу</a>
-            @*<a asp-controller="Save" asp-action="Save" asp-route-id=@collection.Id class="btn btn-success" ><i class="bi bi-plus-circle"></i>Сохранить</a>*@
-            <a asp-area="" asp-controller="CollectionItem" asp-action="ShowItems" asp-route-id=@collection.Id class="btn btn-outline-info"><i class="bi bi-eye"></i>Подробнее</a>
-            </td>
-        </tr>
-
-                            }
-                            </table>
-    
-<a asp-controller="Collection" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить коллекцию</a>
-            
+<td class="aling-middle">
+    <a class="btn btn-outline-secondary" asp-controller="Collection" asp-action="Index">Вернуться к коллекции</a>
+    <a asp-controller="Collection" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить коллекцию</a>
+</td>
+                   

@@ -46,7 +46,7 @@ namespace Archive.Controllers
             else
             {
                 var ques_1 = await _manager.FindQestion(qestion.UserId, qestion.Text);
-                if (ques_1) ModelState.AddModelError("", "Qestion is already existing");
+                if (ques_1) ModelState.AddModelError("", "Вопрос уже существует");
             }
             return View();
         }

@@ -54,7 +54,7 @@ namespace Archive.Controllers
             else
             {
                 var coolect_1 = await _manager.FindCollectionItem(GlobalData.cid, id);
-                if (coolect_1) ModelState.AddModelError("","Collection with this item is already existing");
+                if (coolect_1) ModelState.AddModelError("", "Коллекция с этим каталогом уже существует");
             }
             return View();
 

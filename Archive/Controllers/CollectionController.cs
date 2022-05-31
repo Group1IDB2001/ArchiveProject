@@ -70,7 +70,7 @@ namespace Archive.Controllers
             else
             {
                 var coolect_1 = await _manager.FindCollection(col.Name, col.UserId);
-                if (coolect_1) ModelState.AddModelError("", "Collection is already existing");
+                if (coolect_1) ModelState.AddModelError("", "Коллекция уже существует");
             }
             return View();
         }
