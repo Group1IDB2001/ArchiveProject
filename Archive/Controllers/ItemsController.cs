@@ -106,6 +106,39 @@ namespace Archive.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> ItemsInCollection(int pg = 1)
+        {
+            var items = new List<Item>();
+            if (GlobalData.ids.Count() == 0)
+            {
+
+                items = null;
+                return View(items);
+            }
+            else
+            {
+                foreach (var i in GlobalData.ids)
+                {
+                    items.Add(await _manager.GetItemById(i));
+                }
+                int counter = items.Count();
+                const int pagesize = 12;
+                if (pg < 1) pg = 1;
+
+                var pager = new Pager(counter, pg, pagesize);
+
+                int recSkip = (pg - 1) * pagesize;
+
+                var data = items.Skip(recSkip).Take(pager.PageSize).ToList();
+
+                this.ViewBag.Pager = pager;
+
+                return View(data);
+            }
+
+        }
+
+        [HttpGet]
         
         public async Task<IActionResult> Genre(int id, int pg = 1)
         {

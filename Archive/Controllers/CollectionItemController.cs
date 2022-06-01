@@ -34,7 +34,7 @@ namespace Archive.Controllers
                         GlobalData.ids.Add(ii);
                     }
                 }
-                return Redirect("/Items/ItemsIn");
+                return Redirect("/Items/ItemsInCollection");
             }
             
         }
