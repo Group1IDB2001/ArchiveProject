@@ -10,6 +10,8 @@
         public static int cid = 0;//id collection
         public static int iid = 0;//item id 
         public static int taid=0;//tagid
-        public static string gingn;
+        public static string gingn;//ginger user
+        public static int uroleid = 0;// user role id 
+        public static int AuthId = 0;//Author id
     }
 }

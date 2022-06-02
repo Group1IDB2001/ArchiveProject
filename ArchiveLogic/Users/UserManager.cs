@@ -46,6 +46,11 @@ namespace ArchiveLogic.Users
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             if (user != null) return true;
             else return false;
-        }       
+        }
+        public async Task<int> GetUserRole(string email)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
+            return (int)user.Role;
+        }
     }
 }

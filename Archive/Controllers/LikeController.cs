@@ -25,13 +25,13 @@ namespace Archive.Controllers
             var It = await _manager.GetByUser(GlobalData.uid);
             if(It == null)
             {
-                return Redirect("/Items/ItemsIn");
+                return Redirect("/Items/ItemsInLikes");
             }
             else
             {
                 foreach (var item in It)
                 GlobalData.ids.Add((int)item.ItemId);
-                return Redirect("/Items/ItemsIn");
+                return Redirect("/Items/ItemsInLikes");
             }
                 
 

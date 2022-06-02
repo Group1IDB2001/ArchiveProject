@@ -78,11 +78,13 @@ namespace ArchiveLogic.Authors
                 {
                     for (int i = 0; i < itemauthors.Count; i++)
                     {
-                        if (itemauthors[i].AuthorId == author.Id) authors.Add(author);
+                        if (itemauthors[i].AuthorId == author.Id ) authors.Add(author);
                     }
                 }
             }
             return authors;
         }
+
+        
     }
 }

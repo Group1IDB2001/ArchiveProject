@@ -1,0 +1,43 @@
+﻿<html lang="ru" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Каталог</title>
+    <link rel="stylesheet" href="~/css/katalog-styie.css"/> 
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
+    
+    
+</head>
+
+<style>
+    .header_small {
+    margin-left: 20px;
+    margin-top: 20px;
+    }
+    h3{
+        color:red;
+        text-align:center;
+    }
+    h1{
+        color:red;
+        text-align:center;
+    }
+
+    img{
+        width:75%;
+        margin-bottom: 50px;
+    }
+    a {
+    margin-left: 20px;   
+    }
+</style>
+
+	<h1>К сожалению</h1>
+<h3>обычный пользователь не сможет редактировать или удалить информации</h3>
+
+
+<div class="container">
+    <div class="col-md-offset-2 col-md-10">
+      <a class="btn btn-outline-secondary" asp-controller="Authors" asp-action="DetailsforItems" asp-route-id="@GlobalData.AuthId">Вернуться к каталогу</a>
+    </div>
+</div>

@@ -12,5 +12,6 @@ namespace ArchiveLogic.Users
         Task<bool> SingIn(string email, string password);
         Task<bool> FindUserByEmail(string email);
         Task<User> GetUserByEmail(string email);
+        Task<int> GetUserRole(string email);
     }
 }

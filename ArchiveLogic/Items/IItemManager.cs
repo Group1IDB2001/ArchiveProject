@@ -24,5 +24,6 @@ namespace ArchiveLogic.Authors
         Task<IList<Item>> GetItemsByGenre(Genres genre);
         Task<IList<Item>> GetItemsByAuthorId(int authorId);
         Task<IList<Item>> GetItemsByAuthorName(string authorname);
+
     }
 }

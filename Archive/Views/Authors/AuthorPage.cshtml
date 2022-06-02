@@ -50,12 +50,12 @@ else
             
         
         <td>
-            <a asp-area="" asp-controller="Authors" asp-action="Details" asp-route-id=@author.Id class="btn btn-outline-info"><i class="bi bi-eye"></i>Подробнее</a>
+            <a asp-area="" asp-controller="Authors" asp-action="DetailsforItems" asp-route-id=@author.Id class="btn btn-outline-info"><i class="bi bi-eye"></i>Подробнее</a>
         </td>
         </tr>
     }
 </table>
-<div class="form-group">
+@*<div class="form-group">
       <div class="col-md-offset-2 col-md-10">
           @foreach(var author in Model)
              {
@@ -64,12 +64,16 @@ else
              }
           
       </div>
-</div>
+</div>*@
 
 
 </body>
 }
-  
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <a class="btn btn-outline-secondary" asp-controller="Items" asp-action="ItemPage" asp-route-id="@GlobalData.iid">Вернуться к каталогу</a>
+    </div>
+</div>
 
 
 

@@ -43,6 +43,7 @@ else
                <p class="tm-margin-b-p">@Model.Description</p>
                <p class="tm-margin-b-p">Год: @Model.Year</p>
                <p class="tm-margin-b-p">Жанр: @Model.Genre</p>
+               
                <p class="tm-margin-b-p"> <a asp-area="" asp-controller="Authors" asp-action="AuthorPage" asp-route-id=@Model.Id class="tm-blue-text">Авторы</a>   <a asp-controller="ItemAuthors" asp-action="PickAuthor" asp-route-id=@Model.Id class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить</a></p>
                <p class="tm-margin-b-p"> <a asp-area="" asp-controller="Tags" asp-action="TagPage" asp-route-id=@Model.Id class="tm-blue-text">Теги</a>  <a asp-controller="TtagItems" asp-action="PickTag" asp-route-id=@Model.Id class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить</a></p>
                <a asp-area="" asp-controller="Like" asp-action="AddLikes" asp-route-id=@Model.Id class="tm-btn tm-btn-gray tm-margin-r-20 tm-margin-b-s">Нравится</a><a asp-area="" asp-controller="Reaction" asp-action="Index" asp-route-id=@Model.Id class="tm-btn tm-btn-blue">Комментарии</a>

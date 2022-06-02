@@ -1,0 +1,58 @@
+﻿@model Author
+
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Author</title>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+     <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
+     <link rel="stylesheet" href="~/css/autor-style.css"/> 
+</head>
+
+<div class="row text">
+	
+		<p>
+			<h2>Информация @Model.Name </h2>
+		</p>
+		
+			<div class="form-horizontal">
+				<div class="form-group">
+					<label asp-for="@Model.Name" class="control-lable"></label>
+					<div class="col-md-10">
+					<input asp-for="Name" class="form-control" readonly />
+					<span asp-validation-for="Name" class="text-danger"></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label asp-for="Born" class="control-lable"></label>
+					<div class="col-md-10">
+					<input asp-for="Born" class="form-control" readonly />
+					<span asp-validation-for="Born" class="text-danger"></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label asp-for="Death" class="control-lable"></label>
+					<div class="col-md-10">
+					<input asp-for="Death" class="form-control" readonly />
+					<span asp-validation-for="Death" class="text-danger"></span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label asp-for="About" class="control-lable"></label>
+					<div class="col-md-10">
+					<input asp-for="About" class="form-control" readonly />
+					<span asp-validation-for="About" class="text-danger"></span>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<a class="btn btn-outline-success float-right"  asp-action="Edit" asp-route-id="@Model.Id">Редактировать</a>
+					<a class="btn btn-outline-secondary" asp-controller="Authors" asp-action="AuthorPage" asp-route-id="@GlobalData.iid">Вернуться к каталогу</a>
+
+				</div>
+
+			</div>
+		
+	
+</div>

@@ -77,11 +77,31 @@ namespace Archive.Controllers
             return View(author);
         }
 
-
-        public async Task<IActionResult> Edit(int id)
+        [HttpGet]
+        public async Task<IActionResult> DetailsforItems(int id)
         {
+            GlobalData.AuthId = id;
             var author = await _manager.GetAuthorById(id);
             return View(author);
+        }
+
+        public async Task<IActionResult> NotFoundAuthor()
+        {
+            return View();
+        }
+        public async Task<IActionResult> Edit(int id)
+        {
+            GlobalData.AuthId = id;
+            if (GlobalData.uroleid == 3)
+            {
+                return RedirectToAction("NotFoundAuthor");
+            }
+            else
+            {
+                var author = await _manager.GetAuthorById(id);
+                return View(author);
+            }
+            
         }
 
         [HttpPost]
@@ -124,6 +144,7 @@ namespace Archive.Controllers
        
         public async Task<IActionResult> AuthorPage(int id)
         {
+            GlobalData.iid = id;
             var author = await _manager.GetAuthorsByItemId(id);
             return View(author);
         }

@@ -177,6 +177,42 @@ namespace Archive.Controllers
 
 
 
+        [HttpGet]
+        public async Task<IActionResult> ItemsInLikes(int pg = 1)
+        {
+            var items = new List<Item>();
+            if (GlobalData.ids.Count() == 0)
+            {
+
+                items = null;
+                return View(items);
+            }
+            else
+            {
+                foreach (var i in GlobalData.ids)
+                {
+                    items.Add(await _manager.GetItemById(i));
+                }
+                int counter = items.Count();
+                const int pagesize = 12;
+                if (pg < 1) pg = 1;
+
+                var pager = new Pager(counter, pg, pagesize);
+
+                int recSkip = (pg - 1) * pagesize;
+
+                var data = items.Skip(recSkip).Take(pager.PageSize).ToList();
+
+                this.ViewBag.Pager = pager;
+
+                return View(data);
+            }
+
+        }
+
+
+
+
 
 
 
@@ -234,12 +270,24 @@ namespace Archive.Controllers
             return View();
         }
 
-
+        public async Task<IActionResult> NotFound()
+        {
+            return View();
+        }
 
         public async Task<IActionResult> Edit(int id)
         {
-            var item = await _manager.GetItemById(id);
-            return View(item);
+            GlobalData.iid = id;
+            if (GlobalData.uroleid == 3)
+            {
+                return RedirectToAction("NotFound");
+            }
+            else
+            {
+                var item = await _manager.GetItemById(id);
+                return View(item);
+            }
+            
         }
 
         [HttpPost]
@@ -261,8 +309,17 @@ namespace Archive.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            var item = await _manager.GetItemById(id);
-            return View(item);
+            GlobalData.iid = id;
+            if (GlobalData.uroleid == 3)
+            {
+                return RedirectToAction("NotFound");
+            }
+            else
+            {
+                var item = await _manager.GetItemById(id);
+                return View(item);
+            }
+                
         }
 
 
