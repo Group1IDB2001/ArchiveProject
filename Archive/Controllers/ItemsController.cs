@@ -80,6 +80,13 @@ namespace Archive.Controllers
             return View(items);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> ItemPageGanre(int Id)
+        {
+            var items = await _manager.GetItemById(Id);
+            return View(items);
+        }
+
 
 
         [HttpGet]
@@ -241,6 +248,7 @@ namespace Archive.Controllers
         
         public async Task<IActionResult> Genre(int id, int pg = 1)
         {
+            GlobalData.Gunrid= id;
             var items = await _manager.GetItemsByGenre((Genres)id);
             int counter = items.Count();
             const int pagesize = 12;

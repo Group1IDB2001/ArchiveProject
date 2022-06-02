@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
         <link rel="stylesheet" href="~/css/tooplate-style.css"/> 
        
-    </head>
+</head>
     <style>
         a{
          margin-left:20px;
@@ -28,6 +28,9 @@
             margin-left:20px;
              margin-top:20px;
        }
+       .wrapper {
+            text-align: center;
+            }
     </style>
     
 <header class="header_small">
@@ -40,7 +43,7 @@
         
         
             <figure class="col-lg-1,5 col-md-1,5 col-sm-3 col-5 tm-gallery-item">
-                  <a asp-area="" asp-controller="Items" asp-action="ItemPage" asp-route-id=@item.Id>
+                  <a asp-area="" asp-controller="Items" asp-action="ItemPageGanre" asp-route-id=@item.Id>
                         <div class="tm-gallery-item-overlay">
                             <img src="~/img/cover.jpg" alt="Image" class="img-fluid tm-img-center">
                         </div>
@@ -74,21 +77,21 @@
                      <a class ="page-link" asp-controller="Items" asp-action="Genre" asp-route-pg=@(pager.CurrentPage -1)>Previous</a>
                 </li>
             }
-
-           
-
-            
         </ul>
-
-
-        @* @*кнопка Create*@
-    @*<div style="position:fixed ;right:25px ;bottom: 25px" class="text-white">
-    <a asp-controller="Authors" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Add New Author</a>
-    </div>*@
-
     }
-                
-                     <a asp-controller="Items" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить книгу</a>
-               
-
+                     
 </div>
+
+
+<div class="wrapper">
+    <a asp-controller="Items" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить книгу</a></p>
+</div>
+
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <a class="btn btn-outline-secondary ;" class="vertical-center" asp-controller="Home" asp-action="Genres">Вернуться к Жанрам</a>
+    </div>
+</div>
+
+
