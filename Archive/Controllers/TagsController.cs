@@ -30,6 +30,23 @@ namespace Archive.Controllers
             var tags = await _manager.GetTtagsByItem(id);
             return View(tags);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> TagList()
+        {
+            GlobalData.TN.Clear();
+            var tags = await _manager.GetTtagsByItem(GlobalData.iid);
+            if (tags != null)
+            {
+                foreach (var a in tags)
+                {
+                    GlobalData.TN.Add(a.Name);
+                }
+            }
+            else
+                GlobalData.TN.Add("Тегов пока нет");
+            return Redirect("/Items/ItemPageW");
+        }
         public IActionResult Create()
         {
             return View();
