@@ -47,6 +47,22 @@ namespace Archive.Controllers
                 GlobalData.TN.Add("Тегов пока нет");
             return Redirect("/Items/ItemPageW");
         }
+        [HttpGet]
+        public async Task<IActionResult> TagListC()
+        {
+            GlobalData.TN.Clear();
+            var tags = await _manager.GetTtagsByItem(GlobalData.iid);
+            if (tags != null)
+            {
+                foreach (var a in tags)
+                {
+                    GlobalData.TN.Add(a.Name);
+                }
+            }
+            else
+                GlobalData.TN.Add("Тегов пока нет");
+            return Redirect("/Items/ItemPageCollectionW");
+        }
         public IActionResult Create()
         {
             return View();

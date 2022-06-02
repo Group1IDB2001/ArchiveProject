@@ -203,5 +203,20 @@ namespace Archive.Controllers
                 GlobalData.AN.Add("Авторов пока нет");
             return Redirect("/Tags/TagList");
         }
+        public async Task<IActionResult> AuthorListC()
+        {
+            GlobalData.AN.Clear();
+            var author = await _manager.GetAuthorsByItemId(GlobalData.iid);
+            if (author != null)
+            {
+                foreach (var a in author)
+                {
+                    GlobalData.AN.Add(a.Name);
+                }
+            }
+            else
+                GlobalData.AN.Add("Авторов пока нет");
+            return Redirect("/Tags/TagListC");
+        }
     }
 }

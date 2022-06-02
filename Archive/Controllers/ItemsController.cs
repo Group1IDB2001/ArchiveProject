@@ -81,10 +81,18 @@ namespace Archive.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> ItemPageCollectionW()
+        {
+            var items = await _manager.GetItemById(GlobalData.iid);
+            return View(items);
+        }
+
+        [HttpGet]
         public async Task<IActionResult> ItemPageCollection(int Id)
         {
             var items = await _manager.GetItemById(Id);
-            return View(items);
+            GlobalData.iid = Id;
+            return Redirect("/Authors/AuthorListC/");
         }
 
 
