@@ -41,7 +41,15 @@
                                                         <div class="col-sm-4 bg-c-lite-green user-profile">
                                                             <div class="card-block text-center text-white">
                                                                 <div class="m-b-25">
-                                                                    <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image">
+                                                                     @if (GlobalData.gingn == "man")
+                                                                     {
+                                                                        <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image">
+                                                                     }
+                                                                     else
+                                                                     {
+                                                                        <img src="/img/women.png" class="img-radius" alt="User-Profile-Image">
+                                                                     }
+
                                                                 </div>
                                                                 <h6 class="f-w-600">@Model.Name</h6>
                                                                 <p>@Model.Role</p>
@@ -85,7 +93,7 @@
                                                                 
                                                                  <div class="container">
                                                                     <div class="col-md-offset-2 col-md-10">
-                                                                        <a class="btn btn-outline-secondary" asp-controller="items" asp-action="Index">Вернуться к каталогу</a>
+                                                                        <a class="btn btn-outline-secondary" asp-controller="items" asp-action="Index">перейти к каталогу</a>
                                                                         <a style = "color: white; background-color: #f44336;" asp-area="" asp-controller="Users" asp-action="Logout"><i  class="fa fa-sign-out"></i>Выйти</a>
                                                                     </div>
                                                                  </div>
@@ -100,7 +108,3 @@
                                              </div>
                                                 </div>
                                             </div>
-                                            
-
-
-                                            

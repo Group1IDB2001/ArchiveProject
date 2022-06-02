@@ -20,7 +20,7 @@ namespace Archive.Controllers
             if(lis == null)
             {
                 GlobalData.ids.Clear();
-                return Redirect("/Items/ItemsIn");
+                return Redirect("/Items/ItemsInCollection");//#//
             }
             else
             {
@@ -38,6 +38,45 @@ namespace Archive.Controllers
             }
             
         }
+
+
+
+
+        public async Task<IActionResult> ShowItemsSaved(int id)
+        {
+            var lis = await _manager.GetItemCollectionByCollection(id);
+            if (lis == null)
+            {
+                GlobalData.ids.Clear();
+                return Redirect("/Items/ItemsInCollectionSaved");//#//
+            }
+            else
+            {
+                GlobalData.ids.Clear();
+                int ii;
+                foreach (var col in lis)
+                {
+                    if (col.ItemId != null)
+                    {
+                        ii = ((int)col.ItemId);
+                        GlobalData.ids.Add(ii);
+                    }
+                }
+                return Redirect("/Items/ItemsInCollectionSaved");
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
 
         public async Task<IActionResult> PickItem(int id)
         {

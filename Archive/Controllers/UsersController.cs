@@ -48,9 +48,10 @@ namespace Archive.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login([Bind("Email,Password")] CreateUserRequest account)
+        public async Task<IActionResult> Login([Bind("Email,Password")] CreateUserRequest account , string ginger)
         {
-             var Account = await _manager.SingIn(account.Email, account.Password);
+            GlobalData.gingn = ginger;
+            var Account = await _manager.SingIn(account.Email, account.Password);
              if (Account)
              {
                 _email= account.Email;
@@ -83,8 +84,9 @@ namespace Archive.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(CreateUserRequest Request)
+        public async Task<IActionResult> Register(CreateUserRequest Request,string ginger)
         {
+            GlobalData.gingn = ginger;
             if (ModelState.IsValid)
             {
                 var Account = await _manager.AddUser(Request.Name , Request.Email, Request.Password, Request.Role);

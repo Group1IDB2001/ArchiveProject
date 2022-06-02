@@ -40,6 +40,9 @@ else
             Название
         </th>
         <th>
+            Описание
+        </th>
+        <th>
             
         </th>
         </tr>
@@ -47,10 +50,11 @@ else
                 {
                       <tr>
                           <td>@collection.Name</td>
+                          <td>@collection.Description</td>
                           <td class="aling-middle">
                           @*<a asp-controller="CollectionItem" asp-action="PickItem" asp-route-id=@collection.Id class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить книгу</a>*@
                           @*<a asp-controller="Save" asp-action="Save" asp-route-id=@collection.Id class="btn btn-success" ><i class="bi bi-plus-circle"></i>Сохранить</a>*@
-                          <a asp-area="" asp-controller="CollectionItem" asp-action="ShowItems" asp-route-id=@collection.Id class="btn btn-outline-info"><i class="bi bi-eye"></i>Подробнее</a>
+                          <a asp-area="" asp-controller="CollectionItem" asp-action="ShowItemsSaved" asp-route-id=@collection.Id class="btn btn-outline-info"><i class="bi bi-eye"></i>Подробнее</a>
                         </td>
                      </tr>
                 }
@@ -59,7 +63,7 @@ else
 }
 
 <td class="aling-middle">
-    <a class="btn btn-outline-secondary" asp-controller="Collection" asp-action="Index">Вернуться к коллекции</a>
-    <a asp-controller="Collection" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить коллекцию</a>
+    <a class="btn btn-outline-secondary" asp-controller="Users" asp-action="UserPage">Вернуться к профилю</a>
+    @*<a asp-controller="Collection" asp-action="Create" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить коллекцию</a>*@
 </td>
            

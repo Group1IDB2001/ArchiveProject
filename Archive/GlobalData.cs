@@ -10,5 +10,6 @@
         public static int cid = 0;//id collection
         public static int iid = 0;//item id 
         public static int taid=0;//tagid
+        public static string gingn;
     }
 }
