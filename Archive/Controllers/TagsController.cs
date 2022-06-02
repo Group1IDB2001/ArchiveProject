@@ -27,8 +27,8 @@ namespace Archive.Controllers
         [HttpGet]
         public async Task<IActionResult> TagPage(int id)
         {
+            GlobalData.iid = id;
             var tags = await _manager.GetTtagsByItem(id);
-
             return View(tags);
         }
         public IActionResult Create()

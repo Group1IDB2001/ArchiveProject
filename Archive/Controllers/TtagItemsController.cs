@@ -20,7 +20,7 @@ namespace Archive.Controllers
             if (lis == null)
             {
                 GlobalData.ids.Clear();
-                return Redirect("/Items/ItemsIn");
+                return Redirect("/Items/ItemsInTage");
             }
             else
             {
@@ -34,7 +34,7 @@ namespace Archive.Controllers
                         GlobalData.ids.Add(ii);
                     }
                 }
-                return Redirect("/Items/ItemsIn");
+                return Redirect("/Items/ItemsInTage");
             }
             
         }

@@ -52,7 +52,7 @@
             @foreach(var item in Model)
             {
                 <figure class="col-lg-1,5 col-md-1,5 col-sm-3 col-6 tm-gallery-item">
-                    <a asp-area="" asp-controller="Items" asp-action="ItemPage" asp-route-id=@item.Id>
+                    <a asp-area="" asp-controller="Items" asp-action="ItemPageTage" asp-route-id=@item.Id>
                             <div class="tm-gallery-item-overlay">
                                 <img src="~/img/cover.jpg" alt="Image" class="img-fluid tm-img-center">
                             </div>
@@ -88,5 +88,10 @@
     }
 </div>
 
-<a asp-controller="TtagItems" asp-action="PickItem" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить книгу к тегу</a></p>
 
+<a asp-controller="TtagItems" asp-action="PickItem" class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить книгу к тегу</a></p>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <a class="btn btn-outline-secondary" asp-controller="Tags" asp-action="TagPage" asp-route-id="@GlobalData.iid">Вернуться к тегам</a>
+    </div>
+</div>

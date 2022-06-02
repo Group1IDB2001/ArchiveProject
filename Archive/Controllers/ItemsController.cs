@@ -66,14 +66,24 @@ namespace Archive.Controllers
         }
 
         [HttpGet]
-        
         public async Task<IActionResult> ItemPage(int Id)
         {
             var items = await _manager.GetItemById(Id);
             return View(items);
         }
+
+
         [HttpGet]
-        public async Task<IActionResult> ItemsIn(int pg = 1)
+        public async Task<IActionResult> ItemPageTage(int Id)
+        {
+            var items = await _manager.GetItemById(Id);
+            return View(items);
+        }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> ItemsInTage(int pg = 1)
         {
             var items = new List<Item>();
             if(GlobalData.ids.Count() == 0)

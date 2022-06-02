@@ -28,10 +28,6 @@
 @if(Model == null)
         {
             <h3>По Вашему запросу ничего не найдено</h3>
-                <td class="aling-middle">
-                    <a class="btn btn-outline-secondary" asp-controller="Items" asp-action="Index">Вернуться к каталогу</a>
-                    @*<a asp-controller="TtagItems" asp-action="PickTag" asp-route-id=@Model.Id class="btn btn-success" ><i class="bi bi-plus-circle"></i>Добавить</a>
-            *@</td>
         }
         else
         {              
@@ -52,5 +48,9 @@
                 </div>
                             
            </div>
-
-}           
+}
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <a class="btn btn-outline-secondary" asp-controller="Items" asp-action="ItemPage" asp-route-id="@GlobalData.iid">Вернуться к каталогу</a>
+    </div>
+</div>
