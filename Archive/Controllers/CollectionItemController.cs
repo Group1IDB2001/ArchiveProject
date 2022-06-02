@@ -11,9 +11,8 @@ namespace Archive.Controllers
         {
             _manager = manager;
         }
+
         [HttpGet]
-
-
         public async Task<IActionResult> ShowItems(int id)
         {
             var lis = await _manager.GetItemCollectionByCollection(id);
@@ -36,7 +35,33 @@ namespace Archive.Controllers
                 }
                 return Redirect("/Items/ItemsInCollection");
             }
-            
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> ShowItemsFromcollection(int id)
+        {
+            GlobalData.collectionId = id;
+            var lis = await _manager.GetItemCollectionByCollection(id);
+            if (lis == null)
+            {
+                GlobalData.ids.Clear();
+                return Redirect("/Items/ItemsInCollectionfromco");//#//
+            }
+            else
+            {
+                GlobalData.ids.Clear();
+                int ii;
+                foreach (var col in lis)
+                {
+                    if (col.ItemId != null)
+                    {
+                        ii = ((int)col.ItemId);
+                        GlobalData.ids.Add(ii);
+                    }
+                }
+                return Redirect("/Items/ItemsInCollectionfromco");
+            }
         }
 
 

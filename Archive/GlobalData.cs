@@ -14,5 +14,6 @@
         public static int uroleid = 0;// user role id 
         public static int AuthId = 0;//Author id
         public static int Gunrid = 0;// gunre id
+        public static int collectionId = 0;//collection Id
     }
 }

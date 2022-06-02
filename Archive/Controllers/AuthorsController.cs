@@ -85,6 +85,8 @@ namespace Archive.Controllers
             return View(author);
         }
 
+
+        //from item to author
         public async Task<IActionResult> NotFoundAuthor()
         {
             return View();
@@ -103,6 +105,34 @@ namespace Archive.Controllers
             }
             
         }
+
+        public async Task<IActionResult> NotFound()
+        {
+            return View();
+        }
+        public async Task<IActionResult> EditFromAuthor(int id)
+        {
+            GlobalData.AuthId = id;
+            if (GlobalData.uroleid == 3)
+            {
+                return RedirectToAction("NotFound");
+            }
+            else
+            {
+                var author = await _manager.GetAuthorById(id);
+                return View(author);
+            }
+
+        }
+
+
+
+
+
+
+
+
+
 
         [HttpPost]
         public async Task<IActionResult> Edit(int id,[Bind("Id,Name,Born ,Death ,About")] Author author)
@@ -125,8 +155,17 @@ namespace Archive.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            var author = await _manager.GetAuthorById(id);
-            return View(author);
+            GlobalData.AuthId = id;
+            if (GlobalData.uroleid == 3)
+            {
+                return RedirectToAction("NotFound");
+            }
+            else
+            {
+                var author = await _manager.GetAuthorById(id);
+                return View(author);
+            }
+            
         }
 
         //ActionName используется для другого имени метода действия(action method)
