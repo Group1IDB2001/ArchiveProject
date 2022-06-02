@@ -35,9 +35,55 @@ namespace Archive.Controllers
                     }
                 }
                 return Redirect("/Items/ItemsInTage");
-            }
-            
+            } 
         }
+
+
+        [HttpGet]
+        public async Task<IActionResult> ItemsByTagitems(int id)
+        {
+            var lis = await _manager.GetByTtag(id);
+            GlobalData.taid = id;
+            if (lis == null)
+            {
+                GlobalData.ids.Clear();
+                return Redirect("/Items/ItemsInTageItems");
+            }
+            else
+            {
+                GlobalData.ids.Clear();
+                int ii;
+                foreach (var col in lis)
+                {
+                    if (col.ItemId != null)
+                    {
+                        ii = ((int)col.ItemId);
+                        GlobalData.ids.Add(ii);
+                    }
+                }
+                return Redirect("/Items/ItemsInTageItems");
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         [HttpGet]
         public async Task<IActionResult> PickTag(int id)
         {

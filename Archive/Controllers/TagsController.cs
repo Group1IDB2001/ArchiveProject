@@ -14,7 +14,6 @@ namespace Archive.Controllers
         public async Task<IActionResult> Index(int id)
         {
             var tags = await _manager.GetAllTtags();
-
             return View(tags);
         }
 
